@@ -5,6 +5,9 @@
  */
 package tubespbogui;
 
+import java.util.Arrays;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author hafidz
@@ -14,10 +17,28 @@ public class View extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
+    private Kompetisi komp;
+    private database db;
     public View() {
         initComponents();
+        fillListKompetisi();
     }
 
+    private void fillListKompetisi(){
+        DefaultListModel m = new DefaultListModel();
+        String allData = komp.getListKompetisi();
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        String view;
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            view = Arrays.toString(data[i]);
+            view = view.replaceAll("[^A-Za-z]+", "");
+            m.addElement(view);
+        }
+        lKompetisi.setModel(m);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
