@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
+import javax.swing.JOptionPane;
 
 public class Kompetisi {
     database db;
@@ -68,6 +70,10 @@ public class Kompetisi {
     public void setNama(String nama) {
         this.nama = nama;
     }
+    
+    public void setMaxTim(int max){
+        this.maxTim=max;
+    }
 
     public String getNama() {
         return nama;
@@ -85,10 +91,52 @@ public class Kompetisi {
         return daftarPemain;
     }*/
 
-    public void addTim(String nama) {
-        
+    public void addTim(String namaTim) {
+        String get="select namaTim from tim where namaKompetisi='"+this.nama+"'";
+        ResultSet rs;
+        rs = db.getData(get);
+        int jum=0;
+        boolean cek = false;
+        try {
+            while(rs.next()){
+                if(rs.getString("namaTim").equals(namaTim)){
+                    cek=true;
+                }
+               jum+=1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(jum>=maxTim){
+            JOptionPane.showMessageDialog(null, "Tim dalam kompetisi sudah maksimal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }else if(cek){
+            JOptionPane.showMessageDialog(null, "Nama Tim sudah ada", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
+            String input="insert into tim values ('"+this.nama+"','"+namaTim+"')";
+            db.execute(input);
+            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            
+        }
     }
-
+    public String getListTim(){
+        StringBuilder sb = new StringBuilder();
+        try {
+            String query = "select namaTim from tim where namaKompetisi='"+this.nama+"'";
+            ResultSet rs = db.getData(query);
+            while(rs.next()){
+                for (int i = 1; i<=1; i++){
+                    sb.append(rs.getString(i));
+                    sb.append(" ; ");
+                }
+                sb.append(" \n");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sb.toString();
+    }
     public void removeTim() {
     }
     public void addPemain() {
@@ -122,5 +170,36 @@ public class Kompetisi {
             java.util.logging.Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sb.toString();
+    }
+    public String getDetilKompetisi(String nama){
+        String get1,get2,nk,tmp = null;
+        get1="select namaKompetisi, maxTim from kompetisi where namaKompetisi='"+nama+"' LIMIT 1";
+        ResultSet rs=db.getData(get1);
+        
+        try {
+            rs.next();
+            nk=rs.getString("namaKompetisi");
+            tmp="Nama Kompetisi : "+nk+"\nMaximal Kompetisi : "+rs.getInt("maxTim")+"\nList Tim : ";
+            get2="select namaTim from tim where namaKompetisi='"+nk+"'";
+            rs=db.getData(get2);
+            while(rs.next()){
+                tmp=tmp.concat("\n"+rs.getString("namaTim"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tmp;
+    }
+    public void selectKompetisi(String nama){
+        String query="select namaKompetisi, maxTim from kompetisi where namaKompetisi='"+nama+"' LIMIT 1";
+        ResultSet rs=db.getData(query);
+        try {
+            while(rs.next()){
+                this.maxTim=rs.getInt("maxTim");
+                this.nama=rs.getString("namaKompetisi");
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

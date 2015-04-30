@@ -80,12 +80,12 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="namaKompetisi" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <Component id="tNamaKompetisi" min="-2" pref="91" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="namaTim" min="-2" pref="93" max="-2" attributes="0"/>
+                                  <Component id="tMaxTim" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="bAddKompetisi" min="-2" max="-2" attributes="0"/>
@@ -118,12 +118,12 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="namaKompetisi" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tNamaKompetisi" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="namaTim" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tMaxTim" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="bAddKompetisi" min="-2" max="-2" attributes="0"/>
@@ -153,12 +153,12 @@
                 <Property name="text" type="java.lang.String" value="Maksimal Tim     :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="namaKompetisi">
+            <Component class="javax.swing.JTextField" name="tNamaKompetisi">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="namaKompetisiActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tNamaKompetisiActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="namaTim">
+            <Component class="javax.swing.JTextField" name="tMaxTim">
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -179,6 +179,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lKompetisiMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -207,16 +210,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddKompetisiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bEditKompetisi">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEditKompetisiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bPilihKompetisi">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pilih"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bPilihKompetisiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bDeleteKompetisi">
               <Properties>
@@ -226,6 +238,9 @@
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pPendaftaran">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Pendaftaran">
@@ -250,9 +265,11 @@
                               <Component id="bEdit" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="bDelete" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="dummy" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="174" max="32767" attributes="0"/>
+                      <EmptySpace pref="122" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -278,6 +295,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="bEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="bDelete" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dummy" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -347,6 +365,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddTimActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -535,6 +556,11 @@
             <Component class="javax.swing.JButton" name="bDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="dummy">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel9"/>
               </Properties>
             </Component>
           </SubComponents>

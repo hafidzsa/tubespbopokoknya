@@ -6,7 +6,9 @@
 package tubespbogui;
 
 import java.util.Arrays;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,8 @@ public class View extends javax.swing.JFrame {
     private database db;
     public View() {
         initComponents();
+        komp = new Kompetisi();
+        dummy.setText(komp.getNama());
         fillListKompetisi();
     }
 
@@ -38,6 +42,20 @@ public class View extends javax.swing.JFrame {
         }
         lKompetisi.setModel(m);
     }
+    private void fillListTim(){
+        DefaultListModel m = new DefaultListModel();
+        String allData = komp.getListTim();
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        String view;
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            view = Arrays.toString(data[i]);
+            view = view.replaceAll("[^A-Za-z]+", "");
+            m.addElement(view);
+        }
+        lListTim.setModel(m);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,8 +71,8 @@ public class View extends javax.swing.JFrame {
         pKompetisi = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        namaKompetisi = new javax.swing.JTextField();
-        namaTim = new javax.swing.JTextField();
+        tNamaKompetisi = new javax.swing.JTextField();
+        tMaxTim = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         lKompetisi = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -84,6 +102,7 @@ public class View extends javax.swing.JFrame {
         tabListPemain = new javax.swing.JTable();
         bEdit = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
+        dummy = new javax.swing.JLabel();
         pKlasemen = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabKlasemen = new javax.swing.JTable();
@@ -113,9 +132,9 @@ public class View extends javax.swing.JFrame {
 
         jLabel2.setText("Maksimal Tim     :");
 
-        namaKompetisi.addActionListener(new java.awt.event.ActionListener() {
+        tNamaKompetisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namaKompetisiActionPerformed(evt);
+                tNamaKompetisiActionPerformed(evt);
             }
         });
 
@@ -123,6 +142,11 @@ public class View extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        lKompetisi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lKompetisiMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(lKompetisi);
 
@@ -133,10 +157,25 @@ public class View extends javax.swing.JFrame {
         jScrollPane2.setViewportView(taDetail);
 
         bAddKompetisi.setText("Add");
+        bAddKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddKompetisiActionPerformed(evt);
+            }
+        });
 
         bEditKompetisi.setText("Edit");
+        bEditKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditKompetisiActionPerformed(evt);
+            }
+        });
 
         bPilihKompetisi.setText("Pilih");
+        bPilihKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPilihKompetisiActionPerformed(evt);
+            }
+        });
 
         bDeleteKompetisi.setText("Delete");
 
@@ -151,11 +190,11 @@ public class View extends javax.swing.JFrame {
                         .addGroup(pKompetisiLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(namaKompetisi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNamaKompetisi, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pKompetisiLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(namaTim, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(bAddKompetisi))
                 .addGap(18, 18, 18)
                 .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,11 +219,11 @@ public class View extends javax.swing.JFrame {
                     .addGroup(pKompetisiLayout.createSequentialGroup()
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(namaKompetisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNamaKompetisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(namaTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddKompetisi))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
@@ -199,11 +238,18 @@ public class View extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Kompetisi", pKompetisi);
 
+        pPendaftaran.setEnabled(false);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pendaftaran TIm"));
 
         jLabel3.setText("Nama Tim :");
 
         bAddTim.setText("Add");
+        bAddTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -321,6 +367,8 @@ public class View extends javax.swing.JFrame {
 
         bDelete.setText("Delete");
 
+        dummy.setText("jLabel9");
+
         javax.swing.GroupLayout pPendaftaranLayout = new javax.swing.GroupLayout(pPendaftaran);
         pPendaftaran.setLayout(pPendaftaranLayout);
         pPendaftaranLayout.setHorizontalGroup(
@@ -336,8 +384,10 @@ public class View extends javax.swing.JFrame {
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addComponent(bEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bDelete)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                        .addComponent(bDelete)
+                        .addGap(18, 18, 18)
+                        .addComponent(dummy)))
+                .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPendaftaranLayout.createSequentialGroup()
                     .addContainerGap(318, Short.MAX_VALUE)
@@ -357,7 +407,8 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bEdit)
-                            .addComponent(bDelete))
+                            .addComponent(bDelete)
+                            .addComponent(dummy))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,9 +590,50 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void namaKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaKompetisiActionPerformed
+    private void tNamaKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNamaKompetisiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_namaKompetisiActionPerformed
+    }//GEN-LAST:event_tNamaKompetisiActionPerformed
+
+    private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
+        // TODO add your handling code here:
+        komp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
+        komp.saveKompetisi();
+        taDetail.append("Data berhasil dimasukan \n");
+        String allData = komp.getListKompetisi();
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            taDetail.append(dataTuple[i]);
+        }
+        
+        fillListKompetisi();
+    }//GEN-LAST:event_bAddKompetisiActionPerformed
+
+    private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bEditKompetisiActionPerformed
+
+    private void bPilihKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPilihKompetisiActionPerformed
+        // TODO add your handling code here:
+        komp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        fillListTim();
+        JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
+        cNamaTim.addItem(evt);
+    }//GEN-LAST:event_bPilihKompetisiActionPerformed
+
+    private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
+        // TODO add your handling code here:
+        String temp=komp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
+        taDetail.setText(temp);
+    }//GEN-LAST:event_lKompetisiMouseClicked
+
+    private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
+        // TODO add your handling code here:
+        komp.addTim(tNamaTim.getText());
+        fillListTim();
+        
+    }//GEN-LAST:event_bAddTimActionPerformed
 
     /**
      * @param args the command line arguments
@@ -593,6 +685,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bSetButton2;
     private javax.swing.JComboBox cNamaTim;
     private javax.swing.JComboBox cPosisi;
+    private javax.swing.JLabel dummy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -618,14 +711,14 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel labTim1;
     private javax.swing.JLabel labTim2;
     private javax.swing.JLabel labelWelcome;
-    private javax.swing.JTextField namaKompetisi;
-    private javax.swing.JTextField namaTim;
     private javax.swing.JPanel pKlasemen;
     private javax.swing.JPanel pKompetisi;
     private javax.swing.JPanel pPendaftaran;
     private javax.swing.JPanel pPertandingan;
     private javax.swing.JSpinner spinGoal1;
     private javax.swing.JSpinner spinGoal2;
+    private javax.swing.JTextField tMaxTim;
+    private javax.swing.JTextField tNamaKompetisi;
     private javax.swing.JTextField tNamaPEmain;
     private javax.swing.JTextField tNamaTim;
     private javax.swing.JTextField tNoPunggung;
