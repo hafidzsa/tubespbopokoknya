@@ -21,9 +21,11 @@ public class View extends javax.swing.JFrame {
      */
     private Kompetisi tmpKomp;
     private database db;
+    private Tim tim;
     public View() {
         initComponents();
         tmpKomp = new Kompetisi();
+        tim=new Tim();
         fillListKompetisi();
         startPane();
     }
@@ -58,7 +60,7 @@ public class View extends javax.swing.JFrame {
     private void fillListTim(){
         DefaultComboBoxModel m1 = new DefaultComboBoxModel();
         DefaultListModel m2 = new DefaultListModel();
-        String allData = tmpKomp.getListTim();
+        String allData = tim.getListTim(tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
@@ -686,20 +688,27 @@ public class View extends javax.swing.JFrame {
 
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
         // TODO add your handling code here:
-        tmpKomp.addTim(tNamaTim.getText());
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tim=new Tim(tNamaTim.getText());
+        tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
+        
         fillListTim();
     }//GEN-LAST:event_bAddTimActionPerformed
 
     private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
         // TODO add your handling code here:
-        String x = lKompetisi.getSelectedValue().toString();
-        tmpKomp.hapusKompetisi(x);
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tmpKomp.removeKompetisi();
         fillListKompetisi();
     }//GEN-LAST:event_bDeleteKompetisiActionPerformed
 
     private void bOKEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditKompetisiActionPerformed
         // TODO add your handling code here:
-        //edit kompetisi
+        String temp=tmpKomp.getNama();
+        tmpKomp.setNama(tNamaKompetisi.getText());
+        tmpKomp.setMaxTim(Integer.valueOf(tMaxTim.getText()));
+        tmpKomp.updateKompetisi(temp);
+        fillListKompetisi();
     }//GEN-LAST:event_bOKEditKompetisiActionPerformed
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
