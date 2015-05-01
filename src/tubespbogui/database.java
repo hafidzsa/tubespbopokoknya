@@ -33,7 +33,7 @@ public class database {
     }
     public ResultSet getData(String query){
         try {
-            resultSet = statement.executeQuery(query);
+            setResultSet(statement.executeQuery(query));
         } catch (SQLException ex) {
             Logger.getLogger(database.class.getName()).log(Level.SEVERE, null, ex);
         }

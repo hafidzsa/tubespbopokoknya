@@ -38,6 +38,7 @@ public class Kompetisi extends db_kompetisi{
         this.nama = nama;
         maxTim = max;
         db = new database();
+        db.connect();
     }
 
     public boolean isNameValid(String name) {
@@ -108,13 +109,13 @@ public class Kompetisi extends db_kompetisi{
         super.editKompetisi(this.nama, this.maxTim, temp);
     }
     public void selectKompetisi(String nama){
-        String query="select namaKompetisi, maxTim from kompetisi where namaKompetisi='"+nama+"' LIMIT 1";
-        ResultSet rs=db.getData(query);
         try {
+            String query="select namaKompetisi, maxTim from kompetisi where namaKompetisi='"+nama+"' LIMIT 1";
+            ResultSet rs=db.getData(query);
             while(rs.next()){
                 this.maxTim=rs.getInt("maxTim");
                 this.nama=rs.getString("namaKompetisi");
-             }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }

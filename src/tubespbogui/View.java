@@ -657,6 +657,8 @@ public class View extends javax.swing.JFrame {
             taDetail.append(dataTuple[i]);
         }
         fillListKompetisi();
+        tNamaKompetisi.setText("");
+        tMaxTim.setText("");
     }//GEN-LAST:event_bAddKompetisiActionPerformed
 
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
@@ -691,8 +693,8 @@ public class View extends javax.swing.JFrame {
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         tim=new Tim(tNamaTim.getText());
         tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
-        
         fillListTim();
+        tNamaTim.setText("");
     }//GEN-LAST:event_bAddTimActionPerformed
 
     private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
