@@ -26,6 +26,12 @@ public class View extends javax.swing.JFrame {
         komp = new Kompetisi();
         dummy.setText(komp.getNama());
         fillListKompetisi();
+        startPane();
+    }
+    private void startPane(){
+        jTabbedPane1.setEnabledAt(1, false);
+        jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setEnabledAt(3, false);
     }
     private void fillListKompetisi(){
         DefaultListModel m = new DefaultListModel();
@@ -619,6 +625,7 @@ public class View extends javax.swing.JFrame {
         fillListTim();
         JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
         cNamaTim.addItem(evt);
+        jTabbedPane1.setEnabledAt(1, true);
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
