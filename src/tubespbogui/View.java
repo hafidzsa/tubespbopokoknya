@@ -37,6 +37,14 @@ public class View extends javax.swing.JFrame {
         bDeleteKompetisi.setVisible(false);
         bPilihKompetisi.setVisible(false);
         bOKEditKompetisi.setVisible(false);
+        bOKEditTim.setVisible(false);
+        bOKEditPemain.setVisible(false);
+        bCancelEditKompetisi.setVisible(false);
+        bCancelEditTim.setVisible(false);
+        bCancelEditPemain.setVisible(false);
+        bAddKompetisi.setVisible(true);
+        bAddTim.setVisible(true);
+        bAddPemain.setVisible(true);
     }
     private void kompetisiSelected(){
         bEditKompetisi.setVisible(true);
@@ -100,12 +108,14 @@ public class View extends javax.swing.JFrame {
         bPilihKompetisi = new javax.swing.JButton();
         bDeleteKompetisi = new javax.swing.JButton();
         bOKEditKompetisi = new javax.swing.JButton();
+        bCancelEditKompetisi = new javax.swing.JButton();
         pPendaftaran = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tNamaTim = new javax.swing.JTextField();
         bAddTim = new javax.swing.JButton();
         bOKEditTim = new javax.swing.JButton();
+        bCancelEditTim = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         cNamaTim = new javax.swing.JComboBox();
@@ -117,6 +127,7 @@ public class View extends javax.swing.JFrame {
         cPosisi = new javax.swing.JComboBox();
         bAddPemain = new javax.swing.JButton();
         bOKEditPemain = new javax.swing.JButton();
+        bCancelEditPemain = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         lListTim = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -207,6 +218,13 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        bCancelEditKompetisi.setText("Cancel");
+        bCancelEditKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelEditKompetisiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pKompetisiLayout = new javax.swing.GroupLayout(pKompetisi);
         pKompetisi.setLayout(pKompetisiLayout);
         pKompetisiLayout.setHorizontalGroup(
@@ -225,6 +243,8 @@ public class View extends javax.swing.JFrame {
                             .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pKompetisiLayout.createSequentialGroup()
                         .addComponent(bOKEditKompetisi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bCancelEditKompetisi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddKompetisi)))
                 .addGap(18, 18, 18)
@@ -258,8 +278,9 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bAddKompetisi)
+                            .addComponent(bCancelEditKompetisi)
                             .addComponent(bOKEditKompetisi))
-                        .addGap(0, 145, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pKompetisiLayout.createSequentialGroup()
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2)
@@ -289,6 +310,8 @@ public class View extends javax.swing.JFrame {
 
         bOKEditTim.setText("OK");
 
+        bCancelEditTim.setText("Cancel");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -299,9 +322,11 @@ public class View extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tNamaTim))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bOKEditTim)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bCancelEditTim)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddTim)))
                 .addContainerGap())
@@ -315,14 +340,15 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAddTim)
-                    .addComponent(bOKEditTim)))
+                    .addComponent(bOKEditTim)
+                    .addComponent(bCancelEditTim)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pendaftaran Pemain"));
 
         jLabel4.setText("Nama Tim :");
 
-        cNamaTim.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cNamaTim.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "null" }));
 
         jLabel5.setText("Nama Pemain :");
 
@@ -335,6 +361,8 @@ public class View extends javax.swing.JFrame {
         bAddPemain.setText("Add");
 
         bOKEditPemain.setText("OK");
+
+        bCancelEditPemain.setText("Cancel");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -357,10 +385,12 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tNoPunggung)
-                            .addComponent(cPosisi, 0, 98, Short.MAX_VALUE)))
+                            .addComponent(cPosisi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bOKEditPemain)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bCancelEditPemain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddPemain)))
                 .addContainerGap())
@@ -386,7 +416,8 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAddPemain)
-                    .addComponent(bOKEditPemain)))
+                    .addComponent(bOKEditPemain)
+                    .addComponent(bCancelEditPemain)))
         );
 
         lListTim.setBorder(javax.swing.BorderFactory.createTitledBorder("List Tim"));
@@ -493,7 +524,7 @@ public class View extends javax.swing.JFrame {
         pKlasemenLayout.setHorizontalGroup(
             pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKlasemenLayout.createSequentialGroup()
-                .addContainerGap(380, Short.MAX_VALUE)
+                .addContainerGap(390, Short.MAX_VALUE)
                 .addComponent(bMulaiPertandingan)
                 .addContainerGap())
             .addGroup(pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,7 +577,7 @@ public class View extends javax.swing.JFrame {
         pPertandinganLayout.setHorizontalGroup(
             pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pPertandinganLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -664,6 +695,7 @@ public class View extends javax.swing.JFrame {
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
         // TODO add your handling code here:
         bOKEditKompetisi.setVisible(true);
+        bCancelEditKompetisi.setVisible(true);
         bAddKompetisi.setVisible(false);
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         tNamaKompetisi.setText(""+tmpKomp.getNama());
@@ -711,14 +743,24 @@ public class View extends javax.swing.JFrame {
         tmpKomp.setMaxTim(Integer.valueOf(tMaxTim.getText()));
         tmpKomp.updateKompetisi(temp);
         fillListKompetisi();
+        startPane();
     }//GEN-LAST:event_bOKEditKompetisiActionPerformed
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
         if(tabListPemain.getSelectedRow()>=0){
             System.out.println("table kepilih");
+            bAddPemain.setVisible(false);
+            bOKEditPemain.setVisible(true);
+            bAddTim.setVisible(true);
+            bOKEditTim.setVisible(false);
+            //edit pemain
         }else{
-            System.out.println("table ga kepilih");
+            bAddPemain.setVisible(true);
+            bOKEditPemain.setVisible(false);
+            bAddTim.setVisible(false);
+            bOKEditTim.setVisible(true);
+            //edittim
         }
     }//GEN-LAST:event_bEditActionPerformed
 
@@ -726,6 +768,15 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tabListPemain.clearSelection();
     }//GEN-LAST:event_lListTimMouseClicked
+
+    private void bCancelEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditKompetisiActionPerformed
+        // TODO add your handling code here:
+        bOKEditKompetisi.setVisible(false);
+        bAddKompetisi.setVisible(true);
+        tNamaKompetisi.setText(null);
+        tMaxTim.setText(null);
+        bCancelEditKompetisi.setVisible(false);
+    }//GEN-LAST:event_bCancelEditKompetisiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -766,6 +817,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bAddKompetisi;
     private javax.swing.JButton bAddPemain;
     private javax.swing.JButton bAddTim;
+    private javax.swing.JButton bCancelEditKompetisi;
+    private javax.swing.JButton bCancelEditPemain;
+    private javax.swing.JButton bCancelEditTim;
     private javax.swing.JButton bDelete;
     private javax.swing.JButton bDeleteKompetisi;
     private javax.swing.JButton bEdit;

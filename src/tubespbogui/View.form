@@ -88,8 +88,10 @@
                                   <Component id="tMaxTim" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Component id="bOKEditKompetisi" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="bCancelEditKompetisi" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="bAddKompetisi" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -132,9 +134,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="bAddKompetisi" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bCancelEditKompetisi" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="bOKEditKompetisi" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="145" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -260,6 +263,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bOKEditKompetisiActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="bCancelEditKompetisi">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cancel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bCancelEditKompetisiActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="pPendaftaran">
@@ -347,14 +358,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="tNamaTim" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="bOKEditTim" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="bCancelEditTim" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="bAddTim" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -374,6 +387,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="bAddTim" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bOKEditTim" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bCancelEditTim" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -398,6 +412,11 @@
                 <Component class="javax.swing.JButton" name="bOKEditTim">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="OK"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="bCancelEditTim">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cancel"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -434,12 +453,14 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="tNoPunggung" max="32767" attributes="0"/>
-                                      <Component id="cPosisi" pref="98" max="32767" attributes="0"/>
+                                      <Component id="cPosisi" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="bOKEditPemain" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="bCancelEditPemain" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="bAddPemain" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -474,6 +495,7 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="bAddPemain" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="bOKEditPemain" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bCancelEditPemain" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -488,11 +510,8 @@
                 <Component class="javax.swing.JComboBox" name="cNamaTim">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="1">
+                        <StringItem index="0" value="null"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -536,6 +555,11 @@
                 <Component class="javax.swing.JButton" name="bOKEditPemain">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="OK"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="bCancelEditPemain">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cancel"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -624,7 +648,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="380" max="32767" attributes="0"/>
+                      <EmptySpace pref="390" max="32767" attributes="0"/>
                       <Component id="bMulaiPertandingan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -696,7 +720,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
