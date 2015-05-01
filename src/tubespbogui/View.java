@@ -637,7 +637,11 @@ public class View extends javax.swing.JFrame {
 
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
         // TODO add your handling code here:
-        
+        bOKEdit.setVisible(true);
+        bAddKompetisi.setVisible(false);
+        komp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tNamaKompetisi.setText(""+komp.getNama());
+        tMaxTim.setText(""+komp.getMaxTim());
     }//GEN-LAST:event_bEditKompetisiActionPerformed
 
     private void bPilihKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPilihKompetisiActionPerformed
