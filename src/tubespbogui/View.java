@@ -24,7 +24,6 @@ public class View extends javax.swing.JFrame {
     public View() {
         initComponents();
         komp = new Kompetisi();
-        dummy.setText(komp.getNama());
         fillListKompetisi();
         startPane();
     }
@@ -32,6 +31,15 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
         jTabbedPane1.setEnabledAt(3, false);
+        bEditKompetisi.setVisible(false);
+        bDeleteKompetisi.setVisible(false);
+        bPilihKompetisi.setVisible(false);
+        bOKEdit.setVisible(false);
+    }
+    private void kompetisiSelected(){
+        bEditKompetisi.setVisible(true);
+        bDeleteKompetisi.setVisible(true);
+        bPilihKompetisi.setVisible(true);
     }
     private void fillListKompetisi(){
         DefaultListModel m = new DefaultListModel();
@@ -86,6 +94,7 @@ public class View extends javax.swing.JFrame {
         bEditKompetisi = new javax.swing.JButton();
         bPilihKompetisi = new javax.swing.JButton();
         bDeleteKompetisi = new javax.swing.JButton();
+        bOKEdit = new javax.swing.JButton();
         pPendaftaran = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -189,6 +198,8 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        bOKEdit.setText("OK");
+
         javax.swing.GroupLayout pKompetisiLayout = new javax.swing.GroupLayout(pKompetisi);
         pKompetisi.setLayout(pKompetisiLayout);
         pKompetisiLayout.setHorizontalGroup(
@@ -205,7 +216,10 @@ public class View extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(bAddKompetisi))
+                    .addGroup(pKompetisiLayout.createSequentialGroup()
+                        .addComponent(bOKEdit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bAddKompetisi)))
                 .addGap(18, 18, 18)
                 .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pKompetisiLayout.createSequentialGroup()
@@ -235,12 +249,16 @@ public class View extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bAddKompetisi)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(11, 11, 11)
-                .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bAddKompetisi)
+                            .addComponent(bOKEdit))
+                        .addGap(0, 145, Short.MAX_VALUE))
+                    .addGroup(pKompetisiLayout.createSequentialGroup()
+                        .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bEditKompetisi)
                     .addComponent(bPilihKompetisi)
                     .addComponent(bDeleteKompetisi))
@@ -387,7 +405,10 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pPendaftaranLayout.createSequentialGroup()
+                        .addComponent(dummy)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
@@ -397,9 +418,7 @@ public class View extends javax.swing.JFrame {
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addComponent(bEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dummy)))
+                        .addComponent(bDelete)))
                 .addContainerGap())
         );
         pPendaftaranLayout.setVerticalGroup(
@@ -409,7 +428,9 @@ public class View extends javax.swing.JFrame {
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dummy))
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
@@ -417,8 +438,7 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bEdit)
-                            .addComponent(bDelete)
-                            .addComponent(dummy))))
+                            .addComponent(bDelete))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -617,6 +637,7 @@ public class View extends javax.swing.JFrame {
 
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_bEditKompetisiActionPerformed
 
     private void bPilihKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPilihKompetisiActionPerformed
@@ -626,12 +647,15 @@ public class View extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
         cNamaTim.addItem(evt);
         jTabbedPane1.setEnabledAt(1, true);
+        jTabbedPane1.setSelectedIndex(1);
+        dummy.setText("Kompetisi: "+komp.getNama());
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
         // TODO add your handling code here:
         String temp=komp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
+        kompetisiSelected();
     }//GEN-LAST:event_lKompetisiMouseClicked
 
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
@@ -693,6 +717,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bEditKompetisi;
     private javax.swing.JButton bEndPertandingan;
     private javax.swing.JButton bMulaiPertandingan;
+    private javax.swing.JButton bOKEdit;
     private javax.swing.JButton bPilihKompetisi;
     private javax.swing.JButton bSetButton1;
     private javax.swing.JButton bSetButton2;
