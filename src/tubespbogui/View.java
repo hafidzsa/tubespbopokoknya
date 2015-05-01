@@ -6,7 +6,7 @@
 package tubespbogui;
 
 import java.util.Arrays;
-import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -19,11 +19,11 @@ public class View extends javax.swing.JFrame {
     /**
      * Creates new form View
      */
-    private Kompetisi komp;
+    private Kompetisi tmpKomp;
     private database db;
     public View() {
         initComponents();
-        komp = new Kompetisi();
+        tmpKomp = new Kompetisi();
         fillListKompetisi();
         startPane();
     }
@@ -34,7 +34,7 @@ public class View extends javax.swing.JFrame {
         bEditKompetisi.setVisible(false);
         bDeleteKompetisi.setVisible(false);
         bPilihKompetisi.setVisible(false);
-        bOKEdit.setVisible(false);
+        bOKEditKompetisi.setVisible(false);
     }
     private void kompetisiSelected(){
         bEditKompetisi.setVisible(true);
@@ -43,7 +43,7 @@ public class View extends javax.swing.JFrame {
     }
     private void fillListKompetisi(){
         DefaultListModel m = new DefaultListModel();
-        String allData = komp.getListKompetisi();
+        String allData = tmpKomp.getListKompetisi();
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
@@ -56,8 +56,9 @@ public class View extends javax.swing.JFrame {
         lKompetisi.setModel(m);
     }
     private void fillListTim(){
-        DefaultListModel m = new DefaultListModel();
-        String allData = komp.getListTim();
+        DefaultComboBoxModel m1 = new DefaultComboBoxModel();
+        DefaultListModel m2 = new DefaultListModel();
+        String allData = tmpKomp.getListTim();
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
@@ -65,9 +66,11 @@ public class View extends javax.swing.JFrame {
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
             view = view.replaceAll("[^A-Za-z]+", "");
-            m.addElement(view);
+            m1.addElement(view);
+            m2.addElement(view);
         }
-        lListTim.setModel(m);
+        cNamaTim.setModel(m1);
+        lListTim.setModel(m2);
     }
     
     /**
@@ -94,12 +97,13 @@ public class View extends javax.swing.JFrame {
         bEditKompetisi = new javax.swing.JButton();
         bPilihKompetisi = new javax.swing.JButton();
         bDeleteKompetisi = new javax.swing.JButton();
-        bOKEdit = new javax.swing.JButton();
+        bOKEditKompetisi = new javax.swing.JButton();
         pPendaftaran = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tNamaTim = new javax.swing.JTextField();
         bAddTim = new javax.swing.JButton();
+        bOKEditTim = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         cNamaTim = new javax.swing.JComboBox();
@@ -110,6 +114,7 @@ public class View extends javax.swing.JFrame {
         tNoPunggung = new javax.swing.JTextField();
         cPosisi = new javax.swing.JComboBox();
         bAddPemain = new javax.swing.JButton();
+        bOKEditPemain = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         lListTim = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -146,12 +151,7 @@ public class View extends javax.swing.JFrame {
 
         jLabel2.setText("Maksimal Tim     :");
 
-        tNamaKompetisi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tNamaKompetisiActionPerformed(evt);
-            }
-        });
-
+        lKompetisi.setBorder(javax.swing.BorderFactory.createTitledBorder("List Kompetisi"));
         lKompetisi.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -198,7 +198,12 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        bOKEdit.setText("OK");
+        bOKEditKompetisi.setText("OK");
+        bOKEditKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOKEditKompetisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pKompetisiLayout = new javax.swing.GroupLayout(pKompetisi);
         pKompetisi.setLayout(pKompetisiLayout);
@@ -217,7 +222,7 @@ public class View extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(tMaxTim, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pKompetisiLayout.createSequentialGroup()
-                        .addComponent(bOKEdit)
+                        .addComponent(bOKEditKompetisi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddKompetisi)))
                 .addGap(18, 18, 18)
@@ -251,7 +256,7 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bAddKompetisi)
-                            .addComponent(bOKEdit))
+                            .addComponent(bOKEditKompetisi))
                         .addGap(0, 145, Short.MAX_VALUE))
                     .addGroup(pKompetisiLayout.createSequentialGroup()
                         .addGroup(pKompetisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -280,6 +285,8 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        bOKEditTim.setText("OK");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -292,6 +299,8 @@ public class View extends javax.swing.JFrame {
                         .addComponent(tNamaTim))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bOKEditTim)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddTim)))
                 .addContainerGap())
         );
@@ -302,7 +311,9 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(tNamaTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAddTim))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bAddTim)
+                    .addComponent(bOKEditTim)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Pendaftaran Pemain"));
@@ -317,9 +328,11 @@ public class View extends javax.swing.JFrame {
 
         jLabel7.setText("Posisi :");
 
-        cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Striker", "Gelandang", "Back", "Kiper" }));
 
         bAddPemain.setText("Add");
+
+        bOKEditPemain.setText("OK");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -345,6 +358,8 @@ public class View extends javax.swing.JFrame {
                             .addComponent(cPosisi, 0, 98, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(bOKEditPemain)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bAddPemain)))
                 .addContainerGap())
         );
@@ -367,7 +382,9 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(cPosisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAddPemain))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bAddPemain)
+                    .addComponent(bOKEditPemain)))
         );
 
         lListTim.setBorder(javax.swing.BorderFactory.createTitledBorder("List Tim"));
@@ -375,6 +392,11 @@ public class View extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        lListTim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lListTimMouseClicked(evt);
+            }
         });
         jScrollPane3.setViewportView(lListTim);
 
@@ -392,6 +414,11 @@ public class View extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tabListPemain);
 
         bEdit.setText("Edit");
+        bEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditActionPerformed(evt);
+            }
+        });
 
         bDelete.setText("Delete");
 
@@ -615,66 +642,79 @@ public class View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tNamaKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNamaKompetisiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tNamaKompetisiActionPerformed
-
     private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
         // TODO add your handling code here:
-        komp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
-        komp.saveKompetisi();
+        tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
+        tmpKomp.saveKompetisi();
         taDetail.append("Data berhasil dimasukan \n");
-        String allData = komp.getListKompetisi();
+        String allData = tmpKomp.getListKompetisi();
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         for (int i = 0; i < dataTuple.length;i++){
             data[i] = dataTuple[i].split(" ; ");
             taDetail.append(dataTuple[i]);
         }
-        
         fillListKompetisi();
     }//GEN-LAST:event_bAddKompetisiActionPerformed
 
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
         // TODO add your handling code here:
-        bOKEdit.setVisible(true);
+        bOKEditKompetisi.setVisible(true);
         bAddKompetisi.setVisible(false);
-        komp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        tNamaKompetisi.setText(""+komp.getNama());
-        tMaxTim.setText(""+komp.getMaxTim());
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tNamaKompetisi.setText(""+tmpKomp.getNama());
+        tMaxTim.setText(""+tmpKomp.getMaxTim());
     }//GEN-LAST:event_bEditKompetisiActionPerformed
 
     private void bPilihKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPilihKompetisiActionPerformed
         // TODO add your handling code here:
-        komp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         fillListTim();
         JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
         cNamaTim.addItem(evt);
         jTabbedPane1.setEnabledAt(1, true);
         jTabbedPane1.setSelectedIndex(1);
-        dummy.setText("Kompetisi: "+komp.getNama());
+        dummy.setText("Kompetisi: "+tmpKomp.getNama());
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
         // TODO add your handling code here:
-        String temp=komp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
+        String temp=tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
         kompetisiSelected();
     }//GEN-LAST:event_lKompetisiMouseClicked
 
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
         // TODO add your handling code here:
-        komp.addTim(tNamaTim.getText());
+        tmpKomp.addTim(tNamaTim.getText());
         fillListTim();
-        
     }//GEN-LAST:event_bAddTimActionPerformed
 
     private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
         // TODO add your handling code here:
         String x = lKompetisi.getSelectedValue().toString();
-        komp.hapusKompetisi(x);
+        tmpKomp.hapusKompetisi(x);
         fillListKompetisi();
     }//GEN-LAST:event_bDeleteKompetisiActionPerformed
+
+    private void bOKEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditKompetisiActionPerformed
+        // TODO add your handling code here:
+        //edit kompetisi
+    }//GEN-LAST:event_bOKEditKompetisiActionPerformed
+
+    private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
+        // TODO add your handling code here:
+        if(tabListPemain.getSelectedRow()>=0){
+            System.out.println("table kepilih");
+        }else{
+            System.out.println("table ga kepilih");
+        }
+    }//GEN-LAST:event_bEditActionPerformed
+
+    private void lListTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lListTimMouseClicked
+        // TODO add your handling code here:
+        tabListPemain.clearSelection();
+    }//GEN-LAST:event_lListTimMouseClicked
 
     /**
      * @param args the command line arguments
@@ -721,7 +761,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bEditKompetisi;
     private javax.swing.JButton bEndPertandingan;
     private javax.swing.JButton bMulaiPertandingan;
-    private javax.swing.JButton bOKEdit;
+    private javax.swing.JButton bOKEditKompetisi;
+    private javax.swing.JButton bOKEditPemain;
+    private javax.swing.JButton bOKEditTim;
     private javax.swing.JButton bPilihKompetisi;
     private javax.swing.JButton bSetButton1;
     private javax.swing.JButton bSetButton2;
