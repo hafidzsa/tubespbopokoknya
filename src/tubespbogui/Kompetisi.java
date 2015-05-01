@@ -150,7 +150,9 @@ public class Kompetisi {
     }
     public void hapusKompetisi(String nama){
         db.connect();
-        String query = "delete from kompetisi where namaKompetisi = '"+nama+"'";
+        String query = "delete from tim where namaKompetisi = '"+nama+"'";
+        db.execute(query);
+        query = "delete from kompetisi where namaKompetisi = '"+nama+"'";
         db.execute(query);
     }
     public String getListKompetisi(){

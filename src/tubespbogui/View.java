@@ -177,6 +177,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bDeleteKompetisi.setText("Delete");
+        bDeleteKompetisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDeleteKompetisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pKompetisiLayout = new javax.swing.GroupLayout(pKompetisi);
         pKompetisi.setLayout(pKompetisiLayout);
@@ -628,6 +633,13 @@ public class View extends javax.swing.JFrame {
         fillListTim();
         
     }//GEN-LAST:event_bAddTimActionPerformed
+
+    private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
+        // TODO add your handling code here:
+        String x = lKompetisi.getSelectedValue().toString();
+        komp.hapusKompetisi(x);
+        fillListKompetisi();
+    }//GEN-LAST:event_bDeleteKompetisiActionPerformed
 
     /**
      * @param args the command line arguments
