@@ -395,7 +395,7 @@ public class View extends javax.swing.JFrame {
 
         bDelete.setText("Delete");
 
-        dummy.setText("jLabel9");
+        dummy.setText("Nama Kompetisinya");
 
         javax.swing.GroupLayout pPendaftaranLayout = new javax.swing.GroupLayout(pPendaftaran);
         pPendaftaran.setLayout(pPendaftaranLayout);
@@ -517,7 +517,7 @@ public class View extends javax.swing.JFrame {
         pPertandinganLayout.setHorizontalGroup(
             pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pPertandinganLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,9 +540,9 @@ public class View extends javax.swing.JFrame {
                                 .addGroup(pPertandinganLayout.createSequentialGroup()
                                     .addGap(79, 79, 79)
                                     .addComponent(jLabel8)
-                                    .addGap(117, 117, 117)
+                                    .addGap(104, 104, 104)
                                     .addComponent(labTim2)
-                                    .addGap(89, 89, 89))
+                                    .addGap(102, 102, 102))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pPertandinganLayout.createSequentialGroup()
                                     .addGap(29, 29, 29)
                                     .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
