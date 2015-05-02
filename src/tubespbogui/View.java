@@ -431,6 +431,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bOKEditPemain.setText("OK");
+        bOKEditPemain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOKEditPemainActionPerformed(evt);
+            }
+        });
 
         bCancelEditPemain.setText("Cancel");
         bCancelEditPemain.addActionListener(new java.awt.event.ActionListener() {
@@ -940,6 +945,8 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(tabListPemain.getSelectedRow()>=0){
             //deletePemain
+            String tmpNamaPemain = (String)tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0);
+            pemain.removePemain(tmpKomp.getNama(), tim.getNama(), tmpNamaPemain);
         }else if (lListTim.getSelectedValue()!=null){
             //deleteTim
             tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
@@ -964,7 +971,7 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         String tmp = tmpKomp.getNama();
-        if(tNamaPEmain.getText().equals("") && tNoPunggung.getText().equals("")){
+        if(tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
         }else{
             pemain=new Pemain(tNamaPEmain.getText(),(Integer.parseInt(tNoPunggung.getText())),cPosisi.getSelectedItem().toString());
@@ -978,7 +985,23 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tNamaPEmain.setText("");
         tNoPunggung.setText("");
+        startPane();
     }//GEN-LAST:event_bCancelEditPemainActionPerformed
+
+    private void bOKEditPemainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditPemainActionPerformed
+        // TODO add your handling code here:
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        String tmp = tmpKomp.getNama();
+        if(tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+            pemain=new Pemain(tNamaPEmain.getText(),(Integer.parseInt(tNoPunggung.getText())),cPosisi.getSelectedItem().toString());
+            pemain.updatePemain(tmp,cNamaTim.getSelectedItem().toString(),tNamaPEmain.getText(),Integer.parseInt(tNoPunggung.getText()),cPosisi.getSelectedItem().toString());
+            tNamaPEmain.setText("");
+            tNoPunggung.setText("");
+            startPane();
+        }
+    }//GEN-LAST:event_bOKEditPemainActionPerformed
 
     /**
      * @param args the command line arguments
