@@ -27,12 +27,15 @@ public class View extends javax.swing.JFrame {
         tmpKomp = new Kompetisi();
         tim=new Tim();
         fillListKompetisi();
+        firstLaunch();
         startPane();
     }
-    private void startPane(){
+    private void firstLaunch(){
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
         jTabbedPane1.setEnabledAt(3, false);
+    }
+    private void startPane(){
         bEditKompetisi.setVisible(false);
         bDeleteKompetisi.setVisible(false);
         bPilihKompetisi.setVisible(false);
@@ -45,6 +48,7 @@ public class View extends javax.swing.JFrame {
         bAddKompetisi.setVisible(true);
         bAddTim.setVisible(true);
         bAddPemain.setVisible(true);
+        bMulaiPertandingan.setVisible(false);
     }
     private void kompetisiSelected(){
         bEditKompetisi.setVisible(true);
@@ -82,7 +86,16 @@ public class View extends javax.swing.JFrame {
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
     }
-    
+    private void setBukaPendaftaran(boolean a){
+        bEdit.setVisible(a);
+        bDelete.setVisible(a);
+        bAddTim.setVisible(a);
+        bAddPemain.setVisible(a);
+        tNamaTim.setEditable(a);
+        tNamaPEmain.setEditable(a);
+        tNoPunggung.setEditable(a);
+        jTabbedPane1.setEnabledAt(2, !(a));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,6 +148,7 @@ public class View extends javax.swing.JFrame {
         bEdit = new javax.swing.JButton();
         bDelete = new javax.swing.JButton();
         dummy = new javax.swing.JLabel();
+        tbTutupPendaftaran = new javax.swing.JToggleButton();
         pKlasemen = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabKlasemen = new javax.swing.JTable();
@@ -145,8 +159,6 @@ public class View extends javax.swing.JFrame {
         labTim2 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        tNopunggungGoal1 = new javax.swing.JTextField();
-        tNoPunggungGoal2 = new javax.swing.JTextField();
         spinGoal1 = new javax.swing.JSpinner();
         spinGoal2 = new javax.swing.JSpinner();
         bSetButton2 = new javax.swing.JButton();
@@ -154,6 +166,8 @@ public class View extends javax.swing.JFrame {
         bEndPertandingan = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -397,7 +411,7 @@ public class View extends javax.swing.JFrame {
                             .addComponent(tNoPunggung)
                             .addComponent(cPosisi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(bOKEditPemain)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bCancelEditPemain)
@@ -472,6 +486,13 @@ public class View extends javax.swing.JFrame {
 
         dummy.setText("Nama Kompetisinya");
 
+        tbTutupPendaftaran.setText("Tutup Pendaftaran");
+        tbTutupPendaftaran.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTutupPendaftaranMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pPendaftaranLayout = new javax.swing.GroupLayout(pPendaftaran);
         pPendaftaran.setLayout(pPendaftaranLayout);
         pPendaftaranLayout.setHorizontalGroup(
@@ -485,7 +506,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(dummy)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -493,7 +514,9 @@ public class View extends javax.swing.JFrame {
                     .addGroup(pPendaftaranLayout.createSequentialGroup()
                         .addComponent(bEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bDelete)))
+                        .addComponent(bDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tbTutupPendaftaran)))
                 .addContainerGap())
         );
         pPendaftaranLayout.setVerticalGroup(
@@ -513,7 +536,8 @@ public class View extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bEdit)
-                            .addComponent(bDelete))))
+                            .addComponent(bDelete)
+                            .addComponent(tbTutupPendaftaran))))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -530,6 +554,11 @@ public class View extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabKlasemen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabKlasemenMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tabKlasemen);
 
         bMulaiPertandingan.setText("Mulai Pertandingan");
@@ -587,6 +616,10 @@ public class View extends javax.swing.JFrame {
         jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Live Update Goal"));
         jScrollPane6.setViewportView(jTextArea1);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout pPertandinganLayout = new javax.swing.GroupLayout(pPertandingan);
         pPertandingan.setLayout(pPertandinganLayout);
         pPertandinganLayout.setHorizontalGroup(
@@ -596,34 +629,29 @@ public class View extends javax.swing.JFrame {
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tNopunggungGoal1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(bSetButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
-                                .addComponent(labTim1)
-                                .addGap(32, 32, 32)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(pPertandinganLayout.createSequentialGroup()
+                                    .addComponent(labTim1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(79, 79, 79)
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pPertandinganLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bSetButton2)
-                                    .addComponent(jLabel12)
-                                    .addComponent(tNoPunggungGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(66, 66, 66))
-                            .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(pPertandinganLayout.createSequentialGroup()
-                                    .addGap(79, 79, 79)
-                                    .addComponent(jLabel8)
-                                    .addGap(104, 104, 104)
-                                    .addComponent(labTim2)
-                                    .addGap(102, 102, 102))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pPertandinganLayout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
-                                    .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(59, 59, 59)
-                                    .addComponent(spinGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(210, 210, 210)))))
+                                .addComponent(jLabel8)
+                                .addGap(257, 257, 257))
+                            .addGroup(pPertandinganLayout.createSequentialGroup()
+                                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(pPertandinganLayout.createSequentialGroup()
+                                        .addComponent(spinGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labTim2))
+                                    .addComponent(bSetButton2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(66, 66, 66))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -637,21 +665,18 @@ public class View extends javax.swing.JFrame {
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labTim1)
                     .addComponent(jLabel8)
-                    .addComponent(labTim2))
+                    .addComponent(labTim2)
+                    .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spinGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pPertandinganLayout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(10, 10, 10)
-                        .addComponent(tNopunggungGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pPertandinganLayout.createSequentialGroup()
-                        .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(spinGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tNoPunggungGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSetButton2)
                     .addComponent(bSetButton1))
@@ -692,7 +717,7 @@ public class View extends javax.swing.JFrame {
 
     private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
         // TODO add your handling code here:
-        if(tNamaKompetisi.getText().equals("")||tMaxTim.equals("")){
+        if(tNamaKompetisi.getText().equals("")||tMaxTim.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
         }else{
             tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
@@ -728,7 +753,6 @@ public class View extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
         cNamaTim.addItem(evt);
         jTabbedPane1.setEnabledAt(1, true);
-        jTabbedPane1.setEnabledAt(2, true);
         jTabbedPane1.setSelectedIndex(1);
         dummy.setText("Kompetisi: "+tmpKomp.getNama());
         startPane();
@@ -828,6 +852,17 @@ public class View extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bDeleteActionPerformed
 
+    private void tabKlasemenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabKlasemenMouseClicked
+        // TODO add your handling code here:
+        bMulaiPertandingan.setVisible(true);
+    }//GEN-LAST:event_tabKlasemenMouseClicked
+
+    private void tbTutupPendaftaranMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTutupPendaftaranMouseClicked
+        // TODO add your handling code here:
+        startPane();
+        setBukaPendaftaran(!(tbTutupPendaftaran.isSelected()));
+    }//GEN-LAST:event_tbTutupPendaftaranMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -885,6 +920,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JComboBox cNamaTim;
     private javax.swing.JComboBox cPosisi;
     private javax.swing.JLabel dummy;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -921,10 +958,9 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTextField tNamaPEmain;
     private javax.swing.JTextField tNamaTim;
     private javax.swing.JTextField tNoPunggung;
-    private javax.swing.JTextField tNoPunggungGoal2;
-    private javax.swing.JTextField tNopunggungGoal1;
     private javax.swing.JTextArea taDetail;
     private javax.swing.JTable tabKlasemen;
     private javax.swing.JTable tabListPemain;
+    private javax.swing.JToggleButton tbTutupPendaftaran;
     // End of variables declaration//GEN-END:variables
 }
