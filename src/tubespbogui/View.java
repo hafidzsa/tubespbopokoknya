@@ -6,9 +6,13 @@
 package tubespbogui;
 
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -909,7 +913,11 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditTimActionPerformed
         // TODO add your handling code here:
-        
+        tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
+        tim.editTim(tmpKomp.getNama(),tNamaTim.getText());
+        fillListTim();
+        startPane();
+        tNamaTim.setText(null);
     }//GEN-LAST:event_bOKEditTimActionPerformed
 
     private void bCancelEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditTimActionPerformed
@@ -924,6 +932,9 @@ public class View extends javax.swing.JFrame {
             //deletePemain
         }else if (lListTim.getSelectedValue()!=null){
             //deleteTim
+            tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
+            tim.removeTim(tmpKomp.getNama());
+            fillListTim();
         }
     }//GEN-LAST:event_bDeleteActionPerformed
 
@@ -989,7 +1000,11 @@ public class View extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new View().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    new View().setVisible(true);
+                } catch (Exception ex) {
+                }
             }
         });
     }

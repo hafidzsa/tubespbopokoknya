@@ -26,7 +26,7 @@ public class db_pemain {
         int idTim;
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select pemain.idTim from pemain,tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
+            String query = "select tim.idTim from tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"';";
             ResultSet rs = db.getData(query);
             while(rs.next()){
                 for (int i = 1; i<=1; i++){
@@ -46,7 +46,7 @@ public class db_pemain {
         for (int i = 0; i < dataTuple.length;i++){
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("[^0-9]+", "");
+            view = view.replaceAll("[^0-9]", "");
         }
         idTim = Integer.parseInt(view);
         String get="select noPunggung from pemain where idTim="+idTim+";";
