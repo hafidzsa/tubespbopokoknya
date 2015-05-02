@@ -45,17 +45,18 @@ public class db_tim {
         else{
             String input="insert into tim values (NULL,'"+namaTim+"',0,0,0,0,'"+namaKompetisi+"');";
             db.execute(input);
-            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "Data berhasil dimasukkan", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
         }
     }
     public void updateTim(String namaTim,String namaKompetisi,String temp){
-        String query="update tim set namaTim='"+namaTim+"' where namaTim='"+temp+"' and namaKompetisi='"+namaKompetisi+"'";
+        String query="update tim set namaTim='"+temp+"' where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
         db.execute(query);
+        JOptionPane.showMessageDialog(null, "Data Tim berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
     } 
     public void deleteTim(String namaTim, String namaKompetisi){
         String query="delete from tim where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
         db.execute(query);
+        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
     }
     public String getListTim(String namaKompetisi){
         StringBuilder sb = new StringBuilder();

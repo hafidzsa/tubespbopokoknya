@@ -902,7 +902,11 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditTimActionPerformed
         // TODO add your handling code here:
-        
+        tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
+        tim.editTim(tmpKomp.getNama(),tNamaTim.getText());
+        fillListTim();
+        startPane();
+        tNamaTim.setText(null);
     }//GEN-LAST:event_bOKEditTimActionPerformed
 
     private void bCancelEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditTimActionPerformed
