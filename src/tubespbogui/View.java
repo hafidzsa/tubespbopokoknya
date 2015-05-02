@@ -728,6 +728,7 @@ public class View extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
         cNamaTim.addItem(evt);
         jTabbedPane1.setEnabledAt(1, true);
+        jTabbedPane1.setEnabledAt(2, true);
         jTabbedPane1.setSelectedIndex(1);
         dummy.setText("Kompetisi: "+tmpKomp.getNama());
         startPane();
