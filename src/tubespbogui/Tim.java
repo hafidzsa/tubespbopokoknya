@@ -29,11 +29,14 @@ class Tim extends db_tim {
     }
     public void editTim(String namaKompetisi,String tempNama){
         super.updateTim(this.nama, namaKompetisi, tempNama);
-        
     }
-    public void selectTim(String namaTim){
+    public void removeTim(String namaKompetisi){
+        super.deleteTim(this.nama, namaKompetisi);
+        System.out.println(nama+"+"+namaKompetisi);
+    }
+    public void selectTim(String namaTim, String namaKompetisi){
         try {
-            String query="select namaTim from tim where namaKompetisi='"+namaTim+"' LIMIT 1";
+            String query="select * from tim where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"' LIMIT 1";
             ResultSet rs=db.getData(query);
             while(rs.next()){
                 this.idTim=rs.getInt("idTim");

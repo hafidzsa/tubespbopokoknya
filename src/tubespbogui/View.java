@@ -917,6 +917,9 @@ public class View extends javax.swing.JFrame {
             //deletePemain
         }else if (lListTim.getSelectedValue()!=null){
             //deleteTim
+            tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
+            tim.removeTim(tmpKomp.getNama());
+            fillListTim();
         }
     }//GEN-LAST:event_bDeleteActionPerformed
 

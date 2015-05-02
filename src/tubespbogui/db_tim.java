@@ -50,11 +50,11 @@ public class db_tim {
         }
     }
     public void updateTim(String namaTim,String namaKompetisi,String temp){
-        String query="update tim set namaTim='"+namaTim+"' where namaTim='"+temp+"' and namkompetisi='"+namaKompetisi+"'";
+        String query="update tim set namaTim='"+namaTim+"' where namaTim='"+temp+"' and namaKompetisi='"+namaKompetisi+"'";
         db.execute(query);
     } 
     public void deleteTim(String namaTim, String namaKompetisi){
-        String query="delete from tim where namaTim='"+namaTim+"', and namaKompetisi='"+namaKompetisi+"'";
+        String query="delete from tim where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
         db.execute(query);
     }
     public String getListTim(String namaKompetisi){
