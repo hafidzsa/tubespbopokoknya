@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author hafidz
  */
 public class db_tim {
-    private database db; 
+    protected database db; 
     public db_tim(){
          db=new database();
          db.connect();
@@ -48,6 +48,14 @@ public class db_tim {
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
             
         }
+    }
+    public void updateTim(String namaTim,String namaKompetisi,String temp){
+        String query="update tim set namaTim='"+namaTim+"' where namaTim='"+temp+"' and namkompetisi='"+namaKompetisi+"'";
+        db.execute(query);
+    } 
+    public void deleteTim(String namaTim, String namaKompetisi){
+        String query="delete from tim where namaTim='"+namaTim+"', and namaKompetisi='"+namaKompetisi+"'";
+        db.execute(query);
     }
     public String getListTim(String namaKompetisi){
         StringBuilder sb = new StringBuilder();

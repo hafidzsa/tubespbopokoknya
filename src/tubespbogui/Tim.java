@@ -1,5 +1,10 @@
 package tubespbogui;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 class Tim extends db_tim {
     private String nama;
@@ -20,6 +25,25 @@ class Tim extends db_tim {
        */
     public void saveTim(String namaKompetisi,int maxTim){
         super.addTim(this.nama, namaKompetisi,maxTim);
+    }
+    public void editTim(String namaKompetisi,String tempNama){
+        super.updateTim(this.nama, namaKompetisi, tempNama);
+        
+    }
+    public void selectTim(String namaTim){
+        try {
+            String query="select namaTim from tim where namaKompetisi='"+namaTim+"' LIMIT 1";
+            ResultSet rs=db.getData(query);
+            while(rs.next()){
+                this.nama=rs.getString("namaTim");
+                this.win=rs.getInt("win");
+                this.lose=rs.getInt("lose");
+                this.draw=rs.getInt("draw");
+                this.point=rs.getInt("point");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     //scoring
     public void win() {
