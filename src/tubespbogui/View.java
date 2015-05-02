@@ -9,6 +9,7 @@ import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -86,6 +87,16 @@ public class View extends javax.swing.JFrame {
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
     }
+    private void filltableKlasemen(){
+    String allData = tim.getListTimFull(tmpKomp.getNama());
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+        }
+        String [] title = {"Nama TIM","Win","Lose","Draw","Point"};
+        tabKlasemen.setModel(new DefaultTableModel(data,title));
+    }
     private void setBukaPendaftaran(boolean a){
         bEdit.setVisible(a);
         bDelete.setVisible(a);
@@ -106,6 +117,8 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         labelWelcome = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pKompetisi = new javax.swing.JPanel();
@@ -154,6 +167,7 @@ public class View extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tabKlasemen = new javax.swing.JTable();
         bLihatJadwal = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         pJadwalPertandingan = new javax.swing.JPanel();
         bMulaiPertandingan = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -173,6 +187,10 @@ public class View extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane8.setViewportView(jTextArea2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -563,6 +581,13 @@ public class View extends javax.swing.JFrame {
 
         bLihatJadwal.setText("Lihat Jadwal Pertandingan");
 
+        jButton1.setText("Refresh");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pKlasemenLayout = new javax.swing.GroupLayout(pKlasemen);
         pKlasemen.setLayout(pKlasemenLayout);
         pKlasemenLayout.setHorizontalGroup(
@@ -570,9 +595,10 @@ public class View extends javax.swing.JFrame {
             .addGroup(pKlasemenLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKlasemenLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bLihatJadwal)))
                 .addContainerGap())
         );
@@ -582,7 +608,9 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bLihatJadwal)
+                .addGroup(pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bLihatJadwal)
+                    .addComponent(jButton1))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -891,8 +919,14 @@ public class View extends javax.swing.JFrame {
     private void tbTutupPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTutupPendaftaranActionPerformed
         // TODO add your handling code here:
         startPane();
+        filltableKlasemen();
         setBukaPendaftaran(!(tbTutupPendaftaran.isSelected()));
     }//GEN-LAST:event_tbTutupPendaftaranActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        filltableKlasemen();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -952,6 +986,7 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JComboBox cNamaTim;
     private javax.swing.JComboBox cPosisi;
     private javax.swing.JLabel dummy;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -973,8 +1008,10 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JList lKompetisi;
     private javax.swing.JList lListTim;
     private javax.swing.JLabel labTim1;

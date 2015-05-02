@@ -69,7 +69,25 @@ public class db_tim {
             }
             rs.close();
         } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tim.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sb.toString();
+    }
+    public String getListTimFull(String namaKompetisi){
+        StringBuilder sb = new StringBuilder();
+        try {
+            String query = "select namaTim,win,lose,draw,point from tim where namaKompetisi='"+namaKompetisi+"'";
+            ResultSet rs = db.getData(query);
+            while(rs.next()){
+                for (int i = 1; i<=5; i++){
+                    sb.append(rs.getString(i));
+                    sb.append(" ; ");
+                }
+                sb.append(" \n");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Tim.class.getName()).log(Level.SEVERE, null, ex);
         }
         return sb.toString();
     }
