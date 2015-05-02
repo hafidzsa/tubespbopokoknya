@@ -43,7 +43,7 @@ public class db_tim {
             JOptionPane.showMessageDialog(null, "Nama Tim sudah ada", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            String input="insert into tim values ('"+namaKompetisi+"','"+namaTim+"')";
+            String input="insert into tim values (NULL,'"+namaTim+"',0,0,0,0,'"+namaKompetisi+"');";
             db.execute(input);
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
             
