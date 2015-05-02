@@ -309,6 +309,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bOKEditTim.setText("OK");
+        bOKEditTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOKEditTimActionPerformed(evt);
+            }
+        });
 
         bCancelEditTim.setText("Cancel");
 
@@ -756,6 +761,7 @@ public class View extends javax.swing.JFrame {
             bOKEditTim.setVisible(false);
             //edit pemain
         }else{
+            tim.selectTim(lListTim.getSelectedValue().toString());
             bAddPemain.setVisible(true);
             bOKEditPemain.setVisible(false);
             bAddTim.setVisible(false);
@@ -777,6 +783,11 @@ public class View extends javax.swing.JFrame {
         tMaxTim.setText(null);
         bCancelEditKompetisi.setVisible(false);
     }//GEN-LAST:event_bCancelEditKompetisiActionPerformed
+
+    private void bOKEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditTimActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_bOKEditTimActionPerformed
 
     /**
      * @param args the command line arguments
