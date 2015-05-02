@@ -778,7 +778,6 @@ public class View extends javax.swing.JFrame {
             bCancelEditTim.setVisible(true);
             bAddTim.setVisible(true);
             bOKEditTim.setVisible(false);
-            //edit pemain
         }else if (lListTim.getSelectedValue()!=null){
             //tim.selectTim(lListTim.getSelectedValue().toString());
             bAddTim.setVisible(false);
@@ -786,7 +785,6 @@ public class View extends javax.swing.JFrame {
             bCancelEditTim.setVisible(true);
             bAddPemain.setVisible(true);
             bOKEditPemain.setVisible(false);
-            //edittim
             tNamaTim.setText(lListTim.getSelectedValue().toString());
         }
     }//GEN-LAST:event_bEditActionPerformed
@@ -859,7 +857,7 @@ public class View extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddKompetisi;
     private javax.swing.JButton bAddPemain;
