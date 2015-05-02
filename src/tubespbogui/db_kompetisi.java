@@ -32,10 +32,8 @@ public class db_kompetisi {
         JOptionPane.showMessageDialog(null, "Data berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
     protected void deleteKompetisi(String namaKompetisi){
-        String query1="delete from tim where namaKompetisi='"+namaKompetisi+"'";
-        String query2="delete from kompetisi where namaKompetisi='"+namaKompetisi+"'";
-        db.execute(query1);
-        db.execute(query2);
+        String query="delete from kompetisi where namaKompetisi='"+namaKompetisi+"'";
+        db.execute(query);
         JOptionPane.showMessageDialog(null, "Data Berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
      public String getListKompetisi(){
@@ -75,5 +73,4 @@ public class db_kompetisi {
         }
         return tmp;
     }
-    
 }

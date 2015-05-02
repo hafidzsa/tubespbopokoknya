@@ -773,18 +773,22 @@ public class View extends javax.swing.JFrame {
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
         if(tabListPemain.getSelectedRow()>=0){
+            //visible button for edit pemain
             bAddPemain.setVisible(false);
             bOKEditPemain.setVisible(true);
-            bCancelEditTim.setVisible(true);
+            bCancelEditPemain.setVisible(true);
             bAddTim.setVisible(true);
             bOKEditTim.setVisible(false);
+            bCancelEditTim.setVisible(false);
         }else if (lListTim.getSelectedValue()!=null){
             //tim.selectTim(lListTim.getSelectedValue().toString());
+            //visible button for edit tim
             bAddTim.setVisible(false);
             bOKEditTim.setVisible(true);
             bCancelEditTim.setVisible(true);
             bAddPemain.setVisible(true);
             bOKEditPemain.setVisible(false);
+            bCancelEditPemain.setVisible(false);
             tNamaTim.setText(lListTim.getSelectedValue().toString());
         }
     }//GEN-LAST:event_bEditActionPerformed
