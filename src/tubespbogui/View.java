@@ -316,6 +316,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bCancelEditTim.setText("Cancel");
+        bCancelEditTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelEditTimActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -459,6 +464,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bDelete.setText("Delete");
+        bDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDeleteActionPerformed(evt);
+            }
+        });
 
         dummy.setText("Nama Kompetisinya");
 
@@ -682,19 +692,23 @@ public class View extends javax.swing.JFrame {
 
     private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
         // TODO add your handling code here:
-        tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
-        tmpKomp.saveKompetisi();
-        taDetail.append("Data berhasil dimasukan \n");
-        String allData = tmpKomp.getListKompetisi();
-        String[] dataTuple = allData.split(" \n");
-        String[][] data = new String[dataTuple.length][];
-        for (int i = 0; i < dataTuple.length;i++){
-            data[i] = dataTuple[i].split(" ; ");
-            taDetail.append(dataTuple[i]);
+        if(tNamaKompetisi.getText().equals("")||tMaxTim.equals("")){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+            tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
+            tmpKomp.saveKompetisi();
+            taDetail.append("Data berhasil dimasukan \n");
+            String allData = tmpKomp.getListKompetisi();
+            String[] dataTuple = allData.split(" \n");
+            String[][] data = new String[dataTuple.length][];
+            for (int i = 0; i < dataTuple.length;i++){
+                data[i] = dataTuple[i].split(" ; ");
+                taDetail.append(dataTuple[i]);
+            }
+            fillListKompetisi();
+            tNamaKompetisi.setText("");
+            tMaxTim.setText("");
         }
-        fillListKompetisi();
-        tNamaKompetisi.setText("");
-        tMaxTim.setText("");
     }//GEN-LAST:event_bAddKompetisiActionPerformed
 
     private void bEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditKompetisiActionPerformed
@@ -716,6 +730,7 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(1, true);
         jTabbedPane1.setSelectedIndex(1);
         dummy.setText("Kompetisi: "+tmpKomp.getNama());
+        startPane();
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
@@ -728,10 +743,14 @@ public class View extends javax.swing.JFrame {
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        tim=new Tim(tNamaTim.getText());
-        tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
-        fillListTim();
-        tNamaTim.setText("");
+        if(tNamaTim.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+            tim=new Tim(tNamaTim.getText());
+            tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
+            fillListTim();
+            tNamaTim.setText("");
+        }
     }//GEN-LAST:event_bAddTimActionPerformed
 
     private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
@@ -754,19 +773,21 @@ public class View extends javax.swing.JFrame {
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
         if(tabListPemain.getSelectedRow()>=0){
-            System.out.println("table kepilih");
             bAddPemain.setVisible(false);
             bOKEditPemain.setVisible(true);
+            bCancelEditTim.setVisible(true);
             bAddTim.setVisible(true);
             bOKEditTim.setVisible(false);
             //edit pemain
-        }else{
-            tim.selectTim(lListTim.getSelectedValue().toString());
-            bAddPemain.setVisible(true);
-            bOKEditPemain.setVisible(false);
+        }else if (lListTim.getSelectedValue()!=null){
+            //tim.selectTim(lListTim.getSelectedValue().toString());
             bAddTim.setVisible(false);
             bOKEditTim.setVisible(true);
+            bCancelEditTim.setVisible(true);
+            bAddPemain.setVisible(true);
+            bOKEditPemain.setVisible(false);
             //edittim
+            tNamaTim.setText(lListTim.getSelectedValue().toString());
         }
     }//GEN-LAST:event_bEditActionPerformed
 
@@ -788,6 +809,21 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_bOKEditTimActionPerformed
+
+    private void bCancelEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditTimActionPerformed
+        // TODO add your handling code here:
+        tNamaTim.setText(null);
+        startPane();
+    }//GEN-LAST:event_bCancelEditTimActionPerformed
+
+    private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
+        // TODO add your handling code here:
+        if(tabListPemain.getSelectedRow()>=0){
+            //deletePemain
+        }else if (lListTim.getSelectedValue()!=null){
+            //deleteTim
+        }
+    }//GEN-LAST:event_bDeleteActionPerformed
 
     /**
      * @param args the command line arguments
