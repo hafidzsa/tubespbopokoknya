@@ -23,6 +23,7 @@ public class View extends javax.swing.JFrame {
     private Kompetisi tmpKomp;
     private database db;
     private Tim tim;
+    private Pemain pemain;
     public View() {
         initComponents();
         tmpKomp = new Kompetisi();
@@ -406,10 +407,20 @@ public class View extends javax.swing.JFrame {
         cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Striker", "Gelandang", "Back", "Kiper" }));
 
         bAddPemain.setText("Add");
+        bAddPemain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddPemainActionPerformed(evt);
+            }
+        });
 
         bOKEditPemain.setText("OK");
 
         bCancelEditPemain.setText("Cancel");
+        bCancelEditPemain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelEditPemainActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -927,6 +938,26 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         filltableKlasemen();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bAddPemainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddPemainActionPerformed
+        // TODO add your handling code here:
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        String tmp = tmpKomp.getNama();
+        if(tNamaPEmain.getText().equals("") && tNoPunggung.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+            pemain=new Pemain(tNamaPEmain.getText(),(Integer.parseInt(tNoPunggung.getText())),cPosisi.getSelectedItem().toString());
+            pemain.savePemain(tmp,cNamaTim.getSelectedItem().toString(),tNamaPEmain.getText(),Integer.parseInt(tNoPunggung.getText()),cPosisi.getSelectedItem().toString());
+            tNamaPEmain.setText("");
+            tNoPunggung.setText("");
+        }
+    }//GEN-LAST:event_bAddPemainActionPerformed
+
+    private void bCancelEditPemainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditPemainActionPerformed
+        // TODO add your handling code here:
+        tNamaPEmain.setText("");
+        tNoPunggung.setText("");
+    }//GEN-LAST:event_bCancelEditPemainActionPerformed
 
     /**
      * @param args the command line arguments

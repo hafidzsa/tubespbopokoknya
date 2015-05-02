@@ -46,7 +46,6 @@ public class db_tim {
             String input="insert into tim values (NULL,'"+namaTim+"',0,0,0,0,'"+namaKompetisi+"');";
             db.execute(input);
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
-            
         }
     }
     public void updateTim(String namaTim,String namaKompetisi,String temp){
