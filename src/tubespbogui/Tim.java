@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 
 class Tim extends db_tim {
+    private int idTim;
     private String nama;
     private int win = 0, lose = 0, draw = 0, nMember = 0, point = 0;
     public Tim(){}
@@ -35,6 +36,7 @@ class Tim extends db_tim {
             String query="select namaTim from tim where namaKompetisi='"+namaTim+"' LIMIT 1";
             ResultSet rs=db.getData(query);
             while(rs.next()){
+                this.idTim=rs.getInt("idTim");
                 this.nama=rs.getString("namaTim");
                 this.win=rs.getInt("win");
                 this.lose=rs.getInt("lose");
