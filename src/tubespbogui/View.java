@@ -32,6 +32,7 @@ public class View extends javax.swing.JFrame {
         initComponents();
         tmpKomp = new Kompetisi();
         tim=new Tim();
+        pemain = new Pemain();
         fillListKompetisi();
         firstLaunch();
         startPane();
@@ -91,6 +92,18 @@ public class View extends javax.swing.JFrame {
         }
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
+    }
+    private void filltableTim(){
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
+        String allData = pemain.getListPemainFull(tim.getNama(),tmpKomp.getNama());
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+        }
+        String [] title = {"Nama ","No punggung","Posisi","Jumlah gol"};
+        tabListPemain.setModel(new DefaultTableModel(data,title));
     }
     private void filltableKlasemen(){
     String allData = tim.getListTimFull(tmpKomp.getNama());
@@ -560,23 +573,22 @@ public class View extends javax.swing.JFrame {
         pPendaftaranLayout.setVerticalGroup(
             pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pPendaftaranLayout.createSequentialGroup()
-                .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pPendaftaranLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummy))
-                    .addGroup(pPendaftaranLayout.createSequentialGroup()
-                        .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bEdit)
-                            .addComponent(bDelete)
-                            .addComponent(tbTutupPendaftaran))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dummy)
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(pPendaftaranLayout.createSequentialGroup()
+                .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pPendaftaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bEdit)
+                    .addComponent(bDelete)
+                    .addComponent(tbTutupPendaftaran))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pendaftaran", pPendaftaran);
@@ -787,7 +799,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelWelcome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -899,6 +911,7 @@ public class View extends javax.swing.JFrame {
 
     private void lListTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lListTimMouseClicked
         // TODO add your handling code here:
+        filltableTim();
         tabListPemain.clearSelection();
     }//GEN-LAST:event_lListTimMouseClicked
 

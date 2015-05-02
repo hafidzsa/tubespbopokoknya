@@ -28,6 +28,7 @@ public class db_pemain {
         try {
             String query = "select tim.idTim from tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"';";
             ResultSet rs = db.getData(query);
+            System.out.println("jalan");
             while(rs.next()){
                 for (int i = 1; i<=1; i++){
                     sb.append(rs.getString(i));
@@ -36,6 +37,7 @@ public class db_pemain {
                 sb.append(" \n");
             }
             rs.close();
+            System.out.println("jalan");
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Pemain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,5 +76,49 @@ public class db_pemain {
             db.execute(input);
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
+    }
+    public String getListPemainFull(String namaTim,String namaKompetisi){
+        int idTim;
+        StringBuilder sb = new StringBuilder();
+        try {
+            String query = "select tim.idTim from tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"';";
+            ResultSet rs = db.getData(query);
+            while(rs.next()){
+                for (int i = 1; i<=1; i++){
+                    sb.append(rs.getString(i));
+                    sb.append(" ; ");
+                }
+                sb.append(" \n");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Pemain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String allData = sb.toString();
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        String view="xxx";
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            view = Arrays.toString(data[i]);
+            view = view.replaceAll("[^0-9]", "");
+        }
+        idTim = Integer.parseInt(view);
+        StringBuilder sbb = new StringBuilder();
+        try {
+            String query = "select namaPemain,noPunggung,posisi,jumlahGol from pemain where idTim="+idTim+"";
+            ResultSet rs = db.getData(query);
+            while(rs.next()){
+                for (int i = 1; i<=4; i++){
+                    sbb.append(rs.getString(i));
+                    sbb.append(" ; ");
+                }
+                sbb.append(" \n");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Pemain.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sbb.toString();
     }
 }
