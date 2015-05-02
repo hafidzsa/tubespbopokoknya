@@ -28,7 +28,6 @@ public class db_pemain {
         try {
             String query = "select tim.idTim from tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"';";
             ResultSet rs = db.getData(query);
-            System.out.println("jalan");
             while(rs.next()){
                 for (int i = 1; i<=1; i++){
                     sb.append(rs.getString(i));
