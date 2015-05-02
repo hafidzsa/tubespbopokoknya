@@ -47,7 +47,7 @@ public class Pemain extends db_pemain implements Comparable<Pemain> {
     public String toString() {
         return "nullExceptionLoh!!!";
     }
-
+//a
     @Override
     public int compareTo(Pemain comparePemain) {
         int compareJumlahGoal = ((Pemain) comparePemain).getJumlahGoal();
