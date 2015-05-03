@@ -34,6 +34,23 @@ class Tim extends db_tim {
         super.deleteTim(this.nama, namaKompetisi);
         System.out.println(nama+"+"+namaKompetisi);
     }
+    public Tim[] selectAllTim(String namaKompetisi){
+        try {
+            String query="select * from tim where namaKompetisi='"+namaKompetisi+"'";
+            ResultSet rs=db.getData(query);
+            while(rs.next()){
+                this.idTim=rs.getInt("idTim");
+                this.nama=rs.getString("namaTim");
+                this.win=rs.getInt("win");
+                this.lose=rs.getInt("lose");
+                this.draw=rs.getInt("draw");
+                this.point=rs.getInt("point");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public void selectTim(String namaTim, String namaKompetisi){
         try {
             String query="select * from tim where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"' LIMIT 1";
@@ -69,7 +86,9 @@ class Tim extends db_tim {
     public String getNama() {
         return nama;
     }
-
+    public int getId(){
+        return idTim;
+    }
     public int getWin() {
         return win;
     }

@@ -28,11 +28,13 @@ public class View extends javax.swing.JFrame {
     private database db;
     private Tim tim;
     private Pemain pemain;
+    private Klasemen klasemen;
     public View() {
         initComponents();
         tmpKomp = new Kompetisi();
         tim=new Tim();
         pemain = new Pemain();
+        
         fillListKompetisi();
         firstLaunch();
         startPane();
@@ -868,6 +870,7 @@ public class View extends javax.swing.JFrame {
             tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
             fillListTim();
             tNamaTim.setText("");
+            klasemen.allTim(tmpKomp.getNama());
         }
     }//GEN-LAST:event_bAddTimActionPerformed
 

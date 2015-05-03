@@ -64,8 +64,8 @@ public class db_tim {
             String query = "select namaTim from tim where namaKompetisi='"+namaKompetisi+"'";
             ResultSet rs = db.getData(query);
             while(rs.next()){
-                    sb.append(rs.getString("namaTim"));
-                    sb.append(" ; ");
+                sb.append(rs.getString("namaTim"));
+                sb.append(" ; ");
                 sb.append(" \n");
             }
             rs.close();
