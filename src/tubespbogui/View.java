@@ -767,8 +767,18 @@ public class View extends javax.swing.JFrame {
         jLabel12.setText("No Punggung Pemain :");
 
         bSetButton2.setText("Set Goal");
+        bSetButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSetButton2ActionPerformed(evt);
+            }
+        });
 
         bSetButton1.setText("Set Goal");
+        bSetButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSetButton1ActionPerformed(evt);
+            }
+        });
 
         bEndPertandingan.setText("Akhiri Pertandingan");
 
@@ -1084,6 +1094,16 @@ public class View extends javax.swing.JFrame {
     private void cNamaTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNamaTimActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cNamaTimActionPerformed
+
+    private void bSetButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton1ActionPerformed
+        // TODO add your handling code here:
+        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim1().getNama(),Integer.parseInt(pemainTim1.getSelectedItem().toString()),Integer.parseInt(spinGoal1.getValue().toString()));
+    }//GEN-LAST:event_bSetButton1ActionPerformed
+
+    private void bSetButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton2ActionPerformed
+        // TODO add your handling code here:
+        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim2().getNama(),Integer.parseInt(pemainTim2.getSelectedItem().toString()),Integer.parseInt(spinGoal2.getValue().toString()));
+    }//GEN-LAST:event_bSetButton2ActionPerformed
 
     /**
      * @param args the command line arguments

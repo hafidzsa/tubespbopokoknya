@@ -986,11 +986,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Set Goal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetButton2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bSetButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Set Goal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetButton1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bEndPertandingan">
               <Properties>
