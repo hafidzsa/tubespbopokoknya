@@ -14,7 +14,9 @@ class Tim extends db_tim {
     public Tim(String nama) {
         this.nama = nama;
     }
-
+    public Tim(String namaKompetisi, int id){
+        selectTimById(id, namaKompetisi);
+    }
     //setter
     //hati hati ada kemungkinan array out of bound karena nMember tidak di set di konstruktor
    /* public void viewMember() {

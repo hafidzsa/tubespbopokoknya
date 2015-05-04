@@ -1,16 +1,25 @@
 package tubespbogui;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 class Pertandingan extends db_pertandingan {
-
+    database db;
     Klasemen k;
     private Tim tim1, tim2;
-    private int pekan;
+    private int goalTim1,goalTim2,status,pekan;
     public Pertandingan(){
+        db=new database();
+        db.connect();
     }
     public Pertandingan(Tim tim1, Tim tim2) {
         this.tim1 = tim1;
         this.tim2 = tim2;
+        db=new database();
+        db.connect();
     }
     public void setHasilPertandingan(int scoreTim1, int scoreTim2) {
         boolean match = true;
@@ -43,6 +52,26 @@ class Pertandingan extends db_pertandingan {
     }
     public void setPekan(int pekan){
         this.pekan=pekan;
+    }
+    public void selectPertandingan(String namaKompetisi){
+        String query="select*from pertandingan where namaKompetisi='"+namaKompetisi+"' and status=false order by idPertandingan asc LIMIT 1 ";
+        db.execute(query);
+        ResultSet rs=db.getData(query);
+        try{
+        while(rs.next()){
+                this.tim1=new Tim(namaKompetisi,rs.getInt("tim1"));
+                this.tim2=new Tim(namaKompetisi,rs.getInt("tim2"));
+                this.goalTim1=rs.getInt("goalTim1");
+                this.goalTim2=rs.getInt("goalTim2");
+                this.pekan=rs.getInt("pekan");
+                this.status=rs.getInt("status");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void mulaiPertandingan(){
+        
     }
 /*
     public void inputGoal(int noPunggung, Tim tim) {

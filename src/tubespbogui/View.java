@@ -97,6 +97,19 @@ public class View extends javax.swing.JFrame {
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
     }
+     private void fillComboPemain(){
+        DefaultComboBoxModel m1 = new DefaultComboBoxModel();
+        String allData = pemain.getListPemainFull(tim.getNama(),tmpKomp.getNama());
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        String view;
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            view = data[i][2];
+            m1.addElement(view);
+        }
+        pemainTim1.setModel(m1);
+    }
     private void filltableTim(){
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
@@ -232,8 +245,8 @@ public class View extends javax.swing.JFrame {
         bEndPertandingan = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        pemainTim2 = new javax.swing.JComboBox();
+        pemainTim1 = new javax.swing.JComboBox();
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -443,6 +456,11 @@ public class View extends javax.swing.JFrame {
         jLabel4.setText("Nama Tim :");
 
         cNamaTim.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "null" }));
+        cNamaTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cNamaTimActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Nama Pemain :");
 
@@ -678,6 +696,11 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.addTab("Klasemen", pKlasemen);
 
         bMulaiPertandingan.setText("Mulai Pertandingan");
+        bMulaiPertandingan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMulaiPertandinganActionPerformed(evt);
+            }
+        });
 
         tJadwalPertandingan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -741,9 +764,9 @@ public class View extends javax.swing.JFrame {
         jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Live Update Goal"));
         jScrollPane6.setViewportView(jTextArea1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pemainTim2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        pemainTim1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout pPertandinganLayout = new javax.swing.GroupLayout(pPertandingan);
         pPertandingan.setLayout(pPertandinganLayout);
@@ -761,7 +784,7 @@ public class View extends javax.swing.JFrame {
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pemainTim1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bSetButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -771,7 +794,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(labTim2))
                     .addComponent(bSetButton2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pemainTim2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -796,8 +819,8 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pemainTim2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pemainTim1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSetButton2)
@@ -1035,6 +1058,19 @@ public class View extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bOKEditPemainActionPerformed
 
+    private void bMulaiPertandinganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMulaiPertandinganActionPerformed
+        // TODO add your handling code here:
+        pertandingan.selectPertandingan(tmpKomp.getNama());
+        labTim1.setText(pertandingan.getTim1().getNama());
+        labTim2.setText(pertandingan.getTim2().getNama());
+        
+        jTabbedPane1.setEnabledAt(4, rootPaneCheckingEnabled);
+    }//GEN-LAST:event_bMulaiPertandinganActionPerformed
+
+    private void cNamaTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNamaTimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cNamaTimActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1098,8 +1134,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JComboBox cPosisi;
     private javax.swing.JLabel dummy;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1133,6 +1167,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JPanel pKompetisi;
     private javax.swing.JPanel pPendaftaran;
     private javax.swing.JPanel pPertandingan;
+    private javax.swing.JComboBox pemainTim1;
+    private javax.swing.JComboBox pemainTim2;
     private javax.swing.JSpinner spinGoal1;
     private javax.swing.JSpinner spinGoal2;
     private javax.swing.JTable tJadwalPertandingan;
