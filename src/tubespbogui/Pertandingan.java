@@ -6,12 +6,12 @@ class Pertandingan extends db_pertandingan {
     Klasemen k;
     private Tim tim1, tim2;
     private int pekan;
-
+    public Pertandingan(){
+    }
     public Pertandingan(Tim tim1, Tim tim2) {
         this.tim1 = tim1;
         this.tim2 = tim2;
     }
-
     public void setHasilPertandingan(int scoreTim1, int scoreTim2) {
         boolean match = true;
         if (match) {
@@ -40,6 +40,9 @@ class Pertandingan extends db_pertandingan {
     
     public void savePertandingan(String namaKompetisi){
         super.addPertandingan(namaKompetisi, this);
+    }
+    public void setPekan(int pekan){
+        this.pekan=pekan;
     }
 /*
     public void inputGoal(int noPunggung, Tim tim) {

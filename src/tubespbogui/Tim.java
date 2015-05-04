@@ -67,6 +67,22 @@ class Tim extends db_tim {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     public void selectTimById(int id, String namaKompetisi){
+        try {
+            String query="select * from tim where idTim='"+id+"' and namaKompetisi='"+namaKompetisi+"' LIMIT 1";
+            ResultSet rs=db.getData(query);
+            while(rs.next()){
+                this.idTim=rs.getInt("idTim");
+                this.nama=rs.getString("namaTim");
+                this.win=rs.getInt("win");
+                this.lose=rs.getInt("lose");
+                this.draw=rs.getInt("draw");
+                this.point=rs.getInt("point");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //scoring
     public void win() {
         this.point += 3;

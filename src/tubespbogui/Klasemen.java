@@ -25,17 +25,26 @@ public class Klasemen {
         tim=new Tim();
     }
     public void allTim(String namaKompetisi){
-        DefaultComboBoxModel m1 = new DefaultComboBoxModel();
-        DefaultListModel m2 = new DefaultListModel();
         String allData = tim.getListTim(namaKompetisi);
         String[] dataTuple = allData.split(" \n");
+        daftarPeserta=new Tim[dataTuple.length];
+        nTim=dataTuple.length;
         String[][] data = new String[dataTuple.length][];
         String view;
-        for (int i = 0; i < dataTuple.length;i++){
+        int i=0;
+        while(i<dataTuple.length){
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("[^A-Za-z]+", "");
-            System.out.println(view);
+            view = view.replaceAll("[^A-Za-z]", "");
+            Tim tmpTim = new Tim();
+            tmpTim.selectTim(view, namaKompetisi);
+            daftarPeserta[i]=tmpTim;
+            System.out.println(daftarPeserta[i].getNama());
+            i++;
+        }
+        System.out.println("2");
+        for (Tim daftarPeserta1 : daftarPeserta) {
+            System.out.println(daftarPeserta1.getNama());
         }
     }
     public void setMatch(String namaKompetisi) {
@@ -43,14 +52,12 @@ public class Klasemen {
         for (int j = 0; j < nTim; j++) {
             for (int l = j + 1; l < nTim; l++) {
                 tanding[index] = new Pertandingan(daftarPeserta[j], daftarPeserta[l]);
-                tanding[index].savePertandingan(namaKompetisi);
                 index++;
             }
         }
         nPertandingan = index;
     }
-    public void suffle(String namaKompetisi) {
-        setMatch(namaKompetisi);
+    public void suffle() {
         Random rnd = new Random();
         rnd.nextInt();
         for (int i = 0; i < nTim; i++) {
@@ -60,6 +67,19 @@ public class Klasemen {
             tanding[index] = tanding[i];
             tanding[i] = a;
         }
+        
+    }
+    public void setPekan(String namaKompetisi){
+        for(int i=0;i<nPertandingan;i++){
+            tanding[i].setPekan(i+1);
+            System.out.println(tanding[i].getTim1().getNama()+" vs "+tanding[i].getTim2().getNama());
+            tanding[i].savePertandingan(namaKompetisi);
+        }
+    }
+    public void setPertandingan(String namaKompetisi){
+        setMatch(namaKompetisi);
+        suffle();
+        setPekan(namaKompetisi);
     }
 /*
     public void menu(Tim[] daftartim, int jumTim) {
