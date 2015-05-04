@@ -97,18 +97,31 @@ public class View extends javax.swing.JFrame {
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
     }
-     private void fillComboPemain(){
+     private void fillComboPemainTim1(String namaTim){
         DefaultComboBoxModel m1 = new DefaultComboBoxModel();
-        String allData = pemain.getListPemainFull(tim.getNama(),tmpKomp.getNama());
+        String allData = pemain.getListPemainFull(namaTim,tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
         for (int i = 0; i < dataTuple.length;i++){
             data[i] = dataTuple[i].split(" ; ");
-            view = data[i][2];
+            view = data[i][1];
             m1.addElement(view);
         }
         pemainTim1.setModel(m1);
+    }
+     private void fillComboPemainTim2(String namaTim){
+        DefaultComboBoxModel m1 = new DefaultComboBoxModel();
+        String allData = pemain.getListPemainFull(namaTim,tmpKomp.getNama());
+        String[] dataTuple = allData.split(" \n");
+        String[][] data = new String[dataTuple.length][];
+        String view;
+        for (int i = 0; i < dataTuple.length;i++){
+            data[i] = dataTuple[i].split(" ; ");
+            view = data[i][1];
+            m1.addElement(view);
+        }
+        pemainTim2.setModel(m1);
     }
     private void filltableTim(){
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
@@ -1063,7 +1076,8 @@ public class View extends javax.swing.JFrame {
         pertandingan.selectPertandingan(tmpKomp.getNama());
         labTim1.setText(pertandingan.getTim1().getNama());
         labTim2.setText(pertandingan.getTim2().getNama());
-        
+        fillComboPemainTim1(pertandingan.getTim1().getNama());
+        fillComboPemainTim2(pertandingan.getTim2().getNama());
         jTabbedPane1.setEnabledAt(4, rootPaneCheckingEnabled);
     }//GEN-LAST:event_bMulaiPertandinganActionPerformed
 
