@@ -71,7 +71,7 @@ public class db_pemain {
             JOptionPane.showMessageDialog(null, "Nomer punggung sudah digunakan", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            String input="insert into pemain values ("+idTim+","+noPunggung+",'"+namaPemain+"','"+posisi+"',0);";
+            String input="insert into pemain values ("+idTim+","+noPunggung+",'"+namaPemain+"','"+posisi+"',0,NULL);";
             db.execute(input);
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }

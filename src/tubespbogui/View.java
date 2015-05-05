@@ -766,6 +766,10 @@ public class View extends javax.swing.JFrame {
 
         jLabel12.setText("No Punggung Pemain :");
 
+        spinGoal1.setEnabled(false);
+
+        spinGoal2.setEnabled(false);
+
         bSetButton2.setText("Set Goal");
         bSetButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1099,13 +1103,14 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim1().getNama(),Integer.parseInt(pemainTim1.getSelectedItem().toString()),1);
         pertandingan.setGoalTim1();
- 
+        spinGoal1.setValue(pertandingan.getGoalTim1());
     }//GEN-LAST:event_bSetButton1ActionPerformed
 
     private void bSetButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton2ActionPerformed
         // TODO add your handling code here:
         pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim2().getNama(),Integer.parseInt(pemainTim2.getSelectedItem().toString()),1);
         pertandingan.setGoalTim2();
+        spinGoal2.setValue(pertandingan.getGoalTim2());
     }//GEN-LAST:event_bSetButton2ActionPerformed
 
     /**
