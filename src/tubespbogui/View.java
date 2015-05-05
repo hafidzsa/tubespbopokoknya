@@ -143,8 +143,8 @@ public class View extends javax.swing.JFrame {
         tabKlasemen.setModel(new DefaultTableModel(data,title));
     }
     private void filltableJadwalPertandingan(){
-        if(tmpKomp.getJumlahTimKompetisi()==0){
-            JOptionPane.showMessageDialog(null, "Belum ada tim yang diinput", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        if(tmpKomp.getJumlahTimKompetisi()<3){
+            JOptionPane.showMessageDialog(null, "Tim yang dimasukkan minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
             tmpKomp.updateStatusTutupPendaftaran(false);
         }else{
             String allData = pertandingan.getListJadwal(tmpKomp.getNama());
