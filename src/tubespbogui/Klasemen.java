@@ -35,7 +35,7 @@ public class Klasemen {
         while(i<dataTuple.length){
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("[^A-Za-z]", "");
+            view = view.replaceAll("\\[", "").replaceAll("\\]","");
             Tim tmpTim = new Tim();
             tmpTim.selectTim(view, namaKompetisi);
             daftarPeserta[i]=tmpTim;

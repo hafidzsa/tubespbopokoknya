@@ -72,7 +72,7 @@ public class View extends javax.swing.JFrame {
         for (int i = 0; i < dataTuple.length;i++){
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("[^A-Za-z]+", "");
+            view = view.replaceAll("\\[", "").replaceAll("\\]","");
             m.addElement(view);
         }
         lKompetisi.setModel(m);
@@ -87,7 +87,7 @@ public class View extends javax.swing.JFrame {
         for (int i = 0; i < dataTuple.length;i++){
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("[^A-Za-z]+", "");
+            view = view.replaceAll("\\[", "").replaceAll("\\]","");
             m1.addElement(view);
             m2.addElement(view);
         }
