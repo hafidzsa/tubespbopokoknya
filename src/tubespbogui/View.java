@@ -257,7 +257,7 @@ public class View extends javax.swing.JFrame {
         bSetButton1 = new javax.swing.JButton();
         bEndPertandingan = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tfLiveUpdate = new javax.swing.JTextArea();
         pemainTim2 = new javax.swing.JComboBox();
         pemainTim1 = new javax.swing.JComboBox();
 
@@ -786,10 +786,10 @@ public class View extends javax.swing.JFrame {
 
         bEndPertandingan.setText("Akhiri Pertandingan");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Live Update Goal"));
-        jScrollPane6.setViewportView(jTextArea1);
+        tfLiveUpdate.setColumns(20);
+        tfLiveUpdate.setRows(5);
+        tfLiveUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder("Live Update Goal"));
+        jScrollPane6.setViewportView(tfLiveUpdate);
 
         pemainTim2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1197,7 +1197,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JList lKompetisi;
     private javax.swing.JList lListTim;
@@ -1223,5 +1222,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JTable tabKlasemen;
     private javax.swing.JTable tabListPemain;
     private javax.swing.JToggleButton tbTutupPendaftaran;
+    private javax.swing.JTextArea tfLiveUpdate;
     // End of variables declaration//GEN-END:variables
 }
