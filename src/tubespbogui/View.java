@@ -1097,12 +1097,15 @@ public class View extends javax.swing.JFrame {
 
     private void bSetButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton1ActionPerformed
         // TODO add your handling code here:
-        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim1().getNama(),Integer.parseInt(pemainTim1.getSelectedItem().toString()),Integer.parseInt(spinGoal1.getValue().toString()));
+        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim1().getNama(),Integer.parseInt(pemainTim1.getSelectedItem().toString()),1);
+        pertandingan.setGoalTim1();
+ 
     }//GEN-LAST:event_bSetButton1ActionPerformed
 
     private void bSetButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton2ActionPerformed
         // TODO add your handling code here:
-        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim2().getNama(),Integer.parseInt(pemainTim2.getSelectedItem().toString()),Integer.parseInt(spinGoal2.getValue().toString()));
+        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim2().getNama(),Integer.parseInt(pemainTim2.getSelectedItem().toString()),1);
+        pertandingan.setGoalTim2();
     }//GEN-LAST:event_bSetButton2ActionPerformed
 
     /**

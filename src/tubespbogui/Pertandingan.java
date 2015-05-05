@@ -70,6 +70,18 @@ class Pertandingan extends db_pertandingan {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void setGoalTim1(){
+        this.goalTim1++;
+    }
+    public void setGoalTim2(){
+        this.goalTim2++;
+    }
+    public int getGoalTim1(){
+        return goalTim1;
+    }
+    public int getGoalTim2(){
+        return goalTim2;
+    }
     public void mulaiPertandingan(){
         
     }
