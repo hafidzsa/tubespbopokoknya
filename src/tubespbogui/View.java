@@ -146,29 +146,34 @@ public class View extends javax.swing.JFrame {
         tabKlasemen.setModel(new DefaultTableModel(data,title));
     }
     private void filltableJadwalPertandingan(){
-    String allData = pertandingan.getListJadwal(tmpKomp.getNama());
-        String[] dataTuple = allData.split(" \n");
-        String[][] data = new String[dataTuple.length][];
-        String tim1,tim2,status;
-        Tim tmpTim=new Tim();
-        for (int i = 0; i < dataTuple.length;i++){
-            data[i] = dataTuple[i].split(" ; ");
-            tmpTim.selectTimById(Integer.parseInt(data[i][0]), tmpKomp.getNama());
-            tim1=tmpTim.getNama();
-            tmpTim=new Tim();
-            tmpTim.selectTimById(Integer.parseInt(data[i][2]), tmpKomp.getNama());
-            tim2=tmpTim.getNama();
-            if(data[i][5].endsWith("0")){
-                status="Pertandingan belum dimulai";
-            }else{
-                status="Pertandingan Selesai";
+        if(tmpKomp.getJumlahTimKompetisi()==0){
+            JOptionPane.showMessageDialog(null, "Belum ada tim yang diinput", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            tmpKomp.updateStatusTutupPendaftaran(false);
+        }else{
+            String allData = pertandingan.getListJadwal(tmpKomp.getNama());
+            String[] dataTuple = allData.split(" \n");
+            String[][] data = new String[dataTuple.length][];
+            String tim1,tim2,status;
+            Tim tmpTim=new Tim();
+            for (int i = 0; i < dataTuple.length;i++){
+                data[i] = dataTuple[i].split(" ; ");
+                tmpTim.selectTimById(Integer.parseInt(data[i][0]), tmpKomp.getNama());
+                tim1=tmpTim.getNama();
+                tmpTim=new Tim();
+                tmpTim.selectTimById(Integer.parseInt(data[i][2]), tmpKomp.getNama());
+                tim2=tmpTim.getNama();
+                if(data[i][5].endsWith("0")){
+                    status="Pertandingan belum dimulai";
+                }else{
+                    status="Pertandingan Selesai";
+                }
+                data[i][0]=tim1;
+                data[i][2]=tim2;
+                data[i][5]=status;
             }
-            data[i][0]=tim1;
-            data[i][2]=tim2;
-            data[i][5]=status;
+            String [] title = {"Tim 1","Goal Tim 1","Tim 2","Goal Tim 2","Pekan","Status"};
+            tJadwalPertandingan.setModel(new DefaultTableModel(data,title));
         }
-        String [] title = {"Tim 1","Goal Tim 1","Tim 2","Goal Tim 2","Pekan","Status"};
-        tJadwalPertandingan.setModel(new DefaultTableModel(data,title));
     }
     private void setBukaPendaftaran(boolean a){
         bEdit.setVisible(a);
@@ -180,6 +185,7 @@ public class View extends javax.swing.JFrame {
         tNoPunggung.setEditable(a);
         jTabbedPane1.setEnabledAt(2, !(a));
         jTabbedPane1.setEnabledAt(3, !(a));
+        tbTutupPendaftaran.setEnabled(a);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -933,6 +939,7 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(1);
         dummy.setText("Kompetisi: "+tmpKomp.getNama());
         startPane();
+        setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
@@ -964,12 +971,16 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditKompetisiActionPerformed
         // TODO add your handling code here:
-        String temp=tmpKomp.getNama();
-        tmpKomp.setNama(tNamaKompetisi.getText());
-        tmpKomp.setMaxTim(Integer.valueOf(tMaxTim.getText()));
-        tmpKomp.updateKompetisi(temp);
-        fillListKompetisi();
-        startPane();
+        if(Integer.valueOf(tMaxTim.getText())<tmpKomp.getJumlahTimKompetisi()){
+            JOptionPane.showMessageDialog(null, "Jumlah tim yang telah ada lebih banyak dari informasi yang diinputkan", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }else{
+            String temp=tmpKomp.getNama();
+            tmpKomp.setNama(tNamaKompetisi.getText());
+            tmpKomp.setMaxTim(Integer.valueOf(tMaxTim.getText()));
+            tmpKomp.updateKompetisi(temp);
+            fillListKompetisi();
+            startPane();
+        }
     }//GEN-LAST:event_bOKEditKompetisiActionPerformed
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
@@ -1041,12 +1052,13 @@ public class View extends javax.swing.JFrame {
 
     private void tbTutupPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTutupPendaftaranActionPerformed
         // TODO add your handling code here:
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         startPane();
         filltableKlasemen();
         klasemen.allTim(tmpKomp.getNama());
         klasemen.setPertandingan(tmpKomp.getNama());
         filltableJadwalPertandingan();
-        setBukaPendaftaran(!(tbTutupPendaftaran.isSelected()));
+        setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
     }//GEN-LAST:event_tbTutupPendaftaranActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

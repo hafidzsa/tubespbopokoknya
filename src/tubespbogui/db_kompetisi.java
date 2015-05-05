@@ -16,33 +16,39 @@ import javax.swing.JOptionPane;
  * @author hafidz
  */
 public class db_kompetisi {
+
     private database db;
-    public db_kompetisi(){
-        db=new database();
+
+    public db_kompetisi() {
+        db = new database();
         db.connect();
     }
-    protected void addKompetisi(String namaKompetisi, int maxTim){
-        String query = "insert into kompetisi (namaKompetisi,maxTim) values('"+namaKompetisi+"','"+maxTim+"')";
-        db.execute(query); 
+
+    protected void addKompetisi(String namaKompetisi, int maxTim) {
+        String query = "insert into kompetisi (namaKompetisi,maxTim) values('" + namaKompetisi + "','" + maxTim + "')";
+        db.execute(query);
         JOptionPane.showMessageDialog(null, "Data Berhasil ditambah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-    protected void editKompetisi(String namaKompetisi,int maxTim,String temp){
-        String query="update kompetisi set namaKompetisi='"+namaKompetisi+"', maxTim='"+maxTim+"' where namaKompetisi='"+temp+"'";
+
+    protected void editKompetisi(String namaKompetisi, int maxTim, String temp) {
+        String query = "update kompetisi set namaKompetisi='" + namaKompetisi + "', maxTim='" + maxTim + "' where namaKompetisi='" + temp + "'";
         db.execute(query);
         JOptionPane.showMessageDialog(null, "Data berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-    protected void deleteKompetisi(String namaKompetisi){
-        String query="delete from kompetisi where namaKompetisi='"+namaKompetisi+"'";
+
+    protected void deleteKompetisi(String namaKompetisi) {
+        String query = "delete from kompetisi where namaKompetisi='" + namaKompetisi + "'";
         db.execute(query);
         JOptionPane.showMessageDialog(null, "Data Berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-     public String getListKompetisi(){
+
+    public String getListKompetisi() {
         StringBuilder sb = new StringBuilder();
         try {
             String query = "select namaKompetisi from kompetisi";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
-                for (int i = 1; i<=1; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= 1; i++) {
                     sb.append(rs.getString(i));
                     sb.append(" ; ");
                 }
@@ -54,23 +60,57 @@ public class db_kompetisi {
         }
         return sb.toString();
     }
-    public String getDetilKompetisi(String nama){
-        String get1,get2,nk,tmp = null;
-        get1="select namaKompetisi, maxTim from kompetisi where namaKompetisi='"+nama+"' LIMIT 1";
-        ResultSet rs=db.getData(get1);
-        
+
+    public String getDetilKompetisi(String nama) {
+        String get1, get2, nk, tmp = null;
+        get1 = "select namaKompetisi, maxTim from kompetisi where namaKompetisi='" + nama + "' LIMIT 1";
+        ResultSet rs = db.getData(get1);
+
         try {
             rs.next();
-            nk=rs.getString("namaKompetisi");
-            tmp="Nama Kompetisi : "+nk+"\nMaximal Kompetisi : "+rs.getInt("maxTim")+"\nList Tim : ";
-            get2="select namaTim from tim where namaKompetisi='"+nk+"'";
-            rs=db.getData(get2);
-            while(rs.next()){
-                tmp=tmp.concat("\n"+rs.getString("namaTim"));
+            nk = rs.getString("namaKompetisi");
+            tmp = "Nama Kompetisi : " + nk + "\nMaximal Kompetisi : " + rs.getInt("maxTim") + "\nList Tim : ";
+            get2 = "select namaTim from tim where namaKompetisi='" + nk + "'";
+            rs = db.getData(get2);
+            while (rs.next()) {
+                tmp = tmp.concat("\n" + rs.getString("namaTim"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tmp;
+    }
+
+    public boolean getStatus(String namaKompetisi) {
+        boolean status = false;
+        try {
+            String query = "select statusTutupPendaftaran from Kompetisi where namaKompetisi='" + namaKompetisi + "'";
+            ResultSet rs = db.getData(query);
+            while (rs.next()) {
+                status = rs.getBoolean(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
+
+    public void editStatus(String namaKompetisi, boolean newStatus) {
+        String query = "update Kompetisi set statusTutupPendaftaran=" + newStatus + " where namaKompetisi='" + namaKompetisi + "'";
+        db.execute(query);
+    }
+
+    public int getJumlahTim(String namaKompetisi) {
+        int jmlTim = 0;
+        try {
+            String query = "select count(idTim) from Tim where namaKompetisi='" + namaKompetisi + "'";
+            ResultSet rs = db.getData(query);
+            while (rs.next()) {
+                jmlTim = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jmlTim;
     }
 }
