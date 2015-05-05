@@ -6,13 +6,10 @@
 package tubespbogui;
 
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -245,7 +242,6 @@ public class View extends javax.swing.JFrame {
         pKlasemen = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabKlasemen = new javax.swing.JTable();
-        bLihatJadwal = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         pJadwalPertandingan = new javax.swing.JPanel();
         bMulaiPertandingan = new javax.swing.JButton();
@@ -677,8 +673,6 @@ public class View extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(tabKlasemen);
 
-        bLihatJadwal.setText("Lihat Jadwal Pertandingan");
-
         jButton1.setText("Refresh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -696,8 +690,7 @@ public class View extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKlasemenLayout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bLihatJadwal)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pKlasemenLayout.setVerticalGroup(
@@ -706,10 +699,8 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bLihatJadwal)
-                    .addComponent(jButton1))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jButton1)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Klasemen", pKlasemen);
@@ -940,6 +931,10 @@ public class View extends javax.swing.JFrame {
         dummy.setText("Kompetisi: "+tmpKomp.getNama());
         startPane();
         setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
+        if(tmpKomp.getStatusTutupPendaftaran()){
+            filltableKlasemen();
+            filltableJadwalPertandingan();
+        }
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
@@ -1052,12 +1047,14 @@ public class View extends javax.swing.JFrame {
 
     private void tbTutupPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTutupPendaftaranActionPerformed
         // TODO add your handling code here:
-        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        startPane();
+        tbTutupPendaftaran.setEnabled(false);
         filltableKlasemen();
         klasemen.allTim(tmpKomp.getNama());
         klasemen.setPertandingan(tmpKomp.getNama());
         filltableJadwalPertandingan();
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+        startPane();
+        tmpKomp.updateStatusTutupPendaftaran(true);
         setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
     }//GEN-LAST:event_tbTutupPendaftaranActionPerformed
 
@@ -1135,6 +1132,8 @@ public class View extends javax.swing.JFrame {
         pertandingan.setHasilPertandingan();
         filltableKlasemen();
         filltableJadwalPertandingan();
+        jTabbedPane1.setEnabledAt(4, false);
+        jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_bEndPertandinganActionPerformed
 
     /**
@@ -1188,7 +1187,6 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bEdit;
     private javax.swing.JButton bEditKompetisi;
     private javax.swing.JButton bEndPertandingan;
-    private javax.swing.JButton bLihatJadwal;
     private javax.swing.JButton bMulaiPertandingan;
     private javax.swing.JButton bOKEditKompetisi;
     private javax.swing.JButton bOKEditPemain;
