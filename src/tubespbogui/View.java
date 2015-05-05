@@ -935,6 +935,13 @@ public class View extends javax.swing.JFrame {
             filltableKlasemen();
             filltableJadwalPertandingan();
         }
+        pertandingan.selectPertandingan(tmpKomp.getNama());
+        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-"+pertandingan.getPekanForLabel(tmpKomp.getNama()));
+        if(pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+            bMulaiPertandingan.setVisible(false);
+        }else{
+            bMulaiPertandingan.setVisible(true);
+        }
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
@@ -1134,6 +1141,11 @@ public class View extends javax.swing.JFrame {
         filltableJadwalPertandingan();
         jTabbedPane1.setEnabledAt(4, false);
         jTabbedPane1.setSelectedIndex(3);
+        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-"+pertandingan.getPekanForLabel(tmpKomp.getNama()));
+        if(pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+            JOptionPane.showMessageDialog(null, "Semua Pertandingan telah dilakukan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            bMulaiPertandingan.setVisible(false);
+        }
     }//GEN-LAST:event_bEndPertandinganActionPerformed
 
     /**

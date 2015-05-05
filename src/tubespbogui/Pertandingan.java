@@ -5,22 +5,25 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 class Pertandingan extends db_pertandingan {
+
     database db;
     Klasemen k;
     private Tim tim1, tim2;
-    private int goalTim1,goalTim2,status,pekan,id;
-    public Pertandingan(){
-        db=new database();
+    private int goalTim1, goalTim2, status, pekan, id;
+
+    public Pertandingan() {
+        db = new database();
         db.connect();
     }
+
     public Pertandingan(Tim tim1, Tim tim2) {
         this.tim1 = tim1;
         this.tim2 = tim2;
-        db=new database();
+        db = new database();
         db.connect();
     }
+
     public void setHasilPertandingan() {
         boolean match = true;
         if (match) {
@@ -39,9 +42,11 @@ class Pertandingan extends db_pertandingan {
         tim2.updateHasilPertandingan();
         super.setHasil(this);
     }
-    public int getPekan(){
+
+    public int getPekan() {
         return pekan;
     }
+
     public Tim getTim1() {
         return tim1;
     }
@@ -49,73 +54,89 @@ class Pertandingan extends db_pertandingan {
     public Tim getTim2() {
         return tim2;
     }
-    
-    public void savePertandingan(String namaKompetisi){
+
+    public int getJumlahPertandinganKompetisi(String namaKompetisi) {
+        return super.getJumlahPertandingan(namaKompetisi);
+    }
+
+    public boolean getStatusPertandinganBerakhir(String namaKompetisi) {
+        return super.getStatusPertandingan(namaKompetisi);
+    }
+
+    public void savePertandingan(String namaKompetisi) {
         super.addPertandingan(namaKompetisi, this);
     }
-    public void setPekan(int pekan){
-        this.pekan=pekan;
+
+    public void setPekan(int pekan) {
+        this.pekan = pekan;
     }
-    public void selectPertandingan(String namaKompetisi){
-        String query="select*from pertandingan where namaKompetisi='"+namaKompetisi+"' and status=false order by idPertandingan asc LIMIT 1 ";
+
+    public void selectPertandingan(String namaKompetisi) {
+        String query = "select*from pertandingan where namaKompetisi='" + namaKompetisi + "' and status=false order by idPertandingan asc LIMIT 1 ";
         db.execute(query);
-        ResultSet rs=db.getData(query);
-        try{
-        while(rs.next()){
-                this.id=rs.getInt("idPertandingan");
-                this.tim1=new Tim(namaKompetisi,rs.getInt("tim1"));
-                this.tim2=new Tim(namaKompetisi,rs.getInt("tim2"));
-                this.goalTim1=rs.getInt("goalTim1");
-                this.goalTim2=rs.getInt("goalTim2");
-                this.pekan=rs.getInt("pekan");
-                this.status=rs.getInt("status");
+        ResultSet rs = db.getData(query);
+        try {
+            while (rs.next()) {
+                this.id = rs.getInt("idPertandingan");
+                this.tim1 = new Tim(namaKompetisi, rs.getInt("tim1"));
+                this.tim2 = new Tim(namaKompetisi, rs.getInt("tim2"));
+                this.goalTim1 = rs.getInt("goalTim1");
+                this.goalTim2 = rs.getInt("goalTim2");
+                this.pekan = rs.getInt("pekan");
+                this.status = rs.getInt("status");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void setGoalTim1(){
+
+    public void setGoalTim1() {
         this.goalTim1++;
     }
-    public void setGoalTim2(){
+
+    public void setGoalTim2() {
         this.goalTim2++;
     }
-    public int getGoalTim1(){
+
+    public int getGoalTim1() {
         return goalTim1;
     }
-    public int getGoalTim2(){
+
+    public int getGoalTim2() {
         return goalTim2;
     }
-    public int getId(){
+
+    public int getId() {
         return id;
     }
-    public void mulaiPertandingan(){
-        
-    }
-/*
-    public void inputGoal(int noPunggung, Tim tim) {
-        tim.getMember(noPunggung).setTmpGoal();
-    }
 
-    public void summary(int scoreTim1, int scoreTim2) {
-        System.out.println("\nHasil Pertandingan :");
-        System.out.println("Tim : " + tim1.getNama() + " Goal : " + scoreTim1);
-        for (int i = 0; i < tim1.getNMember(); i++) {
-            if (tim1.getMemberByIndex(i).getTmpGoal() != 0) {
-                Pemain p = tim1.getMemberByIndex(i);
-                System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
-                p.setGoal();
-            }
-        }
-        System.out.println("Tim : " + tim2.getNama() + " Goal : " + scoreTim2);
-        for (int i = 0; i < tim2.getNMember(); i++) {
-            if (tim2.getMemberByIndex(i).getTmpGoal() != 0) {
-                Pemain p = tim2.getMemberByIndex(i);
-                System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
-                p.setGoal();
-            }
-        }
-        System.out.println("");
+    public void mulaiPertandingan() {
+
     }
-    */
+    /*
+     public void inputGoal(int noPunggung, Tim tim) {
+     tim.getMember(noPunggung).setTmpGoal();
+     }
+
+     public void summary(int scoreTim1, int scoreTim2) {
+     System.out.println("\nHasil Pertandingan :");
+     System.out.println("Tim : " + tim1.getNama() + " Goal : " + scoreTim1);
+     for (int i = 0; i < tim1.getNMember(); i++) {
+     if (tim1.getMemberByIndex(i).getTmpGoal() != 0) {
+     Pemain p = tim1.getMemberByIndex(i);
+     System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
+     p.setGoal();
+     }
+     }
+     System.out.println("Tim : " + tim2.getNama() + " Goal : " + scoreTim2);
+     for (int i = 0; i < tim2.getNMember(); i++) {
+     if (tim2.getMemberByIndex(i).getTmpGoal() != 0) {
+     Pemain p = tim2.getMemberByIndex(i);
+     System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
+     p.setGoal();
+     }
+     }
+     System.out.println("");
+     }
+     */
 }
