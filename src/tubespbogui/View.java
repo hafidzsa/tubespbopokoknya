@@ -1016,6 +1016,7 @@ public class View extends javax.swing.JFrame {
             bAddTim.setVisible(true);
             bOKEditTim.setVisible(false);
             bCancelEditTim.setVisible(false);
+            cNamaTim.getModel().setSelectedItem(lListTim.getSelectedValue().toString());
             tNamaPEmain.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0).toString());
             tNoPunggung.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString());
             cPosisi.getModel().setSelectedItem(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 2).toString());
