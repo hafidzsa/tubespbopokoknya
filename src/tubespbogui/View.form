@@ -188,6 +188,9 @@
             <Component class="javax.swing.JTextField" name="tNamaKompetisi">
             </Component>
             <Component class="javax.swing.JTextField" name="tMaxTim">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tMaxTimKeyTyped"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -558,8 +561,14 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tNamaPEmain">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tNamaPEmainKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tNoPunggung">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tNoPunggungKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cPosisi">
                   <Properties>

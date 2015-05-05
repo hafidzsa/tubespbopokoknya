@@ -5,6 +5,7 @@
  */
 package tubespbogui;
 
+import com.sun.glass.events.KeyEvent;
 import java.util.Arrays;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -276,6 +277,12 @@ public class View extends javax.swing.JFrame {
 
         jLabel2.setText("Maksimal Tim     :");
 
+        tMaxTim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tMaxTimKeyTyped(evt);
+            }
+        });
+
         lKompetisi.setBorder(javax.swing.BorderFactory.createTitledBorder("List Kompetisi"));
         lKompetisi.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -482,6 +489,18 @@ public class View extends javax.swing.JFrame {
         jLabel6.setText("No Punggung :");
 
         jLabel7.setText("Posisi :");
+
+        tNamaPEmain.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tNamaPEmainKeyTyped(evt);
+            }
+        });
+
+        tNoPunggung.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tNoPunggungKeyTyped(evt);
+            }
+        });
 
         cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Striker", "Gelandang", "Back", "Kiper" }));
 
@@ -1147,6 +1166,30 @@ public class View extends javax.swing.JFrame {
             bMulaiPertandingan.setVisible(false);
         }
     }//GEN-LAST:event_bEndPertandinganActionPerformed
+
+    private void tMaxTimKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tMaxTimKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tMaxTimKeyTyped
+
+    private void tNoPunggungKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNoPunggungKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tNoPunggungKeyTyped
+
+    private void tNamaPEmainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNamaPEmainKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!(Character.isAlphabetic(c)||Character.isWhitespace(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_tNamaPEmainKeyTyped
 
     /**
      * @param args the command line arguments
