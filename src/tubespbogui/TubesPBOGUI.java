@@ -16,6 +16,8 @@ public class TubesPBOGUI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        View a = new View();
+        a.setVisible(true);
     }
     
 }
