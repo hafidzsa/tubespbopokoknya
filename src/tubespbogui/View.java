@@ -912,6 +912,8 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(tNamaKompetisi.getText().equals("")||tMaxTim.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else if(Integer.valueOf((String) tMaxTim.getText())<3){
+            JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }else{
             tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
             tmpKomp.saveKompetisi();
