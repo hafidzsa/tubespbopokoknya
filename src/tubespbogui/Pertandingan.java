@@ -10,7 +10,7 @@ class Pertandingan extends db_pertandingan {
     database db;
     Klasemen k;
     private Tim tim1, tim2;
-    private int goalTim1,goalTim2,status,pekan;
+    private int goalTim1,goalTim2,status,pekan,id;
     public Pertandingan(){
         db=new database();
         db.connect();
@@ -21,13 +21,13 @@ class Pertandingan extends db_pertandingan {
         db=new database();
         db.connect();
     }
-    public void setHasilPertandingan(int scoreTim1, int scoreTim2) {
+    public void setHasilPertandingan() {
         boolean match = true;
         if (match) {
-            if (scoreTim1 > scoreTim2) {
+            if (goalTim1 > goalTim2) {
                 tim1.win();
                 tim2.lose();
-            } else if (scoreTim1 < scoreTim2) {
+            } else if (goalTim1 < goalTim2) {
                 tim1.lose();
                 tim2.win();
             } else {
@@ -35,6 +35,9 @@ class Pertandingan extends db_pertandingan {
                 tim2.draw();
             }
         }
+        tim1.updateHasilPertandingan();
+        tim2.updateHasilPertandingan();
+        super.setHasil(this);
     }
     public int getPekan(){
         return pekan;
@@ -59,6 +62,7 @@ class Pertandingan extends db_pertandingan {
         ResultSet rs=db.getData(query);
         try{
         while(rs.next()){
+                this.id=rs.getInt("idPertandingan");
                 this.tim1=new Tim(namaKompetisi,rs.getInt("tim1"));
                 this.tim2=new Tim(namaKompetisi,rs.getInt("tim2"));
                 this.goalTim1=rs.getInt("goalTim1");
@@ -81,6 +85,9 @@ class Pertandingan extends db_pertandingan {
     }
     public int getGoalTim2(){
         return goalTim2;
+    }
+    public int getId(){
+        return id;
     }
     public void mulaiPertandingan(){
         

@@ -36,6 +36,9 @@ class Tim extends db_tim {
         super.deleteTim(this.nama, namaKompetisi);
         System.out.println(nama+"+"+namaKompetisi);
     }
+    public void updateHasilPertandingan(){
+        super.hasilPertandingan(this);
+    }
     public Tim[] selectAllTim(String namaKompetisi){
         try {
             String query="select * from tim where namaKompetisi='"+namaKompetisi+"'";

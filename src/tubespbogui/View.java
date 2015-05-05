@@ -785,6 +785,11 @@ public class View extends javax.swing.JFrame {
         });
 
         bEndPertandingan.setText("Akhiri Pertandingan");
+        bEndPertandingan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEndPertandinganActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -1112,6 +1117,13 @@ public class View extends javax.swing.JFrame {
         pertandingan.setGoalTim2();
         spinGoal2.setValue(pertandingan.getGoalTim2());
     }//GEN-LAST:event_bSetButton2ActionPerformed
+
+    private void bEndPertandinganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEndPertandinganActionPerformed
+        // TODO add your handling code here:
+        pertandingan.setHasilPertandingan();
+        filltableKlasemen();
+        filltableJadwalPertandingan();
+    }//GEN-LAST:event_bEndPertandinganActionPerformed
 
     /**
      * @param args the command line arguments

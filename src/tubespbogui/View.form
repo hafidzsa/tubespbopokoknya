@@ -1008,6 +1008,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Akhiri Pertandingan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEndPertandinganActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane6">
               <AuxValues>

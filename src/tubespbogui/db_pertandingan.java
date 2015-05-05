@@ -31,6 +31,10 @@ public class db_pertandingan {
                  +p.getTim1().getId()+","+p.getTim2().getId()+","+p.getPekan()+",false,'"+namaKompetisi+"')";
          db.execute(query);
      }
+     public void setHasil(Pertandingan p){
+         String query="update pertandingan set goalTim1="+p.getGoalTim1()+", goalTim2="+p.getGoalTim2()+", status=true where idPertandingan="+p.getId();
+         db.execute(query);
+     }
       public String getListJadwal(String namaKompetisi){
         StringBuilder sb = new StringBuilder();
         try {
