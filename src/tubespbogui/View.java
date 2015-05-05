@@ -1016,6 +1016,9 @@ public class View extends javax.swing.JFrame {
             bAddTim.setVisible(true);
             bOKEditTim.setVisible(false);
             bCancelEditTim.setVisible(false);
+            tNamaPEmain.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0).toString());
+            tNoPunggung.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString());
+            cPosisi.getModel().setSelectedItem(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 2).toString());
         }else if (lListTim.getSelectedValue()!=null){
             //tim.selectTim(lListTim.getSelectedValue().toString());
             //visible button for edit tim
