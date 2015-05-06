@@ -1065,12 +1065,12 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditKompetisiActionPerformed
         // TODO add your handling code here:
-        if (Integer.valueOf(tMaxTim.getText()) < tmpKomp.getJumlahTimKompetisi()) {
-            JOptionPane.showMessageDialog(null, "Jumlah tim yang telah ada lebih banyak dari informasi yang diinputkan", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } else if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
+        if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (Integer.valueOf(tMaxTim.getText()) < tmpKomp.getJumlahTimKompetisi()) {
+            JOptionPane.showMessageDialog(null, "Jumlah tim yang telah ada lebih banyak dari informasi yang diinputkan", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             String temp = tmpKomp.getNama();
             tmpKomp.setNama(tNamaKompetisi.getText());
