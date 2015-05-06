@@ -1011,7 +1011,7 @@ public class View extends javax.swing.JFrame {
         }
         pertandingan.selectPertandingan(tmpKomp.getNama());
         bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
-        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())) {
+        if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()) {
             bMulaiPertandingan.setVisible(false);
         } else {
             bMulaiPertandingan.setVisible(true);
@@ -1028,9 +1028,8 @@ public class View extends javax.swing.JFrame {
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         String temp = tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
-        pertandingan.selectPertandingan(tmpKomp.getNama());
         kompetisiSelected();
-        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+        if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()){
             temp = "\n\nTim Pemenang :\n";
             for(Tim t : tmpKomp.getTimPemenangKompetisi()){
                 temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";
@@ -1272,7 +1271,7 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(3);
         bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
         String temp="Semua Pertandingan telah dilakukan";
-        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())) {
+        if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()) {
             temp += "\n\nTim Pemenang :\n";
             for(Tim t : tmpKomp.getTimPemenangKompetisi()){
                 temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";

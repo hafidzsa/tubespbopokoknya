@@ -59,9 +59,7 @@ class Pertandingan extends db_pertandingan {
         return super.getJumlahPertandingan(namaKompetisi);
     }
 
-    public boolean getStatusPertandinganBerakhir(String namaKompetisi) {
-        return super.getStatusPertandingan(namaKompetisi);
-    }
+
 
     public void savePertandingan(String namaKompetisi) {
         super.addPertandingan(namaKompetisi, this);

@@ -131,7 +131,11 @@ public class Kompetisi extends db_kompetisi {
     public void updateStatusTutupPendaftaran(boolean newStatus) {
         super.editStatus(this.nama, newStatus);
     }
-
+    
+    public boolean getStatusPertandinganBerakhir() {
+        return super.getStatusPertandingan(this.nama);
+    }
+    
     public int getJumlahTimKompetisi() {
         return super.getJumlahTim(this.nama);
     }

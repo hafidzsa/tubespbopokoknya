@@ -168,4 +168,21 @@ public class db_kompetisi {
         }
         return p;
     }
+    
+    
+    public boolean getStatusPertandingan(String namaKompetisi) {
+        boolean status = true;
+        try {
+            String query = "select status from Pertandingan where namaKompetisi='" + namaKompetisi + "'";
+            ResultSet rs = db.getData(query);
+            while (rs.next()) {
+                if (!rs.getBoolean(1)) {
+                    status = false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
 }

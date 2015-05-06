@@ -79,21 +79,6 @@ public class db_pertandingan {
         return jmlPertandingan;
     }
 
-    public boolean getStatusPertandingan(String namaKompetisi) {
-        boolean status = true;
-        try {
-            String query = "select status from Pertandingan where namaKompetisi='" + namaKompetisi + "'";
-            ResultSet rs = db.getData(query);
-            while (rs.next()) {
-                if (!rs.getBoolean(1)) {
-                    status = false;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return status;
-    }
 
     public int getPekanForLabel(String namaKompetisi) {
         int pekan = 1;
