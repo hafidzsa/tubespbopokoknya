@@ -39,7 +39,6 @@ public class db_pemain {
                 sb.append(" \n");
             }
             rs.close();
-            System.out.println("jalan");
         } catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Pemain.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -174,7 +173,7 @@ public class db_pemain {
         String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim+ " and noPunggung="+noPunggung+";";
         db.execute(input);
     }
-
+    
     public void loadPemain(String namaTim) {
 
     }

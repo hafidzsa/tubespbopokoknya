@@ -135,4 +135,10 @@ public class Kompetisi extends db_kompetisi {
     public int getJumlahTimKompetisi() {
         return super.getJumlahTim(this.nama);
     }
+    public Tim[] getTimPemenangKompetisi(){
+        return super.getTimPemenang(this.nama);
+    }
+    public Pemain getTopScorerKompetisi(){
+        return super.getTopScorer(this.nama);
+    }
 }

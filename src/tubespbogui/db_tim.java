@@ -66,7 +66,6 @@ public class db_tim {
     public void hasilPertandingan(Tim t) {
         String query = "update tim set win='" + t.getWin() + "', lose='" + t.getLose() + "', draw='" + t.getDraw() + "', point='" + t.getPoint() + "' where idTim='" + t.getId() + "'";
         db.execute(query);
-        JOptionPane.showMessageDialog(null, "Berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public String getListTim(String namaKompetisi) {

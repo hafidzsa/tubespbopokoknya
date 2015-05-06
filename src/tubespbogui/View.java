@@ -728,7 +728,7 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKlasemenLayout.createSequentialGroup()
+                    .addGroup(pKlasemenLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -737,10 +737,10 @@ public class View extends javax.swing.JFrame {
             pKlasemenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pKlasemenLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Klasemen", pKlasemen);
@@ -782,10 +782,10 @@ public class View extends javax.swing.JFrame {
             pJadwalPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pJadwalPertandinganLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bMulaiPertandingan)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Jadwal Pertandingan", pJadwalPertandingan);
@@ -803,8 +803,10 @@ public class View extends javax.swing.JFrame {
 
         jLabel12.setText("No Punggung Pemain :");
 
+        spinGoal1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         spinGoal1.setEnabled(false);
 
+        spinGoal2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         spinGoal2.setEnabled(false);
 
         bSetGoalTim2.setText("Set Goal");
@@ -878,21 +880,22 @@ public class View extends javax.swing.JFrame {
                     .addComponent(pemainTim2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pPertandinganLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bEndPertandingan)
                 .addContainerGap())
             .addGroup(pPertandinganLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(bSetGoalTim1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bAnulirGoalTim1)
-                .addGap(202, 202, 202)
-                .addComponent(bSetGoalTim2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bAnulirGoalTim2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pPertandinganLayout.createSequentialGroup()
+                        .addComponent(bSetGoalTim1)
+                        .addGap(18, 18, 18)
+                        .addComponent(bAnulirGoalTim1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bSetGoalTim2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bAnulirGoalTim2)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         pPertandinganLayout.setVerticalGroup(
             pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -923,10 +926,10 @@ public class View extends javax.swing.JFrame {
                         .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bSetGoalTim2)
                             .addComponent(bAnulirGoalTim2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bEndPertandingan, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bEndPertandingan)
                 .addContainerGap())
         );
 
@@ -1022,9 +1025,22 @@ public class View extends javax.swing.JFrame {
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
         // TODO add your handling code here:
+        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         String temp = tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
+        pertandingan.selectPertandingan(tmpKomp.getNama());
         kompetisiSelected();
+        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+            temp = "\n\nTim Pemenang :\n";
+            for(Tim t : tmpKomp.getTimPemenangKompetisi()){
+                temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";
+            }
+            Pemain p = tmpKomp.getTopScorerKompetisi();
+            temp+= "\nTop Scorer : "+p.getNama()
+                    +", Asal Tim: "+p.getTim()
+                    +", Jumlah Goal: "+p.getJumlahGoal();
+            taDetail.append(temp);
+        }
     }//GEN-LAST:event_lKompetisiMouseClicked
 
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
