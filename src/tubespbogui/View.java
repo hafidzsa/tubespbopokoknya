@@ -275,13 +275,15 @@ public class View extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         spinGoal1 = new javax.swing.JSpinner();
         spinGoal2 = new javax.swing.JSpinner();
-        bSetButton2 = new javax.swing.JButton();
-        bSetButton1 = new javax.swing.JButton();
+        bSetGoalTim2 = new javax.swing.JButton();
+        bSetGoalTim1 = new javax.swing.JButton();
         bEndPertandingan = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         tfLiveUpdate = new javax.swing.JTextArea();
         pemainTim2 = new javax.swing.JComboBox();
         pemainTim1 = new javax.swing.JComboBox();
+        bAnulirGoalTim1 = new javax.swing.JButton();
+        bAnulirGoalTim2 = new javax.swing.JButton();
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -805,17 +807,17 @@ public class View extends javax.swing.JFrame {
 
         spinGoal2.setEnabled(false);
 
-        bSetButton2.setText("Set Goal");
-        bSetButton2.addActionListener(new java.awt.event.ActionListener() {
+        bSetGoalTim2.setText("Set Goal");
+        bSetGoalTim2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSetButton2ActionPerformed(evt);
+                bSetGoalTim2ActionPerformed(evt);
             }
         });
 
-        bSetButton1.setText("Set Goal");
-        bSetButton1.addActionListener(new java.awt.event.ActionListener() {
+        bSetGoalTim1.setText("Set Goal");
+        bSetGoalTim1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSetButton1ActionPerformed(evt);
+                bSetGoalTim1ActionPerformed(evt);
             }
         });
 
@@ -835,6 +837,20 @@ public class View extends javax.swing.JFrame {
 
         pemainTim1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        bAnulirGoalTim1.setText("Anulir Goal");
+        bAnulirGoalTim1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnulirGoalTim1ActionPerformed(evt);
+            }
+        });
+
+        bAnulirGoalTim2.setText("Anulir Goal");
+        bAnulirGoalTim2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnulirGoalTim2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pPertandinganLayout = new javax.swing.GroupLayout(pPertandingan);
         pPertandingan.setLayout(pPertandinganLayout);
         pPertandinganLayout.setHorizontalGroup(
@@ -848,18 +864,16 @@ public class View extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addGap(115, 115, 115))
                     .addGroup(pPertandinganLayout.createSequentialGroup()
-                        .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(spinGoal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(pemainTim1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bSetButton1))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pemainTim1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pPertandinganLayout.createSequentialGroup()
                         .addComponent(spinGoal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labTim2))
-                    .addComponent(bSetButton2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pemainTim2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(66, 66, 66))
@@ -869,6 +883,16 @@ public class View extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(bEndPertandingan)
                 .addContainerGap())
+            .addGroup(pPertandinganLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(bSetGoalTim1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bAnulirGoalTim1)
+                .addGap(202, 202, 202)
+                .addComponent(bSetGoalTim2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bAnulirGoalTim2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pPertandinganLayout.setVerticalGroup(
             pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -888,10 +912,17 @@ public class View extends javax.swing.JFrame {
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pemainTim2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pemainTim1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSetButton2)
-                    .addComponent(bSetButton1))
+                .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pPertandinganLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bSetGoalTim1)
+                            .addComponent(bAnulirGoalTim1)))
+                    .addGroup(pPertandinganLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bSetGoalTim2)
+                            .addComponent(bAnulirGoalTim2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(pPertandinganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bEndPertandingan, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1179,25 +1210,32 @@ public class View extends javax.swing.JFrame {
         fillComboPemainTim1(pertandingan.getTim1().getNama());
         fillComboPemainTim2(pertandingan.getTim2().getNama());
         jTabbedPane1.setEnabledAt(4, rootPaneCheckingEnabled);
+        bAnulirGoalTim1.setEnabled(false);
+        bAnulirGoalTim2.setEnabled(false);
+        jTabbedPane1.setSelectedIndex(4);
     }//GEN-LAST:event_bMulaiPertandinganActionPerformed
 
     private void cNamaTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNamaTimActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cNamaTimActionPerformed
 
-    private void bSetButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton1ActionPerformed
+    private void bSetGoalTim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetGoalTim1ActionPerformed
         // TODO add your handling code here:
         pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim1().getNama(), Integer.parseInt(pemainTim1.getSelectedItem().toString()), 1);
         pertandingan.setGoalTim1();
         spinGoal1.setValue(pertandingan.getGoalTim1());
-    }//GEN-LAST:event_bSetButton1ActionPerformed
+        bAnulirGoalTim1.setEnabled(true);
+        tfLiveUpdate.append("pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+" dari Tim 1 mencetak goal\n");
+    }//GEN-LAST:event_bSetGoalTim1ActionPerformed
 
-    private void bSetButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton2ActionPerformed
+    private void bSetGoalTim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetGoalTim2ActionPerformed
         // TODO add your handling code here:
         pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim2().getNama(), Integer.parseInt(pemainTim2.getSelectedItem().toString()), 1);
         pertandingan.setGoalTim2();
         spinGoal2.setValue(pertandingan.getGoalTim2());
-    }//GEN-LAST:event_bSetButton2ActionPerformed
+        bAnulirGoalTim2.setEnabled(true);
+        tfLiveUpdate.append("pemain dengan noPunggung "+pemainTim2.getSelectedItem().toString()+" dari Tim 2 mencetak goal\n");
+    }//GEN-LAST:event_bSetGoalTim2ActionPerformed
 
     private void bEndPertandinganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEndPertandinganActionPerformed
         // TODO add your handling code here:
@@ -1236,6 +1274,28 @@ public class View extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_tNamaPEmainKeyTyped
+
+    private void bAnulirGoalTim1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnulirGoalTim1ActionPerformed
+        // TODO add your handling code here:
+        pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim1().getNama(), Integer.parseInt(pemainTim1.getSelectedItem().toString()), -1);
+        pertandingan.annGoalTim1();
+        spinGoal1.setValue(pertandingan.getGoalTim1());
+        if(pertandingan.getGoalTim1()==0){
+            bAnulirGoalTim1.setEnabled(false);
+        }
+        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+"dari Tim 1\n");
+    }//GEN-LAST:event_bAnulirGoalTim1ActionPerformed
+
+    private void bAnulirGoalTim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnulirGoalTim2ActionPerformed
+        // TODO add your handling code here:
+        pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim2().getNama(), Integer.parseInt(pemainTim2.getSelectedItem().toString()), -1);
+        pertandingan.annGoalTim2();
+        spinGoal2.setValue(pertandingan.getGoalTim2());
+        if(pertandingan.getGoalTim2()==0){
+            bAnulirGoalTim2.setEnabled(false);
+        }
+        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+"dari Tim 2\n");
+    }//GEN-LAST:event_bAnulirGoalTim2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1280,6 +1340,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bAddKompetisi;
     private javax.swing.JButton bAddPemain;
     private javax.swing.JButton bAddTim;
+    private javax.swing.JButton bAnulirGoalTim1;
+    private javax.swing.JButton bAnulirGoalTim2;
     private javax.swing.JButton bCancelEditKompetisi;
     private javax.swing.JButton bCancelEditPemain;
     private javax.swing.JButton bCancelEditTim;
@@ -1293,8 +1355,8 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JButton bOKEditPemain;
     private javax.swing.JButton bOKEditTim;
     private javax.swing.JButton bPilihKompetisi;
-    private javax.swing.JButton bSetButton1;
-    private javax.swing.JButton bSetButton2;
+    private javax.swing.JButton bSetGoalTim1;
+    private javax.swing.JButton bSetGoalTim2;
     private javax.swing.JComboBox cNamaTim;
     private javax.swing.JComboBox cPosisi;
     private javax.swing.JLabel dummy;

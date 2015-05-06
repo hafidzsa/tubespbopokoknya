@@ -877,11 +877,10 @@
                               <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="spinGoal1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pemainTim1" alignment="1" min="-2" pref="108" max="-2" attributes="0"/>
-                                  <Component id="bSetButton1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" max="32767" attributes="0"/>
+                                  <Component id="pemainTim1" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -892,7 +891,6 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="labTim2" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="bSetButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="1" max="32767" attributes="0"/>
                           <Component id="pemainTim2" alignment="1" max="32767" attributes="0"/>
                       </Group>
@@ -904,6 +902,17 @@
                       <EmptySpace pref="112" max="32767" attributes="0"/>
                       <Component id="bEndPertandingan" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="bSetGoalTim1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="bAnulirGoalTim1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
+                      <Component id="bSetGoalTim2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="bAnulirGoalTim2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -928,10 +937,21 @@
                           <Component id="pemainTim2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="pemainTim1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bSetButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bSetButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="bSetGoalTim1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bAnulirGoalTim1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="bSetGoalTim2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bAnulirGoalTim2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -988,20 +1008,20 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="bSetButton2">
+            <Component class="javax.swing.JButton" name="bSetGoalTim2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Set Goal"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetGoalTim2ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="bSetButton1">
+            <Component class="javax.swing.JButton" name="bSetGoalTim1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Set Goal"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetGoalTim1ActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bEndPertandingan">
@@ -1055,6 +1075,22 @@
                   </StringArray>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="bAnulirGoalTim1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anulir Goal"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAnulirGoalTim1ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="bAnulirGoalTim2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Anulir Goal"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAnulirGoalTim2ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

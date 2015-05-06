@@ -97,7 +97,13 @@ class Pertandingan extends db_pertandingan {
     public void setGoalTim2() {
         this.goalTim2++;
     }
+    public void annGoalTim1() {
+        this.goalTim1--;
+    }
 
+    public void annGoalTim2() {
+        this.goalTim2--;
+    }
     public int getGoalTim1() {
         return goalTim1;
     }

@@ -147,7 +147,7 @@ public class db_pemain {
         idTim = getIdTim(namaTim, namaKompetisi);
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select jumlahGol from pemain where idTim =" + idTim + ";";
+            String query = "select jumlahGol from pemain where idTim =" + idTim + " and noPunggung="+noPunggung+";";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
                 for (int i = 1; i <= 1; i++) {
@@ -171,7 +171,7 @@ public class db_pemain {
         }
         jumlahGol = Integer.parseInt(view);
         jumlahGol = jumlahGol + Gol;
-        String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim;
+        String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim+ " and noPunggung="+noPunggung+";";
         db.execute(input);
     }
 
