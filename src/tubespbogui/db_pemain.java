@@ -174,8 +174,4 @@ public class db_pemain {
         String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim + " and noPunggung=" + noPunggung + ";";
         db.execute(input);
     }
-
-    public void loadPemain(String namaTim) {
-
-    }
 }

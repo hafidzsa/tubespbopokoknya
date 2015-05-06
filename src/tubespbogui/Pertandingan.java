@@ -113,34 +113,4 @@ class Pertandingan extends db_pertandingan {
     public int getId() {
         return id;
     }
-
-    public void mulaiPertandingan() {
-
-    }
-    /*
-     public void inputGoal(int noPunggung, Tim tim) {
-     tim.getMember(noPunggung).setTmpGoal();
-     }
-
-     public void summary(int scoreTim1, int scoreTim2) {
-     System.out.println("\nHasil Pertandingan :");
-     System.out.println("Tim : " + tim1.getNama() + " Goal : " + scoreTim1);
-     for (int i = 0; i < tim1.getNMember(); i++) {
-     if (tim1.getMemberByIndex(i).getTmpGoal() != 0) {
-     Pemain p = tim1.getMemberByIndex(i);
-     System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
-     p.setGoal();
-     }
-     }
-     System.out.println("Tim : " + tim2.getNama() + " Goal : " + scoreTim2);
-     for (int i = 0; i < tim2.getNMember(); i++) {
-     if (tim2.getMemberByIndex(i).getTmpGoal() != 0) {
-     Pemain p = tim2.getMemberByIndex(i);
-     System.out.println(p.getNama() + " Jumlah Goal : " + p.getTmpGoal());
-     p.setGoal();
-     }
-     }
-     System.out.println("");
-     }
-     */
 }

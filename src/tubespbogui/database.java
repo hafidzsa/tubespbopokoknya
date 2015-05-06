@@ -49,44 +49,26 @@ public class database {
         }
     }
 
-    /**
-     * @return the statement
-     */
     public java.sql.Statement getStatement() {
         return statement;
     }
 
-    /**
-     * @return the connection
-     */
     public java.sql.Connection getConnection() {
         return connection;
     }
 
-    /**
-     * @return the resultSet
-     */
     public java.sql.ResultSet getResultSet() {
         return resultSet;
     }
 
-    /**
-     * @param statement the statement to set
-     */
     public void setStatement(java.sql.Statement statement) {
         this.statement = statement;
     }
 
-    /**
-     * @param connection the connection to set
-     */
     public void setConnection(java.sql.Connection connection) {
         this.connection = connection;
     }
 
-    /**
-     * @param resultSet the resultSet to set
-     */
     public void setResultSet(java.sql.ResultSet resultSet) {
         this.resultSet = resultSet;
     }

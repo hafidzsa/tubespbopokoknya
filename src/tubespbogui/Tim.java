@@ -23,15 +23,6 @@ class Tim extends db_tim {
     public Tim(String namaKompetisi, int id) {
         selectTimById(id, namaKompetisi);
     }
-    //setter
-    //hati hati ada kemungkinan array out of bound karena nMember tidak di set di konstruktor
-   /* public void viewMember() {
-     for (int i = 0; i < nMember; i++) {
-     System.out.print(member[i].getNoPunggung() + " : ");
-     System.out.println(member[i].getNama() + " " + member[i].getPosisi());
-     }
-     }
-     */
 
     public void saveTim(String namaKompetisi, int maxTim) {
         super.addTim(this.nama, namaKompetisi, maxTim);
@@ -156,26 +147,7 @@ class Tim extends db_tim {
         }
         return statusReady;
     }
-    /*
-     public Pemain getMember(int noPunggung) {
-     int idx = 999;
-     for (int i = 0; i < nMember; i++) {
-     if (member[i].getNoPunggung() == noPunggung) {
-     idx = i;
-     }
-     }
-     return member[idx];
-     }
-
-     public Pemain getMemberByIndex(int index) {
-     return member[index];
-     }
-
-     public int getNMember() {
-     return nMember;
-     }
-     */
-
+    
     public int getPoint() {
         return (3 * win + draw);
     }

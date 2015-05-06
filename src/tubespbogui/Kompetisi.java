@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.*;
-import javax.swing.JOptionPane;
 
 public class Kompetisi extends db_kompetisi {
 
@@ -45,28 +44,6 @@ public class Kompetisi extends db_kompetisi {
         return validator.matcher(name).find();
     }
 
-    /*public boolean validasiNoPunggung(int nomer, int pointerTim) {
-     int i = 0;
-     boolean local_cek = false, valid = false;
-     try {
-     do {
-     if (daftarTim[pointerTim].getMemberByIndex(i).getNoPunggung() == nomer) {
-     local_cek = true;
-     throw new IllegalArgumentException("Nomor sudah digunakan");
-     } else {
-     i++;
-     valid = true;
-     }
-     } while (local_cek != true);
-     } catch (NullPointerException e) {
-     valid = true;
-     } catch (IllegalArgumentException e) {
-     System.out.println(e.getMessage());
-     valid = false;
-     }
-     return valid;
-     }
-     */
     public void setNama(String nama) {
         this.nama = nama;
     }
@@ -83,13 +60,6 @@ public class Kompetisi extends db_kompetisi {
         return maxTim;
     }
 
-    /*public Tim[] getTim() {
-     return daftarTim;
-     }
-
-     public List<Pemain> getPemain() {
-     return daftarPemain;
-     }*/
     public void addTim() {
 
     }
