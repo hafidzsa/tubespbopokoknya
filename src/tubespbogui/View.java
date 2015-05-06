@@ -1271,8 +1271,17 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(4, false);
         jTabbedPane1.setSelectedIndex(3);
         bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
+        String temp="Semua Pertandingan telah dilakukan";
         if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())) {
-            JOptionPane.showMessageDialog(null, "Semua Pertandingan telah dilakukan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            temp += "\n\nTim Pemenang :\n";
+            for(Tim t : tmpKomp.getTimPemenangKompetisi()){
+                temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";
+            }
+            Pemain p = tmpKomp.getTopScorerKompetisi();
+            temp+= "\nTop Scorer : "+p.getNama()
+                    +", Asal Tim: "+p.getTim()
+                    +", Jumlah Goal: "+p.getJumlahGoal();
+            JOptionPane.showMessageDialog(null, temp, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             bMulaiPertandingan.setVisible(false);
         }
     }//GEN-LAST:event_bEndPertandinganActionPerformed
