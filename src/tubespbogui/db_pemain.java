@@ -84,7 +84,7 @@ public class db_pemain {
         }
     }
 
-    public void editPemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
+    public void editPemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, int oldNoPunggung, String posisi) {
         int idTim;
         idTim = getIdTim(namaTim, namaKompetisi);
         String get = "select noPunggung from pemain where idTim=" + idTim + ";";
@@ -94,7 +94,8 @@ public class db_pemain {
         boolean cek = false;
         try {
             while (rs.next()) {
-                if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
+                if (rs.getString("noPunggung").equals(Integer.toString(oldNoPunggung))){
+                }else if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
                     cek = true;
                 }
                 jum += 1;
@@ -138,7 +139,7 @@ public class db_pemain {
         int idTim = getIdTim(namaTim, namaKompetisi);
         String query = "delete from pemain where idTim='" + idTim + "' and namaPemain='" + namaPemain + "'";
         db.execute(query);
-        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Data Pemain berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void tambahGol(String namaKompetisi, String namaTim, int noPunggung, int Gol) {

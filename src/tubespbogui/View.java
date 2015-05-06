@@ -318,10 +318,10 @@ public class View extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lKompetisi);
 
+        taDetail.setEditable(false);
         taDetail.setColumns(20);
         taDetail.setRows(5);
         taDetail.setBorder(javax.swing.BorderFactory.createTitledBorder("Detil"));
-        taDetail.setEnabled(false);
         jScrollPane2.setViewportView(taDetail);
 
         bAddKompetisi.setText("Add");
@@ -831,6 +831,7 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        tfLiveUpdate.setEditable(false);
         tfLiveUpdate.setColumns(20);
         tfLiveUpdate.setRows(5);
         tfLiveUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder("Live Update Goal"));
@@ -1219,7 +1220,7 @@ public class View extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
             pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
-            pemain.updatePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), cPosisi.getSelectedItem().toString());
+            pemain.updatePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), Integer.valueOf(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString()), cPosisi.getSelectedItem().toString());
             tNamaPEmain.setText("");
             tNoPunggung.setText("");
             startPane();
@@ -1237,8 +1238,9 @@ public class View extends javax.swing.JFrame {
         bAnulirGoalTim1.setEnabled(false);
         bAnulirGoalTim2.setEnabled(false);
         jTabbedPane1.setSelectedIndex(4);
-        pemainTim1.getModel().setSelectedItem(0);
-        pemainTim2.getModel().setSelectedItem(0);
+        spinGoal1.getModel().setValue(0);
+        spinGoal2.getModel().setValue(0);
+        tfLiveUpdate.setText("");
     }//GEN-LAST:event_bMulaiPertandinganActionPerformed
 
     private void cNamaTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNamaTimActionPerformed

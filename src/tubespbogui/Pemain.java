@@ -72,8 +72,8 @@ public class Pemain extends db_pemain implements Comparable<Pemain> {
         super.addPemain(namaKompetisi, namaTim, namaPemain, noPunggung, posisi);
     }
 
-    public void updatePemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
-        super.editPemain(namaKompetisi, namaTim, namaPemain, noPunggung, posisi);
+    public void updatePemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung,int oldNoPunggung, String posisi) {
+        super.editPemain(namaKompetisi, namaTim, namaPemain, noPunggung, oldNoPunggung, posisi);
     }
 
     public void removePemain(String namaKompetisi, String namaTim, String namaPemain) {
