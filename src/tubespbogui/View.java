@@ -967,6 +967,8 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } if(tNamaKompetisi.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -1048,6 +1050,8 @@ public class View extends javax.swing.JFrame {
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         if (tNamaTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if(tNamaTim.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             tim = new Tim(tNamaTim.getText());
             tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
@@ -1068,6 +1072,8 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if(tNamaKompetisi.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf(tMaxTim.getText()) < tmpKomp.getJumlahTimKompetisi()) {
@@ -1129,7 +1135,9 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else {
+        }else if(tNamaTim.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
             tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
             tim.editTim(tmpKomp.getNama(), tNamaTim.getText());
             fillListTim();
@@ -1197,6 +1205,8 @@ public class View extends javax.swing.JFrame {
         String tmp = tmpKomp.getNama();
         if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if(tNamaPEmain.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
             pemain.savePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), cPosisi.getSelectedItem().toString());
@@ -1218,6 +1228,8 @@ public class View extends javax.swing.JFrame {
         String tmp = tmpKomp.getNama();
         if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if(tNamaPEmain.getText().toString().trim().length()==0){
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
             pemain.updatePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), Integer.valueOf(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString()), cPosisi.getSelectedItem().toString());
