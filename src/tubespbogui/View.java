@@ -1052,6 +1052,10 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (Integer.valueOf(tMaxTim.getText()) < tmpKomp.getJumlahTimKompetisi()) {
             JOptionPane.showMessageDialog(null, "Jumlah tim yang telah ada lebih banyak dari informasi yang diinputkan", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
+            JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             String temp = tmpKomp.getNama();
             tmpKomp.setNama(tNamaKompetisi.getText());
@@ -1106,11 +1110,15 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditTimActionPerformed
         // TODO add your handling code here:
-        tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
-        tim.editTim(tmpKomp.getNama(), tNamaTim.getText());
-        fillListTim();
-        startPane();
-        tNamaTim.setText(null);
+        if (tNamaTim.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+        }else {
+            tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
+            tim.editTim(tmpKomp.getNama(), tNamaTim.getText());
+            fillListTim();
+            startPane();
+            tNamaTim.setText(null);
+        }
     }//GEN-LAST:event_bOKEditTimActionPerformed
 
     private void bCancelEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelEditTimActionPerformed
@@ -1213,6 +1221,8 @@ public class View extends javax.swing.JFrame {
         bAnulirGoalTim1.setEnabled(false);
         bAnulirGoalTim2.setEnabled(false);
         jTabbedPane1.setSelectedIndex(4);
+        pemainTim1.getModel().setSelectedItem(0);
+        pemainTim2.getModel().setSelectedItem(0);
     }//GEN-LAST:event_bMulaiPertandinganActionPerformed
 
     private void cNamaTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cNamaTimActionPerformed
