@@ -1109,15 +1109,25 @@ public class View extends javax.swing.JFrame {
 
     private void tbTutupPendaftaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbTutupPendaftaranActionPerformed
         // TODO add your handling code here:
-        tbTutupPendaftaran.setEnabled(false);
-        filltableKlasemen();
-        klasemen.allTim(tmpKomp.getNama());
-        klasemen.setPertandingan(tmpKomp.getNama());
-        filltableJadwalPertandingan();
-        tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        startPane();
-        tmpKomp.updateStatusTutupPendaftaran(true);
-        setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
+        if (tmpKomp.getJumlahTimKompetisi() < 3) {
+            JOptionPane.showMessageDialog(null, "Tim yang dimasukkan minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            tmpKomp.updateStatusTutupPendaftaran(false);
+        } else {
+            if (new Tim().cekTimReady(tmpKomp.getNama())) {
+                tbTutupPendaftaran.setEnabled(false);
+                filltableKlasemen();
+                klasemen.allTim(tmpKomp.getNama());
+                klasemen.setPertandingan(tmpKomp.getNama());
+                filltableJadwalPertandingan();
+                tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
+                startPane();
+                tmpKomp.updateStatusTutupPendaftaran(true);
+                setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
+                bMulaiPertandingan.setVisible(true);
+            } else {
+                tmpKomp.updateStatusTutupPendaftaran(false);
+            }
+        }
     }//GEN-LAST:event_tbTutupPendaftaranActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -104,4 +104,19 @@ public class db_tim {
         }
         return sb.toString();
     }
+
+    public int getJumlahPemain(String namaTim, String namaKompetisi) {
+        int jmlPemain = 0;
+        int idTim = new Pemain().getIdTim(namaTim, namaKompetisi);
+        try {
+            String query = "SELECT count(counter) FROM pemain join tim using(idTim) WHERE pemain.idTim=" + idTim + " and tim.namaKompetisi='" + namaKompetisi + "'";
+            ResultSet rs = db.getData(query);
+            while (rs.next()) {
+                jmlPemain = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jmlPemain;
+    }
 }

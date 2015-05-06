@@ -2,8 +2,10 @@ package tubespbogui;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 class Tim extends db_tim {
 
@@ -48,22 +50,25 @@ class Tim extends db_tim {
         super.hasilPertandingan(this);
     }
 
-    public Tim[] selectAllTim(String namaKompetisi) {
+    public ArrayList<Tim> selectAllTim(String namaKompetisi) {
+        ArrayList<Tim> daftarTim = new ArrayList<>();
         try {
             String query = "select * from tim where namaKompetisi='" + namaKompetisi + "'";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
-                this.idTim = rs.getInt("idTim");
-                this.nama = rs.getString("namaTim");
-                this.win = rs.getInt("win");
-                this.lose = rs.getInt("lose");
-                this.draw = rs.getInt("draw");
-                this.point = rs.getInt("point");
+                Tim tmp = new Tim();
+                tmp.setIdTim(rs.getInt("idTim"));
+                tmp.setNama(rs.getString("namaTim"));
+                tmp.setWin(rs.getInt("win"));
+                tmp.setLose(rs.getInt("lose"));
+                tmp.setDraw(rs.getInt("draw"));
+                tmp.setPoint(rs.getInt("point"));
+                daftarTim.add(tmp);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return daftarTim;
     }
 
     public void selectTim(String namaTim, String namaKompetisi) {
@@ -71,12 +76,12 @@ class Tim extends db_tim {
             String query = "select * from tim where namaTim='" + namaTim + "' and namaKompetisi='" + namaKompetisi + "' LIMIT 1";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
-                this.idTim = rs.getInt("idTim");
-                this.nama = rs.getString("namaTim");
-                this.win = rs.getInt("win");
-                this.lose = rs.getInt("lose");
-                this.draw = rs.getInt("draw");
-                this.point = rs.getInt("point");
+                this.setIdTim(rs.getInt("idTim"));
+                this.setNama(rs.getString("namaTim"));
+                this.setWin(rs.getInt("win"));
+                this.setLose(rs.getInt("lose"));
+                this.setDraw(rs.getInt("draw"));
+                this.setPoint(rs.getInt("point"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
@@ -88,12 +93,12 @@ class Tim extends db_tim {
             String query = "select * from tim where idTim='" + id + "' and namaKompetisi='" + namaKompetisi + "' LIMIT 1";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
-                this.idTim = rs.getInt("idTim");
-                this.nama = rs.getString("namaTim");
-                this.win = rs.getInt("win");
-                this.lose = rs.getInt("lose");
-                this.draw = rs.getInt("draw");
-                this.point = rs.getInt("point");
+                this.setIdTim(rs.getInt("idTim"));
+                this.setNama(rs.getString("namaTim"));
+                this.setWin(rs.getInt("win"));
+                this.setLose(rs.getInt("lose"));
+                this.setDraw(rs.getInt("draw"));
+                this.setPoint(rs.getInt("point"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,9 +106,8 @@ class Tim extends db_tim {
     }
 
     //scoring
-
     public void win() {
-        this.point += 3;
+        this.setPoint(this.point + 3);
         this.win++;
     }
 
@@ -136,6 +140,22 @@ class Tim extends db_tim {
     public int getDraw() {
         return draw;
     }
+
+    public boolean cekTimReady(String namaKompetisi) {
+        ArrayList<Tim> daftarTim = selectAllTim(namaKompetisi);
+        boolean statusReady = true;
+        String tmp = "Masih ada tim yang belum memiliki minimal 7 pemain : \n";
+        for (Tim t : daftarTim) {
+            if (super.getJumlahPemain(t.getNama(), namaKompetisi) < 7) {
+                statusReady = false;
+                tmp += t.getNama() + ", ";
+            }
+        }
+        if (!statusReady) {
+            JOptionPane.showMessageDialog(null, tmp, "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+        return statusReady;
+    }
     /*
      public Pemain getMember(int noPunggung) {
      int idx = 999;
@@ -167,5 +187,33 @@ class Tim extends db_tim {
     public int compareTo(Tim compareTim) {
         int comparePoint = ((Tim) compareTim).getPoint();
         return comparePoint - this.point;
+    }
+
+    public void setIdTim(int idTim) {
+        this.idTim = idTim;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setWin(int win) {
+        this.win = win;
+    }
+
+    public void setLose(int lose) {
+        this.lose = lose;
+    }
+
+    public void setDraw(int draw) {
+        this.draw = draw;
+    }
+
+    public void setnMember(int nMember) {
+        this.nMember = nMember;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 }
