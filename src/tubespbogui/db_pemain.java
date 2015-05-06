@@ -80,7 +80,7 @@ public class db_pemain {
         } else {
             String input = "insert into pemain values (" + idTim + "," + noPunggung + ",'" + namaPemain + "','" + posisi + "',0,NULL);";
             db.execute(input);
-            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data pemain berhasil ditambahkan", "Sukses", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -109,7 +109,7 @@ public class db_pemain {
         } else {
             String input = "update pemain set noPunggung=" + noPunggung + ",namaPemain='" + namaPemain + "',posisi='" + posisi + "' where idTim=" + idTim;
             db.execute(input);
-            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Data pemain berhasil diubah", "Sukses", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

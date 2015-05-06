@@ -31,6 +31,7 @@ public class View extends javax.swing.JFrame {
 
     public View() {
         initComponents();
+        this.setLocationRelativeTo(null);
         tmpKomp = new Kompetisi();
         tim = new Tim();
         pemain = new Pemain();
@@ -523,7 +524,7 @@ public class View extends javax.swing.JFrame {
             }
         });
 
-        cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Striker", "Gelandang", "Back", "Kiper" }));
+        cPosisi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Penyerang", "Gelandang", "Bek", "Kiper" }));
 
         bAddPemain.setText("Add");
         bAddPemain.addActionListener(new java.awt.event.ActionListener() {
@@ -964,7 +965,7 @@ public class View extends javax.swing.JFrame {
     private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
         // TODO add your handling code here:
         if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -998,8 +999,7 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         fillListTim();
-        JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.WARNING_MESSAGE);
-        cNamaTim.addItem(evt);
+        JOptionPane.showMessageDialog(null, "Kompetisi Berhasil terpilih", "Sukses", JOptionPane.INFORMATION_MESSAGE);
         jTabbedPane1.setEnabledAt(1, true);
         jTabbedPane1.setSelectedIndex(1);
         dummy.setText("Kompetisi: " + tmpKomp.getNama());
@@ -1085,18 +1085,19 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tabListPemain.getSelectedRow() >= 0) {
             //visible button for edit pemain
-            bAddPemain.setVisible(false);
-            bOKEditPemain.setVisible(true);
-            bCancelEditPemain.setVisible(true);
-            bAddTim.setVisible(true);
-            bOKEditTim.setVisible(false);
-            bCancelEditTim.setVisible(false);
-            cNamaTim.getModel().setSelectedItem(lListTim.getSelectedValue().toString());
-            tNamaPEmain.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0).toString());
-            tNoPunggung.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString());
-            cPosisi.getModel().setSelectedItem(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 2).toString());
+            if(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), tabListPemain.getSelectedColumn())!=null){
+                bAddPemain.setVisible(false);
+                bOKEditPemain.setVisible(true);
+                bCancelEditPemain.setVisible(true);
+                bAddTim.setVisible(true);
+                bOKEditTim.setVisible(false);
+                bCancelEditTim.setVisible(false);
+                cNamaTim.getModel().setSelectedItem(lListTim.getSelectedValue().toString());
+                tNamaPEmain.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0).toString());
+                tNoPunggung.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString());
+                cPosisi.getModel().setSelectedItem(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 2).toString());
+            }
         } else if (lListTim.getSelectedValue() != null) {
-            //tim.selectTim(lListTim.getSelectedValue().toString());
             //visible button for edit tim
             bAddTim.setVisible(false);
             bOKEditTim.setVisible(true);
