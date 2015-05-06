@@ -99,7 +99,6 @@ public class Kompetisi extends db_kompetisi {
     }
 
     //DATABASE ALGORITM
-
     public void saveKompetisi() {
         super.addKompetisi(getNama(), getMaxTim());
     }

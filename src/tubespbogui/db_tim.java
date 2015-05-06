@@ -16,59 +16,65 @@ import javax.swing.JOptionPane;
  * @author hafidz
  */
 public class db_tim {
-    protected database db; 
-    public db_tim(){
-         db=new database();
-         db.connect();
-     } 
-     public void addTim(String namaTim,String namaKompetisi,int maxTim) {
-        String get="select namaTim from tim where namaKompetisi='"+namaKompetisi+"'";
+
+    protected database db;
+
+    public db_tim() {
+        db = new database();
+        db.connect();
+    }
+
+    public void addTim(String namaTim, String namaKompetisi, int maxTim) {
+        String get = "select namaTim from tim where namaKompetisi='" + namaKompetisi + "'";
         ResultSet rs;
         rs = db.getData(get);
-        int jum=0;
+        int jum = 0;
         boolean cek = false;
         try {
-            while(rs.next()){
-                if(rs.getString("namaTim").equals(namaTim)){
-                    cek=true;
+            while (rs.next()) {
+                if (rs.getString("namaTim").equals(namaTim)) {
+                    cek = true;
                 }
-               jum+=1;
+                jum += 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(jum>=maxTim){
+        if (jum >= maxTim) {
             JOptionPane.showMessageDialog(null, "Tim dalam kompetisi sudah maksimal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else if(cek){
+        } else if (cek) {
             JOptionPane.showMessageDialog(null, "Nama Tim sudah ada", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
-            String input="insert into tim values (NULL,'"+namaTim+"',0,0,0,0,'"+namaKompetisi+"');";
+        } else {
+            String input = "insert into tim values (NULL,'" + namaTim + "',0,0,0,0,'" + namaKompetisi + "');";
             db.execute(input);
-            JOptionPane.showMessageDialog(null, "Data berhasil dimasukkan", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
+            JOptionPane.showMessageDialog(null, "Data berhasil dimasukkan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    public void updateTim(String namaTim,String namaKompetisi,String temp){
-        String query="update tim set namaTim='"+temp+"' where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
+
+    public void updateTim(String namaTim, String namaKompetisi, String temp) {
+        String query = "update tim set namaTim='" + temp + "' where namaTim='" + namaTim + "' and namaKompetisi='" + namaKompetisi + "'";
         db.execute(query);
-        JOptionPane.showMessageDialog(null, "Data Tim berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
-    } 
-    public void deleteTim(String namaTim, String namaKompetisi){
-        String query="delete from tim where namaTim='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"'";
-        db.execute(query);
-        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
+        JOptionPane.showMessageDialog(null, "Data Tim berhasil diubah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-    public void hasilPertandingan(Tim t){
-        String query="update tim set win='"+t.getWin()+"', lose='"+t.getLose()+"', draw='"+t.getDraw()+"', point='"+t.getPoint()+"' where idTim='"+t.getId()+"'";
+
+    public void deleteTim(String namaTim, String namaKompetisi) {
+        String query = "delete from tim where namaTim='" + namaTim + "' and namaKompetisi='" + namaKompetisi + "'";
+        db.execute(query);
+        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void hasilPertandingan(Tim t) {
+        String query = "update tim set win='" + t.getWin() + "', lose='" + t.getLose() + "', draw='" + t.getDraw() + "', point='" + t.getPoint() + "' where idTim='" + t.getId() + "'";
         db.execute(query);
         JOptionPane.showMessageDialog(null, "Berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-    public String getListTim(String namaKompetisi){
+
+    public String getListTim(String namaKompetisi) {
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select namaTim from tim where namaKompetisi='"+namaKompetisi+"'";
+            String query = "select namaTim from tim where namaKompetisi='" + namaKompetisi + "'";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
+            while (rs.next()) {
                 sb.append(rs.getString("namaTim"));
                 sb.append(" ; ");
                 sb.append(" \n");
@@ -79,13 +85,14 @@ public class db_tim {
         }
         return sb.toString();
     }
-    public String getListTimFull(String namaKompetisi){
+
+    public String getListTimFull(String namaKompetisi) {
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select namaTim,win,lose,draw,point from tim where namaKompetisi='"+namaKompetisi+"'";
+            String query = "select namaTim,win,lose,draw,point from tim where namaKompetisi='" + namaKompetisi + "'";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
-                for (int i = 1; i<=5; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= 5; i++) {
                     sb.append(rs.getString(i));
                     sb.append(" ; ");
                 }

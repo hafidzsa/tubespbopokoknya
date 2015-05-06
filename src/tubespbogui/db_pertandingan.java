@@ -64,8 +64,8 @@ public class db_pertandingan {
         }
         return sb.toString();
     }
-    
-    public int getJumlahPertandingan(String namaKompetisi){
+
+    public int getJumlahPertandingan(String namaKompetisi) {
         int jmlPertandingan = 0;
         try {
             String query = "select count(idPertandingan) from Pertandingan where namaKompetisi='" + namaKompetisi + "'";
@@ -78,36 +78,36 @@ public class db_pertandingan {
         }
         return jmlPertandingan;
     }
-    
-    public boolean getStatusPertandingan(String namaKompetisi){
+
+    public boolean getStatusPertandingan(String namaKompetisi) {
         boolean status = true;
         try {
             String query = "select status from Pertandingan where namaKompetisi='" + namaKompetisi + "'";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
-                if(!rs.getBoolean(1)){
+                if (!rs.getBoolean(1)) {
                     status = false;
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return status;        
+        return status;
     }
-    
-    public int getPekanForLabel(String namaKompetisi){
+
+    public int getPekanForLabel(String namaKompetisi) {
         int pekan = 1;
         try {
             String query = "select status from Pertandingan where namaKompetisi='" + namaKompetisi + "'";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
-                if(rs.getBoolean(1)){
+                if (rs.getBoolean(1)) {
                     pekan++;
                 }
             }
         } catch (SQLException ex) {
             Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return pekan;        
+        return pekan;
     }
 }

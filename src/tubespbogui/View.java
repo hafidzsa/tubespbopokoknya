@@ -28,24 +28,27 @@ public class View extends javax.swing.JFrame {
     private Pemain pemain;
     private Klasemen klasemen;
     private Pertandingan pertandingan;
+
     public View() {
         initComponents();
         tmpKomp = new Kompetisi();
-        tim=new Tim();
+        tim = new Tim();
         pemain = new Pemain();
-        klasemen=new Klasemen();
-        pertandingan=new Pertandingan();
+        klasemen = new Klasemen();
+        pertandingan = new Pertandingan();
         fillListKompetisi();
         firstLaunch();
         startPane();
     }
-    private void firstLaunch(){
+
+    private void firstLaunch() {
         jTabbedPane1.setEnabledAt(1, false);
         jTabbedPane1.setEnabledAt(2, false);
         jTabbedPane1.setEnabledAt(3, false);
         jTabbedPane1.setEnabledAt(4, false);
     }
-    private void startPane(){
+
+    private void startPane() {
         bEditKompetisi.setVisible(false);
         bDeleteKompetisi.setVisible(false);
         bPilihKompetisi.setVisible(false);
@@ -59,121 +62,130 @@ public class View extends javax.swing.JFrame {
         bAddTim.setVisible(true);
         bAddPemain.setVisible(true);
     }
-    private void kompetisiSelected(){
+
+    private void kompetisiSelected() {
         bEditKompetisi.setVisible(true);
         bDeleteKompetisi.setVisible(true);
         bPilihKompetisi.setVisible(true);
     }
-    private void fillListKompetisi(){
+
+    private void fillListKompetisi() {
         DefaultListModel m = new DefaultListModel();
         String allData = tmpKomp.getListKompetisi();
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("\\[", "").replaceAll("\\]","");
+            view = view.replaceAll("\\[", "").replaceAll("\\]", "");
             m.addElement(view);
         }
         lKompetisi.setModel(m);
     }
-    private void fillListTim(){
+
+    private void fillListTim() {
         DefaultComboBoxModel m1 = new DefaultComboBoxModel();
         DefaultListModel m2 = new DefaultListModel();
         String allData = tim.getListTim(tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
-            view = view.replaceAll("\\[", "").replaceAll("\\]","");
+            view = view.replaceAll("\\[", "").replaceAll("\\]", "");
             m1.addElement(view);
             m2.addElement(view);
         }
         cNamaTim.setModel(m1);
         lListTim.setModel(m2);
     }
-     private void fillComboPemainTim1(String namaTim){
+
+    private void fillComboPemainTim1(String namaTim) {
         DefaultComboBoxModel m1 = new DefaultComboBoxModel();
-        String allData = pemain.getListPemainFull(namaTim,tmpKomp.getNama());
+        String allData = pemain.getListPemainFull(namaTim, tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = data[i][1];
             m1.addElement(view);
         }
         pemainTim1.setModel(m1);
     }
-     private void fillComboPemainTim2(String namaTim){
+
+    private void fillComboPemainTim2(String namaTim) {
         DefaultComboBoxModel m1 = new DefaultComboBoxModel();
-        String allData = pemain.getListPemainFull(namaTim,tmpKomp.getNama());
+        String allData = pemain.getListPemainFull(namaTim, tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view;
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = data[i][1];
             m1.addElement(view);
         }
         pemainTim2.setModel(m1);
     }
-    private void filltableTim(){
+
+    private void filltableTim() {
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
-        String allData = pemain.getListPemainFull(tim.getNama(),tmpKomp.getNama());
+        String allData = pemain.getListPemainFull(tim.getNama(), tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
         }
-        String [] title = {"Nama ","No punggung","Posisi","Jumlah gol"};
-        tabListPemain.setModel(new DefaultTableModel(data,title));
+        String[] title = {"Nama ", "No punggung", "Posisi", "Jumlah gol"};
+        tabListPemain.setModel(new DefaultTableModel(data, title));
     }
-    private void filltableKlasemen(){
-    String allData = tim.getListTimFull(tmpKomp.getNama());
+
+    private void filltableKlasemen() {
+        String allData = tim.getListTimFull(tmpKomp.getNama());
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
         }
-        String [] title = {"Nama TIM","Win","Lose","Draw","Point"};
-        tabKlasemen.setModel(new DefaultTableModel(data,title));
+        String[] title = {"Nama TIM", "Win", "Lose", "Draw", "Point"};
+        tabKlasemen.setModel(new DefaultTableModel(data, title));
     }
-    private void filltableJadwalPertandingan(){
-        if(tmpKomp.getJumlahTimKompetisi()<3){
+
+    private void filltableJadwalPertandingan() {
+        if (tmpKomp.getJumlahTimKompetisi() < 3) {
             JOptionPane.showMessageDialog(null, "Tim yang dimasukkan minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
             tmpKomp.updateStatusTutupPendaftaran(false);
-        }else{
+        } else {
             String allData = pertandingan.getListJadwal(tmpKomp.getNama());
             String[] dataTuple = allData.split(" \n");
             String[][] data = new String[dataTuple.length][];
-            String tim1,tim2,status;
-            Tim tmpTim=new Tim();
-            for (int i = 0; i < dataTuple.length;i++){
+            String tim1, tim2, status;
+            Tim tmpTim = new Tim();
+            for (int i = 0; i < dataTuple.length; i++) {
                 data[i] = dataTuple[i].split(" ; ");
                 tmpTim.selectTimById(Integer.parseInt(data[i][0]), tmpKomp.getNama());
-                tim1=tmpTim.getNama();
-                tmpTim=new Tim();
+                tim1 = tmpTim.getNama();
+                tmpTim = new Tim();
                 tmpTim.selectTimById(Integer.parseInt(data[i][2]), tmpKomp.getNama());
-                tim2=tmpTim.getNama();
-                if(data[i][5].endsWith("0")){
-                    status="Pertandingan belum dimulai";
-                }else{
-                    status="Pertandingan Selesai";
+                tim2 = tmpTim.getNama();
+                if (data[i][5].endsWith("0")) {
+                    status = "Pertandingan belum dimulai";
+                } else {
+                    status = "Pertandingan Selesai";
                 }
-                data[i][0]=tim1;
-                data[i][2]=tim2;
-                data[i][5]=status;
+                data[i][0] = tim1;
+                data[i][2] = tim2;
+                data[i][5] = status;
             }
-            String [] title = {"Tim 1","Goal Tim 1","Tim 2","Goal Tim 2","Pekan","Status"};
-            tJadwalPertandingan.setModel(new DefaultTableModel(data,title));
+            String[] title = {"Tim 1", "Goal Tim 1", "Tim 2", "Goal Tim 2", "Pekan", "Status"};
+            tJadwalPertandingan.setModel(new DefaultTableModel(data, title));
         }
     }
-    private void setBukaPendaftaran(boolean a){
+
+    private void setBukaPendaftaran(boolean a) {
         bEdit.setVisible(a);
         bDelete.setVisible(a);
         bAddTim.setVisible(a);
@@ -185,6 +197,13 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(3, !(a));
         tbTutupPendaftaran.setEnabled(a);
     }
+
+    public void setBukaPendaftaranPeserta(boolean a) {
+        tNoPunggung.setEditable(a);
+        tNamaPEmain.setEditable(a);
+        bAddPemain.setVisible(a);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -910,18 +929,18 @@ public class View extends javax.swing.JFrame {
 
     private void bAddKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddKompetisiActionPerformed
         // TODO add your handling code here:
-        if(tNamaKompetisi.getText().equals("")||tMaxTim.getText().equals("")){
+        if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else if(Integer.valueOf((String) tMaxTim.getText())<3){
+        } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else{
-            tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()),(Integer.valueOf((String) tMaxTim.getText())));
+        } else {
+            tmpKomp = new Kompetisi(((String) tNamaKompetisi.getText()), (Integer.valueOf((String) tMaxTim.getText())));
             tmpKomp.saveKompetisi();
             taDetail.append("Data berhasil dimasukan \n");
             String allData = tmpKomp.getListKompetisi();
             String[] dataTuple = allData.split(" \n");
             String[][] data = new String[dataTuple.length][];
-            for (int i = 0; i < dataTuple.length;i++){
+            for (int i = 0; i < dataTuple.length; i++) {
                 data[i] = dataTuple[i].split(" ; ");
                 taDetail.append(dataTuple[i]);
             }
@@ -937,8 +956,8 @@ public class View extends javax.swing.JFrame {
         bCancelEditKompetisi.setVisible(true);
         bAddKompetisi.setVisible(false);
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        tNamaKompetisi.setText(""+tmpKomp.getNama());
-        tMaxTim.setText(""+tmpKomp.getMaxTim());
+        tNamaKompetisi.setText("" + tmpKomp.getNama());
+        tMaxTim.setText("" + tmpKomp.getMaxTim());
     }//GEN-LAST:event_bEditKompetisiActionPerformed
 
     private void bPilihKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPilihKompetisiActionPerformed
@@ -949,25 +968,30 @@ public class View extends javax.swing.JFrame {
         cNamaTim.addItem(evt);
         jTabbedPane1.setEnabledAt(1, true);
         jTabbedPane1.setSelectedIndex(1);
-        dummy.setText("Kompetisi: "+tmpKomp.getNama());
+        dummy.setText("Kompetisi: " + tmpKomp.getNama());
         startPane();
         setBukaPendaftaran(!tmpKomp.getStatusTutupPendaftaran());
-        if(tmpKomp.getStatusTutupPendaftaran()){
+        if (tmpKomp.getStatusTutupPendaftaran()) {
             filltableKlasemen();
             filltableJadwalPertandingan();
         }
         pertandingan.selectPertandingan(tmpKomp.getNama());
-        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-"+pertandingan.getPekanForLabel(tmpKomp.getNama()));
-        if(pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
+        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())) {
             bMulaiPertandingan.setVisible(false);
-        }else{
+        } else {
             bMulaiPertandingan.setVisible(true);
+        }
+        if (tmpKomp.getJumlahTimKompetisi() == 0) {
+            setBukaPendaftaranPeserta(false);
+        } else {
+            setBukaPendaftaranPeserta(true);
         }
     }//GEN-LAST:event_bPilihKompetisiActionPerformed
 
     private void lKompetisiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lKompetisiMouseClicked
         // TODO add your handling code here:
-        String temp=tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
+        String temp = tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
         kompetisiSelected();
     }//GEN-LAST:event_lKompetisiMouseClicked
@@ -975,14 +999,15 @@ public class View extends javax.swing.JFrame {
     private void bAddTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddTimActionPerformed
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
-        if(tNamaTim.getText().equals("")){
+        if (tNamaTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else{
-            tim=new Tim(tNamaTim.getText());
+        } else {
+            tim = new Tim(tNamaTim.getText());
             tim.saveTim(tmpKomp.getNama(), tmpKomp.getMaxTim());
             fillListTim();
             tNamaTim.setText("");
         }
+        setBukaPendaftaranPeserta(true);
     }//GEN-LAST:event_bAddTimActionPerformed
 
     private void bDeleteKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteKompetisiActionPerformed
@@ -994,10 +1019,10 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditKompetisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditKompetisiActionPerformed
         // TODO add your handling code here:
-        if(Integer.valueOf(tMaxTim.getText())<tmpKomp.getJumlahTimKompetisi()){
+        if (Integer.valueOf(tMaxTim.getText()) < tmpKomp.getJumlahTimKompetisi()) {
             JOptionPane.showMessageDialog(null, "Jumlah tim yang telah ada lebih banyak dari informasi yang diinputkan", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else{
-            String temp=tmpKomp.getNama();
+        } else {
+            String temp = tmpKomp.getNama();
             tmpKomp.setNama(tNamaKompetisi.getText());
             tmpKomp.setMaxTim(Integer.valueOf(tMaxTim.getText()));
             tmpKomp.updateKompetisi(temp);
@@ -1008,7 +1033,7 @@ public class View extends javax.swing.JFrame {
 
     private void bEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditActionPerformed
         // TODO add your handling code here:
-        if(tabListPemain.getSelectedRow()>=0){
+        if (tabListPemain.getSelectedRow() >= 0) {
             //visible button for edit pemain
             bAddPemain.setVisible(false);
             bOKEditPemain.setVisible(true);
@@ -1020,7 +1045,7 @@ public class View extends javax.swing.JFrame {
             tNamaPEmain.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0).toString());
             tNoPunggung.setText(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 1).toString());
             cPosisi.getModel().setSelectedItem(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 2).toString());
-        }else if (lListTim.getSelectedValue()!=null){
+        } else if (lListTim.getSelectedValue() != null) {
             //tim.selectTim(lListTim.getSelectedValue().toString());
             //visible button for edit tim
             bAddTim.setVisible(false);
@@ -1050,8 +1075,8 @@ public class View extends javax.swing.JFrame {
 
     private void bOKEditTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOKEditTimActionPerformed
         // TODO add your handling code here:
-        tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
-        tim.editTim(tmpKomp.getNama(),tNamaTim.getText());
+        tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
+        tim.editTim(tmpKomp.getNama(), tNamaTim.getText());
         fillListTim();
         startPane();
         tNamaTim.setText(null);
@@ -1065,15 +1090,20 @@ public class View extends javax.swing.JFrame {
 
     private void bDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteActionPerformed
         // TODO add your handling code here:
-        if(tabListPemain.getSelectedRow()>=0){
+        if (tabListPemain.getSelectedRow() >= 0) {
             //deletePemain
-            String tmpNamaPemain = (String)tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0);
+            String tmpNamaPemain = (String) tabListPemain.getValueAt(tabListPemain.getSelectedRow(), 0);
             pemain.removePemain(tmpKomp.getNama(), tim.getNama(), tmpNamaPemain);
-        }else if (lListTim.getSelectedValue()!=null){
+        } else if (lListTim.getSelectedValue() != null) {
             //deleteTim
-            tim.selectTim(lListTim.getSelectedValue().toString(),tmpKomp.getNama());
+            tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
             tim.removeTim(tmpKomp.getNama());
             fillListTim();
+            if (tmpKomp.getJumlahTimKompetisi() == 0) {
+                setBukaPendaftaranPeserta(false);
+            } else {
+                setBukaPendaftaranPeserta(true);
+            }
         }
     }//GEN-LAST:event_bDeleteActionPerformed
 
@@ -1099,11 +1129,11 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         String tmp = tmpKomp.getNama();
-        if(tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")){
+        if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else{
-            pemain=new Pemain(tNamaPEmain.getText(),(Integer.parseInt(tNoPunggung.getText())),cPosisi.getSelectedItem().toString());
-            pemain.savePemain(tmp,cNamaTim.getSelectedItem().toString(),tNamaPEmain.getText(),Integer.parseInt(tNoPunggung.getText()),cPosisi.getSelectedItem().toString());
+        } else {
+            pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
+            pemain.savePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), cPosisi.getSelectedItem().toString());
             tNamaPEmain.setText("");
             tNoPunggung.setText("");
         }
@@ -1120,11 +1150,11 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         String tmp = tmpKomp.getNama();
-        if(tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")){
+        if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else{
-            pemain=new Pemain(tNamaPEmain.getText(),(Integer.parseInt(tNoPunggung.getText())),cPosisi.getSelectedItem().toString());
-            pemain.updatePemain(tmp,cNamaTim.getSelectedItem().toString(),tNamaPEmain.getText(),Integer.parseInt(tNoPunggung.getText()),cPosisi.getSelectedItem().toString());
+        } else {
+            pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
+            pemain.updatePemain(tmp, cNamaTim.getSelectedItem().toString(), tNamaPEmain.getText(), Integer.parseInt(tNoPunggung.getText()), cPosisi.getSelectedItem().toString());
             tNamaPEmain.setText("");
             tNoPunggung.setText("");
             startPane();
@@ -1147,14 +1177,14 @@ public class View extends javax.swing.JFrame {
 
     private void bSetButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton1ActionPerformed
         // TODO add your handling code here:
-        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim1().getNama(),Integer.parseInt(pemainTim1.getSelectedItem().toString()),1);
+        pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim1().getNama(), Integer.parseInt(pemainTim1.getSelectedItem().toString()), 1);
         pertandingan.setGoalTim1();
         spinGoal1.setValue(pertandingan.getGoalTim1());
     }//GEN-LAST:event_bSetButton1ActionPerformed
 
     private void bSetButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetButton2ActionPerformed
         // TODO add your handling code here:
-        pemain.tambahGol(tmpKomp.getNama(),pertandingan.getTim2().getNama(),Integer.parseInt(pemainTim2.getSelectedItem().toString()),1);
+        pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim2().getNama(), Integer.parseInt(pemainTim2.getSelectedItem().toString()), 1);
         pertandingan.setGoalTim2();
         spinGoal2.setValue(pertandingan.getGoalTim2());
     }//GEN-LAST:event_bSetButton2ActionPerformed
@@ -1166,8 +1196,8 @@ public class View extends javax.swing.JFrame {
         filltableJadwalPertandingan();
         jTabbedPane1.setEnabledAt(4, false);
         jTabbedPane1.setSelectedIndex(3);
-        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-"+pertandingan.getPekanForLabel(tmpKomp.getNama()));
-        if(pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())){
+        bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
+        if (pertandingan.getStatusPertandinganBerakhir(tmpKomp.getNama())) {
             JOptionPane.showMessageDialog(null, "Semua Pertandingan telah dilakukan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             bMulaiPertandingan.setVisible(false);
         }
@@ -1176,7 +1206,7 @@ public class View extends javax.swing.JFrame {
     private void tMaxTimKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tMaxTimKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+        if (!(Character.isDigit(c)) || (c == KeyEvent.VK_BACKSPACE) || (c == KeyEvent.VK_DELETE)) {
             evt.consume();
         }
     }//GEN-LAST:event_tMaxTimKeyTyped
@@ -1184,7 +1214,7 @@ public class View extends javax.swing.JFrame {
     private void tNoPunggungKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNoPunggungKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(!(Character.isDigit(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+        if (!(Character.isDigit(c)) || (c == KeyEvent.VK_BACKSPACE) || (c == KeyEvent.VK_DELETE)) {
             evt.consume();
         }
     }//GEN-LAST:event_tNoPunggungKeyTyped
@@ -1192,7 +1222,7 @@ public class View extends javax.swing.JFrame {
     private void tNamaPEmainKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tNamaPEmainKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(!(Character.isAlphabetic(c)||Character.isWhitespace(c))||(c==KeyEvent.VK_BACKSPACE)||(c==KeyEvent.VK_DELETE)){
+        if (!(Character.isAlphabetic(c) || Character.isWhitespace(c)) || (c == KeyEvent.VK_BACKSPACE) || (c == KeyEvent.VK_DELETE)) {
             evt.consume();
         }
     }//GEN-LAST:event_tNamaPEmainKeyTyped
@@ -1235,7 +1265,7 @@ public class View extends javax.swing.JFrame {
             }
         });
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddKompetisi;
     private javax.swing.JButton bAddPemain;

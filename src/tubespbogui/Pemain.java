@@ -1,11 +1,13 @@
 package tubespbogui;
 
-
 public class Pemain extends db_pemain implements Comparable<Pemain> {
 
     private String nama, posisi;
     private int noPunggung, jumlahGoal, tmpGoal;
-    public Pemain(){}
+
+    public Pemain() {
+    }
+
     public Pemain(String nama, int noPunggung, String posisi) {
         this.nama = nama;
         this.noPunggung = noPunggung;
@@ -48,18 +50,22 @@ public class Pemain extends db_pemain implements Comparable<Pemain> {
         return "nullExceptionLoh!!!";
     }
 //a
+
     @Override
     public int compareTo(Pemain comparePemain) {
         int compareJumlahGoal = ((Pemain) comparePemain).getJumlahGoal();
         return compareJumlahGoal - this.jumlahGoal;
     }
-    public void savePemain(String namaKompetisi,String namaTim,String namaPemain,int noPunggung,String posisi){
-        super.addPemain(namaKompetisi,namaTim,namaPemain,noPunggung,posisi);
+
+    public void savePemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
+        super.addPemain(namaKompetisi, namaTim, namaPemain, noPunggung, posisi);
     }
-    public void updatePemain(String namaKompetisi,String namaTim,String namaPemain,int noPunggung,String posisi){
-        super.editPemain(namaKompetisi,namaTim,namaPemain,noPunggung,posisi);
+
+    public void updatePemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
+        super.editPemain(namaKompetisi, namaTim, namaPemain, noPunggung, posisi);
     }
-    public void removePemain(String namaKompetisi, String namaTim, String namaPemain){
-        super.deletePemain(namaKompetisi,namaTim,namaPemain);
+
+    public void removePemain(String namaKompetisi, String namaTim, String namaPemain) {
+        super.deletePemain(namaKompetisi, namaTim, namaPemain);
     }
 }

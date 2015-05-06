@@ -25,9 +25,27 @@ public class db_kompetisi {
     }
 
     protected void addKompetisi(String namaKompetisi, int maxTim) {
-        String query = "insert into kompetisi (namaKompetisi,maxTim) values('" + namaKompetisi + "','" + maxTim + "')";
-        db.execute(query);
-        JOptionPane.showMessageDialog(null, "Data Berhasil ditambah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        String get = "select namaKompetisi from Kompetisi";
+        ResultSet rs;
+        rs = db.getData(get);
+        int jum = 0;
+        boolean cek = false;
+        try {
+            while (rs.next()) {
+                if (rs.getString("namaKompetisi").equals(namaKompetisi)) {
+                    cek = true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (cek) {
+            JOptionPane.showMessageDialog(null, "Nama Kompetisi sudah ada", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String query = "insert into kompetisi (namaKompetisi,maxTim) values('" + namaKompetisi + "','" + maxTim + "')";
+            db.execute(query);
+            JOptionPane.showMessageDialog(null, "Data Berhasil ditambah", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     protected void editKompetisi(String namaKompetisi, int maxTim, String temp) {

@@ -17,19 +17,22 @@ import javax.swing.JOptionPane;
  * @author hafidz
  */
 public class db_pemain {
-    protected database db; 
-    public db_pemain(){
-         db=new database();
-         db.connect();
-     }
-    public int getIdTim(String namaTim,String namaKompetisi){
-    int idTim;
+
+    protected database db;
+
+    public db_pemain() {
+        db = new database();
+        db.connect();
+    }
+
+    public int getIdTim(String namaTim, String namaKompetisi) {
+        int idTim;
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select tim.idTim from tim where namaTim ='"+namaTim+"' and namaKompetisi='"+namaKompetisi+"';";
+            String query = "select tim.idTim from tim where namaTim ='" + namaTim + "' and namaKompetisi='" + namaKompetisi + "';";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
-                for (int i = 1; i<=1; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= 1; i++) {
                     sb.append(rs.getString(i));
                     sb.append(" ; ");
                 }
@@ -43,8 +46,8 @@ public class db_pemain {
         String allData = sb.toString();
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
-        String view="xxx";
-        for (int i = 0; i < dataTuple.length;i++){
+        String view = "xxx";
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
             view = view.replaceAll("[^0-9]", "");
@@ -52,73 +55,74 @@ public class db_pemain {
         idTim = Integer.parseInt(view);
         return idTim;
     }
-    public void addPemain(String namaKompetisi,String namaTim,String namaPemain,int noPunggung,String posisi) {
-        int idTim;        
-        idTim = getIdTim(namaTim, namaKompetisi);
-        String get="select noPunggung from pemain where idTim="+idTim+";";
-        ResultSet rs;
-        rs = db.getData(get);
-        int jum=0;
-        boolean cek = false;
-        try {
-            while(rs.next()){
-                if(rs.getString("noPunggung").equals(Integer.toString(noPunggung))){
-                    cek=true;
-                }
-               jum+=1;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(jum>=7){
-            JOptionPane.showMessageDialog(null, "jumlah pemain dalam Tim sudah maksimal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else if(cek){
-            JOptionPane.showMessageDialog(null, "Nomer punggung sudah digunakan", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
-            String input="insert into pemain values ("+idTim+","+noPunggung+",'"+namaPemain+"','"+posisi+"',0,NULL);";
-            db.execute(input);
-            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-    public void editPemain(String namaKompetisi,String namaTim,String namaPemain,int noPunggung,String posisi) {
+
+    public void addPemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
         int idTim;
         idTim = getIdTim(namaTim, namaKompetisi);
-        String get="select noPunggung from pemain where idTim="+idTim+";";
+        String get = "select noPunggung from pemain where idTim=" + idTim + ";";
         ResultSet rs;
         rs = db.getData(get);
-        int jum=0;
+        int jum = 0;
         boolean cek = false;
         try {
-            while(rs.next()){
-                if(rs.getString("noPunggung").equals(Integer.toString(noPunggung))){
-                    cek=true;
+            while (rs.next()) {
+                if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
+                    cek = true;
                 }
-               jum+=1;
+                jum += 1;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(jum>=7){
+        if (jum >= 7) {
             JOptionPane.showMessageDialog(null, "jumlah pemain dalam Tim sudah maksimal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }else if(cek){
+        } else if (cek) {
             JOptionPane.showMessageDialog(null, "Nomer punggung sudah digunakan", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        }
-        else{
-            String input="update pemain set noPunggung="+noPunggung+",namaPemain='"+namaPemain+"',posisi='"+posisi+"' where idTim="+idTim;
+        } else {
+            String input = "insert into pemain values (" + idTim + "," + noPunggung + ",'" + namaPemain + "','" + posisi + "',0,NULL);";
             db.execute(input);
             JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
         }
     }
-    public String getListPemainFull(String namaTim,String namaKompetisi){
-        int idTim;        
+
+    public void editPemain(String namaKompetisi, String namaTim, String namaPemain, int noPunggung, String posisi) {
+        int idTim;
+        idTim = getIdTim(namaTim, namaKompetisi);
+        String get = "select noPunggung from pemain where idTim=" + idTim + ";";
+        ResultSet rs;
+        rs = db.getData(get);
+        int jum = 0;
+        boolean cek = false;
+        try {
+            while (rs.next()) {
+                if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
+                    cek = true;
+                }
+                jum += 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Kompetisi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (jum >= 7) {
+            JOptionPane.showMessageDialog(null, "jumlah pemain dalam Tim sudah maksimal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else if (cek) {
+            JOptionPane.showMessageDialog(null, "Nomer punggung sudah digunakan", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String input = "update pemain set noPunggung=" + noPunggung + ",namaPemain='" + namaPemain + "',posisi='" + posisi + "' where idTim=" + idTim;
+            db.execute(input);
+            JOptionPane.showMessageDialog(null, "Data berhasil", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    public String getListPemainFull(String namaTim, String namaKompetisi) {
+        int idTim;
         idTim = getIdTim(namaTim, namaKompetisi);
         StringBuilder sbb = new StringBuilder();
         try {
-            String query = "select namaPemain,noPunggung,posisi,jumlahGol from pemain where idTim="+idTim+"";
+            String query = "select namaPemain,noPunggung,posisi,jumlahGol from pemain where idTim=" + idTim + "";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
-                for (int i = 1; i<=4; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= 4; i++) {
                     sbb.append(rs.getString(i));
                     sbb.append(" ; ");
                 }
@@ -130,21 +134,23 @@ public class db_pemain {
         }
         return sbb.toString();
     }
-    public void deletePemain(String namaKompetisi, String namaTim, String namaPemain){
+
+    public void deletePemain(String namaKompetisi, String namaTim, String namaPemain) {
         int idTim = getIdTim(namaTim, namaKompetisi);
-        String query="delete from pemain where idTim='"+idTim+"' and namaPemain='"+namaPemain+"'";
+        String query = "delete from pemain where idTim='" + idTim + "' and namaPemain='" + namaPemain + "'";
         db.execute(query);
-        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);           
+        JOptionPane.showMessageDialog(null, "Data Tim berhasil dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
     }
-    public void tambahGol (String namaKompetisi,String namaTim,int noPunggung,int Gol){
-        int idTim,jumlahGol;
+
+    public void tambahGol(String namaKompetisi, String namaTim, int noPunggung, int Gol) {
+        int idTim, jumlahGol;
         idTim = getIdTim(namaTim, namaKompetisi);
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select jumlahGol from pemain where idTim ="+idTim+";";
+            String query = "select jumlahGol from pemain where idTim =" + idTim + ";";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
-                for (int i = 1; i<=1; i++){
+            while (rs.next()) {
+                for (int i = 1; i <= 1; i++) {
                     sb.append(rs.getString(i));
                     sb.append(" ; ");
                 }
@@ -158,17 +164,18 @@ public class db_pemain {
         String[] dataTuple = allData.split(" \n");
         String[][] data = new String[dataTuple.length][];
         String view = "xxx";
-        for (int i = 0; i < dataTuple.length;i++){
+        for (int i = 0; i < dataTuple.length; i++) {
             data[i] = dataTuple[i].split(" ; ");
             view = Arrays.toString(data[i]);
             view = view.replaceAll("[^0-9]", "");
         }
         jumlahGol = Integer.parseInt(view);
-        jumlahGol = jumlahGol+Gol;
-        String input="update pemain set jumlahGol="+jumlahGol+" where idTim="+idTim;
+        jumlahGol = jumlahGol + Gol;
+        String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim;
         db.execute(input);
     }
-    public void loadPemain (String namaTim){
-        
+
+    public void loadPemain(String namaTim) {
+
     }
 }
