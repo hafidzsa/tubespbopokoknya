@@ -79,7 +79,6 @@ public class db_pertandingan {
         return jmlPertandingan;
     }
 
-
     public int getPekanForLabel(String namaKompetisi) {
         int pekan = 1;
         try {

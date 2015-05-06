@@ -94,8 +94,8 @@ public class db_pemain {
         boolean cek = false;
         try {
             while (rs.next()) {
-                if (rs.getString("noPunggung").equals(Integer.toString(oldNoPunggung))){
-                }else if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
+                if (rs.getString("noPunggung").equals(Integer.toString(oldNoPunggung))) {
+                } else if (rs.getString("noPunggung").equals(Integer.toString(noPunggung))) {
                     cek = true;
                 }
                 jum += 1;
@@ -147,7 +147,7 @@ public class db_pemain {
         idTim = getIdTim(namaTim, namaKompetisi);
         StringBuilder sb = new StringBuilder();
         try {
-            String query = "select jumlahGol from pemain where idTim =" + idTim + " and noPunggung="+noPunggung+";";
+            String query = "select jumlahGol from pemain where idTim =" + idTim + " and noPunggung=" + noPunggung + ";";
             ResultSet rs = db.getData(query);
             while (rs.next()) {
                 for (int i = 1; i <= 1; i++) {
@@ -171,10 +171,10 @@ public class db_pemain {
         }
         jumlahGol = Integer.parseInt(view);
         jumlahGol = jumlahGol + Gol;
-        String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim+ " and noPunggung="+noPunggung+";";
+        String input = "update pemain set jumlahGol=" + jumlahGol + " where idTim=" + idTim + " and noPunggung=" + noPunggung + ";";
         db.execute(input);
     }
-    
+
     public void loadPemain(String namaTim) {
 
     }

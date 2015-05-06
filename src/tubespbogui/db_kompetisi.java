@@ -131,14 +131,14 @@ public class db_kompetisi {
         }
         return jmlTim;
     }
-    
-    public Tim[] getTimPemenang(String namaKompetisi){
+
+    public Tim[] getTimPemenang(String namaKompetisi) {
         Tim[] daftarPemenang = new Tim[3];
         try {
             int i = 0;
-            String query = "select * from tim where namaKompetisi='"+namaKompetisi+"' order by point desc limit 3 ";
+            String query = "select * from tim where namaKompetisi='" + namaKompetisi + "' order by point desc limit 3 ";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
+            while (rs.next()) {
                 Tim tmp = new Tim();
                 tmp.setIdTim(rs.getInt("idTim"));
                 tmp.setNama(rs.getString("namaTim"));
@@ -146,20 +146,20 @@ public class db_kompetisi {
                 tmp.setLose(rs.getInt("lose"));
                 tmp.setDraw(rs.getInt("draw"));
                 tmp.setPoint(rs.getInt("point"));
-                daftarPemenang[i++]=tmp;
+                daftarPemenang[i++] = tmp;
             }
         } catch (SQLException ex) {
             Logger.getLogger(db_kompetisi.class.getName()).log(Level.SEVERE, null, ex);
         }
         return daftarPemenang;
     }
-    
-    public Pemain getTopScorer(String namaKompetisi){
+
+    public Pemain getTopScorer(String namaKompetisi) {
         Pemain p = new Pemain();
         try {
-            String query = "select * from pemain join tim using(idTim) where namaKompetisi='"+namaKompetisi+"' order by jumlahGol desc limit 1";
+            String query = "select * from pemain join tim using(idTim) where namaKompetisi='" + namaKompetisi + "' order by jumlahGol desc limit 1";
             ResultSet rs = db.getData(query);
-            while(rs.next()){
+            while (rs.next()) {
                 p.selectPemain(rs.getInt("counter"));
                 p.setTim(rs.getString("namaTim"));
             }
@@ -168,8 +168,7 @@ public class db_kompetisi {
         }
         return p;
     }
-    
-    
+
     public boolean getStatusPertandingan(String namaKompetisi) {
         boolean status = true;
         try {

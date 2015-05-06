@@ -967,7 +967,8 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Peringatan", JOptionPane.WARNING_MESSAGE);
-        } if(tNamaKompetisi.getText().toString().trim().length()==0){
+        }
+        if (tNamaKompetisi.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
@@ -1032,15 +1033,15 @@ public class View extends javax.swing.JFrame {
         String temp = tmpKomp.getDetilKompetisi(lKompetisi.getSelectedValue().toString());
         taDetail.setText(temp);
         kompetisiSelected();
-        if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()){
+        if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()) {
             temp = "\n\nTim Pemenang :\n";
-            for(Tim t : tmpKomp.getTimPemenangKompetisi()){
-                temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";
+            for (Tim t : tmpKomp.getTimPemenangKompetisi()) {
+                temp += "Tim: " + t.getNama() + ", Point: " + t.getPoint() + "\n";
             }
             Pemain p = tmpKomp.getTopScorerKompetisi();
-            temp+= "\nTop Scorer : "+p.getNama()
-                    +", Asal Tim: "+p.getTim()
-                    +", Jumlah Goal: "+p.getJumlahGoal();
+            temp += "\nTop Scorer : " + p.getNama()
+                    + ", Asal Tim: " + p.getTim()
+                    + ", Jumlah Goal: " + p.getJumlahGoal();
             taDetail.append(temp);
         }
     }//GEN-LAST:event_lKompetisiMouseClicked
@@ -1050,7 +1051,7 @@ public class View extends javax.swing.JFrame {
         tmpKomp.selectKompetisi(lKompetisi.getSelectedValue().toString());
         if (tNamaTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        } else if(tNamaTim.getText().toString().trim().length()==0){
+        } else if (tNamaTim.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             tim = new Tim(tNamaTim.getText());
@@ -1072,7 +1073,7 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaKompetisi.getText().equals("") || tMaxTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        } else if(tNamaKompetisi.getText().toString().trim().length()==0){
+        } else if (tNamaKompetisi.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else if (Integer.valueOf((String) tMaxTim.getText()) < 3) {
             JOptionPane.showMessageDialog(null, "Jumlah Tim minimal 3", "Peringatan", JOptionPane.WARNING_MESSAGE);
@@ -1092,7 +1093,7 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tabListPemain.getSelectedRow() >= 0) {
             //visible button for edit pemain
-            if(tabListPemain.getValueAt(tabListPemain.getSelectedRow(), tabListPemain.getSelectedColumn())!=null){
+            if (tabListPemain.getValueAt(tabListPemain.getSelectedRow(), tabListPemain.getSelectedColumn()) != null) {
                 bAddPemain.setVisible(false);
                 bOKEditPemain.setVisible(true);
                 bCancelEditPemain.setVisible(true);
@@ -1135,7 +1136,7 @@ public class View extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (tNamaTim.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        }else if(tNamaTim.getText().toString().trim().length()==0){
+        } else if (tNamaTim.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             tim.selectTim(lListTim.getSelectedValue().toString(), tmpKomp.getNama());
@@ -1205,7 +1206,7 @@ public class View extends javax.swing.JFrame {
         String tmp = tmpKomp.getNama();
         if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        } else if(tNamaPEmain.getText().toString().trim().length()==0){
+        } else if (tNamaPEmain.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
@@ -1228,7 +1229,7 @@ public class View extends javax.swing.JFrame {
         String tmp = tmpKomp.getNama();
         if (tNamaPEmain.getText().equals("") || tNoPunggung.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan kurang", "Error", JOptionPane.WARNING_MESSAGE);
-        } else if(tNamaPEmain.getText().toString().trim().length()==0){
+        } else if (tNamaPEmain.getText().toString().trim().length() == 0) {
             JOptionPane.showMessageDialog(null, "Informasi yang dimasukkan tidak ditemukan huruf", "Peringatan", JOptionPane.WARNING_MESSAGE);
         } else {
             pemain = new Pemain(tNamaPEmain.getText(), (Integer.parseInt(tNoPunggung.getText())), cPosisi.getSelectedItem().toString());
@@ -1265,7 +1266,7 @@ public class View extends javax.swing.JFrame {
         pertandingan.setGoalTim1();
         spinGoal1.setValue(pertandingan.getGoalTim1());
         bAnulirGoalTim1.setEnabled(true);
-        tfLiveUpdate.append("pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+" dari Tim 1 mencetak goal\n");
+        tfLiveUpdate.append("pemain dengan noPunggung " + pemainTim1.getSelectedItem().toString() + " dari Tim 1 mencetak goal\n");
     }//GEN-LAST:event_bSetGoalTim1ActionPerformed
 
     private void bSetGoalTim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetGoalTim2ActionPerformed
@@ -1274,7 +1275,7 @@ public class View extends javax.swing.JFrame {
         pertandingan.setGoalTim2();
         spinGoal2.setValue(pertandingan.getGoalTim2());
         bAnulirGoalTim2.setEnabled(true);
-        tfLiveUpdate.append("pemain dengan noPunggung "+pemainTim2.getSelectedItem().toString()+" dari Tim 2 mencetak goal\n");
+        tfLiveUpdate.append("pemain dengan noPunggung " + pemainTim2.getSelectedItem().toString() + " dari Tim 2 mencetak goal\n");
     }//GEN-LAST:event_bSetGoalTim2ActionPerformed
 
     private void bEndPertandinganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEndPertandinganActionPerformed
@@ -1285,16 +1286,16 @@ public class View extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(4, false);
         jTabbedPane1.setSelectedIndex(3);
         bMulaiPertandingan.setText("Mulai pertandingan pekan ke-" + pertandingan.getPekanForLabel(tmpKomp.getNama()));
-        String temp="Semua Pertandingan telah dilakukan";
+        String temp = "Semua Pertandingan telah dilakukan";
         if (tmpKomp.getStatusPertandinganBerakhir() && tmpKomp.getStatusTutupPendaftaran()) {
             temp += "\n\nTim Pemenang :\n";
-            for(Tim t : tmpKomp.getTimPemenangKompetisi()){
-                temp+="Tim: "+t.getNama()+", Point: "+t.getPoint()+"\n";
+            for (Tim t : tmpKomp.getTimPemenangKompetisi()) {
+                temp += "Tim: " + t.getNama() + ", Point: " + t.getPoint() + "\n";
             }
             Pemain p = tmpKomp.getTopScorerKompetisi();
-            temp+= "\nTop Scorer : "+p.getNama()
-                    +", Asal Tim: "+p.getTim()
-                    +", Jumlah Goal: "+p.getJumlahGoal();
+            temp += "\nTop Scorer : " + p.getNama()
+                    + ", Asal Tim: " + p.getTim()
+                    + ", Jumlah Goal: " + p.getJumlahGoal();
             JOptionPane.showMessageDialog(null, temp, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             bMulaiPertandingan.setVisible(false);
         }
@@ -1329,10 +1330,10 @@ public class View extends javax.swing.JFrame {
         pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim1().getNama(), Integer.parseInt(pemainTim1.getSelectedItem().toString()), -1);
         pertandingan.annGoalTim1();
         spinGoal1.setValue(pertandingan.getGoalTim1());
-        if(pertandingan.getGoalTim1()==0){
+        if (pertandingan.getGoalTim1() == 0) {
             bAnulirGoalTim1.setEnabled(false);
         }
-        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+"dari Tim 1\n");
+        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung " + pemainTim1.getSelectedItem().toString() + "dari Tim 1\n");
     }//GEN-LAST:event_bAnulirGoalTim1ActionPerformed
 
     private void bAnulirGoalTim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnulirGoalTim2ActionPerformed
@@ -1340,10 +1341,10 @@ public class View extends javax.swing.JFrame {
         pemain.tambahGol(tmpKomp.getNama(), pertandingan.getTim2().getNama(), Integer.parseInt(pemainTim2.getSelectedItem().toString()), -1);
         pertandingan.annGoalTim2();
         spinGoal2.setValue(pertandingan.getGoalTim2());
-        if(pertandingan.getGoalTim2()==0){
+        if (pertandingan.getGoalTim2() == 0) {
             bAnulirGoalTim2.setEnabled(false);
         }
-        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung "+pemainTim1.getSelectedItem().toString()+"dari Tim 2\n");
+        tfLiveUpdate.append("anulir goal dari pemain dengan noPunggung " + pemainTim1.getSelectedItem().toString() + "dari Tim 2\n");
     }//GEN-LAST:event_bAnulirGoalTim2ActionPerformed
 
     /**

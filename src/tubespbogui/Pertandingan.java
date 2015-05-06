@@ -59,8 +59,6 @@ class Pertandingan extends db_pertandingan {
         return super.getJumlahPertandingan(namaKompetisi);
     }
 
-
-
     public void savePertandingan(String namaKompetisi) {
         super.addPertandingan(namaKompetisi, this);
     }
@@ -95,6 +93,7 @@ class Pertandingan extends db_pertandingan {
     public void setGoalTim2() {
         this.goalTim2++;
     }
+
     public void annGoalTim1() {
         this.goalTim1--;
     }
@@ -102,6 +101,7 @@ class Pertandingan extends db_pertandingan {
     public void annGoalTim2() {
         this.goalTim2--;
     }
+
     public int getGoalTim1() {
         return goalTim1;
     }
